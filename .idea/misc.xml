@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/uid-generator/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-core/pom.xml" />
+        <option value="$PROJECT_DIR$/baidu-id-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-core/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-model/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-mongo/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-config/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-api/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-mongo/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-model/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-config/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-api/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-dashboard/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-account/pom.xml" />
+        <option value="$PROJECT_DIR$/mask-account/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

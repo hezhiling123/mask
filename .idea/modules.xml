@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/baidu-id-starter/baidu-id-starter.iml" filepath="$PROJECT_DIR$/baidu-id-starter/baidu-id-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask.iml" filepath="$PROJECT_DIR$/mask.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-account/mask-account.iml" filepath="$PROJECT_DIR$/mask-account/mask-account.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-api/mask-api.iml" filepath="$PROJECT_DIR$/mask-api/mask-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-config/mask-config.iml" filepath="$PROJECT_DIR$/mask-config/mask-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-core/mask-core.iml" filepath="$PROJECT_DIR$/mask-core/mask-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-dashboard/mask-dashboard.iml" filepath="$PROJECT_DIR$/mask-dashboard/mask-dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-eureka/mask-eureka.iml" filepath="$PROJECT_DIR$/mask-eureka/mask-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-model/mask-model.iml" filepath="$PROJECT_DIR$/mask-model/mask-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-mongo/mask-mongo.iml" filepath="$PROJECT_DIR$/mask-mongo/mask-mongo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-user-service/mask-user-service.iml" filepath="$PROJECT_DIR$/mask-user-service/mask-user-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mask-zuul/mask-zuul.iml" filepath="$PROJECT_DIR$/mask-zuul/mask-zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uid-generator/uid-generator.iml" filepath="$PROJECT_DIR$/uid-generator/uid-generator.iml" />
+    </modules>
+  </component>
+</project>

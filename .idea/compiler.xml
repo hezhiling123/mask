@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="uid-generator" />
+        <module name="mask-core" />
+        <module name="mask-eureka" />
+        <module name="mask-user-service" />
+        <module name="mask-mongo" />
+        <module name="mask-model" />
+        <module name="mask-config" />
+        <module name="mask-zuul" />
+        <module name="mask-account" />
+        <module name="mask-dashboard" />
+        <module name="baidu-id-starter" />
+        <module name="mask-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="baidu-id-starter" target="1.8" />
+      <module name="mask-account" target="1.8" />
+      <module name="mask-api" target="1.8" />
+      <module name="mask-config" target="1.8" />
+      <module name="mask-core" target="1.8" />
+      <module name="mask-dashboard" target="1.8" />
+      <module name="mask-eureka" target="1.8" />
+      <module name="mask-model" target="1.8" />
+      <module name="mask-mongo" target="1.8" />
+      <module name="mask-user-service" target="1.8" />
+      <module name="mask-zuul" target="1.8" />
+      <module name="uid-generator" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="baidu-id-starter" options="-parameters" />
+      <module name="mask-account" options="-parameters" />
+      <module name="mask-api" options="-parameters" />
+      <module name="mask-config" options="-parameters" />
+      <module name="mask-core" options="-parameters" />
+      <module name="mask-dashboard" options="-parameters" />
+      <module name="mask-eureka" options="-parameters" />
+      <module name="mask-model" options="-parameters" />
+      <module name="mask-mongo" options="-parameters" />
+      <module name="mask-user-service" options="-parameters" />
+      <module name="mask-zuul" options="-parameters" />
+    </option>
+  </component>
+</project>
