@@ -5,13 +5,8 @@ import cn.hezhiling.core.utils.CommonConstant;
 import cn.hezhiling.core.utils.response.HttpResponseBody;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
 import cn.hezhiling.sys.fs.FastDFSClientService;
-import cn.hezhiling.sys.model.Department;
-import cn.hezhiling.sys.model.MenuModel;
-import cn.hezhiling.sys.model.SysResource;
 import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.IDepartmentService;
 import cn.hezhiling.sys.service.ILoginService;
-import cn.hezhiling.sys.service.IResourceService;
 import cn.hezhiling.util.ShiroCacheUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -41,37 +36,13 @@ public class LoginController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private IResourceService iResourceService;
-
-    @Autowired
     private ILoginService iLoginService;
-
-    @Autowired
-    private IDepartmentService iDepartmentService;
 
     @Resource
     private FastDFSClientService fastDFSClientService;
 
     @Resource
     private ShiroCacheUtil shiroCacheUtil;
-
-    /**
-     * 获取用户菜单
-     *
-     * @param userId
-     * @return
-     * @throws Exception
-     * @author Jack
-     * @date 2020/9/9
-     * @version
-     */
-    @GetMapping("getLoginResource")
-    public HttpResponseBody<Map<String, Object>> getLoginResource(String userId) {
-        List<SysResource> sysResources = iResourceService.selectbyUserId(userId);
-        Map<String, Object> result = new HashMap<>();
-        result.put("resource", sysResources);
-        return HttpResponseBody.successResponse("查询成功", result);
-    }
 
     /**
      * 获取图片上传地址
@@ -198,11 +169,7 @@ public class LoginController extends BaseController {
                 shiroCacheUtil.putUser(user.getUserName(), "1");
             }
 
-            List<MenuModel> menuModels = iLoginService.queryPermissionList(user);
-            List<Department> departments = iDepartmentService.selectByUserId(getSessionUserId());
             data.put("userInfo", user);
-            data.put("departments", departments);
-            data.put("authorityInfo", menuModels);
             logger.info("------------------user" + loginName + "login SUCCESS-------------------");
         } catch (AuthenticationException e) {
             token.clear();
@@ -213,24 +180,6 @@ public class LoginController extends BaseController {
             throw new BusinessException("系统错误");
         }
         return data;
-    }
-
-    /**
-     * 获取父节点的菜单信息
-     *
-     * @param parentId
-     * @return
-     * @throws Exception
-     * @author Jack
-     * @date 2020/9/9
-     * @version
-     */
-    @GetMapping("getResourceByParentId")
-    public HttpResponseBody<Map<String, Object>> getResourceByParentId(String parentId) {
-        List<SysResource> sysResources = iResourceService.selectResourceByParentId(parentId);
-        Map<String, Object> result = new HashMap<>();
-        result.put("resource", sysResources);
-        return HttpResponseBody.successResponse("查询成功", result);
     }
 
     private void log(Exception e) {

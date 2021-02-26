@@ -2,11 +2,7 @@ package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.GridModel;
 import cn.hezhiling.core.utils.response.HttpResponseBody;
-import cn.hezhiling.sys.model.Department;
-import cn.hezhiling.sys.model.SysRole;
 import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.IDepartmentService;
-import cn.hezhiling.sys.service.IRoleService;
 import cn.hezhiling.sys.service.IUserService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +25,7 @@ public class UserController extends BaseController {
 
 
     @Autowired
-    private IRoleService iRoleService;
-
-    @Autowired
     private IUserService iUserService;
-
-    @Autowired
-    private IDepartmentService iDepartmentService;
 
     /**
      * 新增用户
@@ -91,33 +81,6 @@ public class UserController extends BaseController {
         List<SysUser> sysUsers = iUserService.queryList();
         return HttpResponseBody.successResponse("查询成功", sysUsers);
     }
-
-    /**
-     * 查询用户详情
-     *
-     * @param id
-     * @return
-     * @throws Exception
-     * @author Jack
-     * @date 2020/9/9
-     * @version
-     */
-    @GetMapping("detailUser")
-    public HttpResponseBody<Map<String, Object>> detailUser(String id) {
-        SysUser sysUser = iUserService.selectByPrimaryKey(id);
-        List<Department> departments = iDepartmentService.selectByUserId(id);
-        List<SysRole> list = iRoleService.queryUserRoleByUserId(id);
-        if (sysUser != null) {
-            sysUser.setPassword(null);
-            sysUser.setPasswordRand(null);
-        }
-        Map<String, Object> result = new HashMap<>();
-        result.put("userInfo", sysUser);
-        result.put("departments", departments);
-        result.put("roleNames", list);
-        return HttpResponseBody.successResponse("查询成功", result);
-    }
-
 
     /**
      * 删除用户

@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
@@ -18,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-//@Configuration
+@Configuration
 public class DataSourceConfig {
 
     @Value("${mybatis.mapper-locations}")
@@ -38,22 +39,32 @@ public class DataSourceConfig {
     @Qualifier("slave1DataSource")
     DataSource slaveDataSource;
 
-    /*主库的数据源*/
+    /**
+     * 主库的数据源
+     * @return DataSource
+     */
     @Bean("masterDataSource")
     @ConfigurationProperties("c3p0-master")
     public DataSource masterDataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    /*从库的数据源*/
+
+    /**
+     * 从库的数据源
+     * @return DataSource
+     */
     @Bean("slave1DataSource")
     @ConfigurationProperties("c3p0-slave")
     public DataSource slave1DataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    /*自定义数据源，内部持有了主库和从库的数据源，
-       通过某种机制让应用程序在进行数据读写时，按业务情况走主库或者从库*/
+    /**
+     * 自定义数据源，内部持有了主库和从库的数据源，
+     * 通过某种机制让应用程序在进行数据读写时，按业务情况走主库或者从库
+     * @return DataSource
+     */
     @Bean("myRoutingDataSource")
     @Primary
     public DataSource myRoutingDataSource(){

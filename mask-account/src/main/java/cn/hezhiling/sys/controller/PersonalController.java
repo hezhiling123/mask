@@ -1,10 +1,7 @@
 package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.response.HttpResponseBody;
-import cn.hezhiling.sys.model.Department;
-import cn.hezhiling.sys.model.MenuModel;
 import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.IDepartmentService;
 import cn.hezhiling.sys.service.ILoginService;
 import cn.hezhiling.sys.service.IUserService;
 import com.alibaba.fastjson.JSONObject;
@@ -24,8 +21,6 @@ public class PersonalController extends BaseController {
     @Autowired
     private IUserService iUserService;
     @Autowired
-    private IDepartmentService iDepartmentService;
-    @Autowired
     private ILoginService iLoginService;
 
     /**
@@ -42,14 +37,10 @@ public class PersonalController extends BaseController {
         if (sysUser == null) {
             return HttpResponseBody.failResponse("请重新登录");
         }
-        List<Department> departments = iDepartmentService.selectByUserId(getSessionUserId());
         sysUser.setPassword(null);
         sysUser.setPasswordRand(null);
         Map<String, Object> result = new HashMap<>();
-        List<MenuModel> menuModels = iLoginService.queryPermissionList(sysUser);
         result.put("userInfo", sysUser);
-        result.put("departments", departments);
-        result.put("authorityInfo", menuModels);
         return HttpResponseBody.successResponse("查询成功", result);
     }
 

@@ -1,7 +1,7 @@
 package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.response.HttpResponseBody;
-import cn.hezhiling.mall.constant.RedisKey;
+import cn.hezhiling.mask.constant.RedisKey;
 import cn.hezhiling.sys.model.SysUser;
 import cn.hezhiling.sys.service.IAuthorizeService;
 import cn.hezhiling.sys.service.IUserService;

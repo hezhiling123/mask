@@ -5,6 +5,7 @@ import cn.hezhiling.core.exception.BusinessException;
 import cn.hezhiling.core.utils.CommonConstant;
 import cn.hezhiling.core.utils.MD5Util;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
+import cn.hezhiling.sys.model.MenuModel;
 import cn.hezhiling.sys.model.SysUser;
 import cn.hezhiling.sys.security.OpenApiToken;
 import cn.hezhiling.sys.service.ILoginService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -231,6 +233,43 @@ public class LoginServiceImpl implements ILoginService {
         return resultUser;
     }
 
+    @Override
+    public List<MenuModel> queryMenus(String userId, String parentId) {
+        return null;
+    }
+
+    /**
+     * 查询权限
+     *
+     * @param user
+     * @return
+     * @throws Exception
+     * @author Jack
+     * @date 2020/9/8
+     * @version
+     */
+    @RequestMapping(value = "/queryPermissionList", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+    public List<MenuModel> queryPermissionList(@RequestBody SysUser user) {
+        return null;
+    }
+
+    /**
+     * 查询权限
+     *
+     * @param userStr
+     * @return
+     * @throws Exception
+     * @author Jack
+     * @date 2020/9/8
+     * @version
+     */
+    @RequestMapping(value = "/queryPermissionListStr", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+    public List<MenuModel> queryPermissionList(String userStr) {
+        return null;
+    }
+
     /**
      * 账号登录
      *
@@ -242,7 +281,7 @@ public class LoginServiceImpl implements ILoginService {
      * @version
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    @Override
+    @Override
     public SysUser login(String loginAccount) {
         SysUser user = null;
         Map<String, Object> paramMap = new HashMap<String, Object>();

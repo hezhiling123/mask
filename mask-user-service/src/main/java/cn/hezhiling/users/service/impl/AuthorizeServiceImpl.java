@@ -3,6 +3,8 @@ package cn.hezhiling.users.service.impl;
 import cn.hezhiling.sys.model.Oauth2Client;
 import cn.hezhiling.sys.service.IAuthorizeService;
 import cn.hezhiling.users.dao.Oauth2ClientMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -15,7 +17,7 @@ import java.util.Map;
  * @date 2020/9/8
  */
 @RestController
-//@RequestMapping("/user/sys/service/IAuthorizeService")
+@RequestMapping("/user/sys/service/IAuthorizeService")
 public class AuthorizeServiceImpl implements IAuthorizeService {
 
     @Resource
@@ -31,7 +33,7 @@ public class AuthorizeServiceImpl implements IAuthorizeService {
      * @date 2020/9/8
      * @version
      */
-    //@RequestMapping(value = "/checkClientId", method = RequestMethod.POST)
+    @RequestMapping(value = "/checkClientId", method = RequestMethod.POST)
     @Override
     public boolean checkClientId(String clientId) {
         return oauth2ClientMapper.findByClientId(clientId) != null;
@@ -47,7 +49,7 @@ public class AuthorizeServiceImpl implements IAuthorizeService {
      * @date 2020/9/8
      * @version
      */
-    //@RequestMapping(value = "/checkClientSecret", method = RequestMethod.POST)
+    @RequestMapping(value = "/checkClientSecret", method = RequestMethod.POST)
     @Override
     public boolean checkClientSecret(String clientSecret) {
         return oauth2ClientMapper.findBySecret(clientSecret) != null;
@@ -62,7 +64,7 @@ public class AuthorizeServiceImpl implements IAuthorizeService {
      * @date 2020/9/8
      * @version
      */
-    //@RequestMapping(value = "/getExpireIn")
+    @RequestMapping(value = "/getExpireIn")
     @Override
     public long getExpireIn() {
         return 3600L;
@@ -78,7 +80,7 @@ public class AuthorizeServiceImpl implements IAuthorizeService {
      * @date 2020/9/8
      * @version
      */
-    //@RequestMapping(value = "/findClientByClientId", method = RequestMethod.POST)
+    @RequestMapping(value = "/findClientByClientId", method = RequestMethod.POST)
     @Override
     public Oauth2Client findClientByClientId(String clientId) {
         return oauth2ClientMapper.findByClientId(clientId);
@@ -93,7 +95,7 @@ public class AuthorizeServiceImpl implements IAuthorizeService {
      * @date 2020/9/8
      * @version
      */
-    //@RequestMapping(value = "/getClientMap")
+    @RequestMapping(value = "/getClientMap")
     @Override
     public Map<String, Oauth2Client> getClientMap() {
         return oauth2ClientMapper.getAll4Map();

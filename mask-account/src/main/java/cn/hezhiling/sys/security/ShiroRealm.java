@@ -7,7 +7,6 @@ import cn.hezhiling.core.utils.CommonConstant;
 import cn.hezhiling.core.utils.JsonUtils;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
 import cn.hezhiling.sys.model.MenuModel;
-import cn.hezhiling.sys.model.SysRole;
 import cn.hezhiling.sys.model.SysUser;
 import cn.hezhiling.sys.service.ILoginService;
 import com.alibaba.fastjson.JSONObject;
@@ -51,12 +50,12 @@ public class ShiroRealm extends AuthorizingRealm {
         SysUser user = (SysUser) SecurityUtils.getSubject().getSession().getAttribute(CommonConstant.SESSION_USER_KEY);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 添加用户角色信息
-        List<SysRole> roleList = user.getRoleList();
-        if (roleList != null) {
-            for (SysRole role : roleList) {
-                info.addRole(role.getRoleCode());
-            }
-        }
+//        List<SysRole> roleList = user.getRoleList();
+//        if (roleList != null) {
+//            for (SysRole role : roleList) {
+//                info.addRole(role.getRoleCode());
+//            }
+//        }
         // 添加用户权限信息
         List<MenuModel> permissionList = iLoginService.queryPermissionList(user);
         if (permissionList != null) {
@@ -103,23 +102,23 @@ public class ShiroRealm extends AuthorizingRealm {
     }
     //添加权限方法
     private void addMyPermission(SimpleAuthorizationInfo info, List<MenuModel> permissionList) {
-        for (MenuModel menu : permissionList) {
-            if (!StringUtils.isEmpty(menu.getCode())) {
-                String permission = menu.getCode();
-                if (!StringUtils.isEmpty(permission)) {
-                    info.addStringPermission(permission);
-                }
-            }
-        }
+//        for (MenuModel menu : permissionList) {
+//            if (!StringUtils.isEmpty(menu.getCode())) {
+//                String permission = menu.getCode();
+//                if (!StringUtils.isEmpty(permission)) {
+//                    info.addStringPermission(permission);
+//                }
+//            }
+//        }
     }
 
     public static void setResource(ILoginService loginService, Session session, SysUser user){
-        List<MenuModel> menuList = loginService.queryMenus(user.getId(),"null");
+//        List<MenuModel> menuList = loginService.queryMenus(user.getId(),"null");
         session.setAttribute(CommonConstant.SESSION_USER_KEY, user);
         session.setAttribute(CommonConstant.SESSION_USER_NAME_KEY, user.getUserName());
         session.setAttribute(CommonConstant.SESSION_USER_ID_KEY, user.getId());
         session.setAttribute(CommonConstant.SESSION_USER_REAL_NAME_KEY, user.getRealName());
-        session.setAttribute(CommonConstant.SESSION_MENUS_KEY, JsonUtils.obj2json(menuList));
+//        session.setAttribute(CommonConstant.SESSION_MENUS_KEY, JsonUtils.obj2json(menuList));
     }
 
 }

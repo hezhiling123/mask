@@ -1,8 +1,6 @@
 package cn.hezhiling.sys.security;
 
 
-import cn.hezhiling.sys.model.SysResource;
-import cn.hezhiling.sys.service.IResourceService;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.StringUtils;
 import org.apache.shiro.web.filter.authc.PassThruAuthenticationFilter;
@@ -10,28 +8,23 @@ import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 
 public class ShiroAuthFilter extends PassThruAuthenticationFilter {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-
-    @Autowired
-    private IResourceService iResourceService;
-
     /**
      * 这是没权限的路径，不是没登录的
      */
     private String unauthorizedUrl  = "/api/system/accessDenied";
-    private Set<String> ignoreSaveRequestUrl;//在xml文件中加载不需要保存的url链接
+    //在xml文件中加载不需要保存的url链接
+    private Set<String> ignoreSaveRequestUrl;
 
     public Set<String> getIgnoreSaveRequestUrl() {
         return ignoreSaveRequestUrl;
@@ -55,54 +48,8 @@ public class ShiroAuthFilter extends PassThruAuthenticationFilter {
         //1.判断是否已认证过
         boolean isAuthenticated = subject.isAuthenticated();
         //没有认证并且没有记住登录
-        if(!isAuthenticated && !subject.isRemembered()){
-            return false;
-//            return true;
-        }
-
-        boolean isPermitted = true;
-
-
-        //3.判断用户权限
-            List<SysResource> resources = getResourcesFromRquest(request);
-        if(resources !=null && resources.size() !=0){
-            for(SysResource r : resources){
-                //如果为admin用户，可以访问所有菜单
-                if("admin".equals(subject.getPrincipal())||subject.getPrincipal().toString().startsWith("admin")){
-                    isPermitted =  true;
-                }else{
-                    isPermitted = subject.isPermitted(r.getCode());
-
-                    //针对几个菜单配置同一个url的情况（对父url做权限控制，而只能查到子url）
-                    if(isPermitted) {
-                        return true;
-                    }
-                }
-//                if(isPermitted){
-//                    //设置面包屑
-//                    setCrumbleTitle(request,r);
-//                    //设置currentValue
-//                    setCurrentValue((ShiroHttpServletRequest)request);
-//                    break;
-//                }
-            }
-        }
-
-        return isPermitted;
-    }
-
-
-    /**
-     * 根据当前的请求request获取资源列表
-     */
-    private List<SysResource> getResourcesFromRquest(ServletRequest request) {
-        ShiroHttpServletRequest shiroRequet = (ShiroHttpServletRequest)request;
-        String requestUri = shiroRequet.getRequestURI();
-        if(requestUri.indexOf("/",1) == -1 ){
-        	return null;
-        }
-        String requestPath = requestUri.substring(requestUri.indexOf("/",1));
-        return iResourceService.getResourceByUrl(requestPath);
+        //            return true;
+        return isAuthenticated || subject.isRemembered();
     }
 
 

@@ -101,7 +101,7 @@ public class DruidConfig {
         return druidDataSource;
     }
 
-//    @Bean
+    @Bean
     public DataSource dynamicDataSource() {
         Map<Object, Object> targetDataSources = new HashMap<>();
         DataSource masterDs = getMasterDs();

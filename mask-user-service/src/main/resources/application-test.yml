@@ -3,10 +3,10 @@ dfs:
 # 114.115.171.119 root Mall123!#$
 
 druid-master:
-  jdbcUrl: jdbc:mysql://94.191.83.120:3307/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
-  jdbcUrl1: jdbc:mysql://94.191.83.120:3308/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
-  username: root
-  password: root
+  jdbcUrl: jdbc:mysql://47.101.195.110:3306/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  jdbcUrl1: jdbc:mysql://47.101.195.110:3306/malk?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  username: admin
+  password: 1659868245
   driver-class-name: com.mysql.jdbc.Driver
   minIdle: 2
   maxActive: 10
@@ -22,7 +22,7 @@ druid-master:
   filters: stat,wall
   connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 druid-slave:
-  url: jdbc:mysql://94.191.83.120:3308/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  url: jdbc:mysql://47.101.195.110:3306/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
   username: root
   password: root
   driver-class-name: com.mysql.jdbc.Driver
@@ -81,12 +81,12 @@ spring:
   kafka:
     bootstrap-servers: 106.52.62.38:9092
   redis:
-    host: 106.52.62.38
+    host: 47.101.195.110
     port: 6379
-    password: 123456
+    password: 1659868245
   data:
     mongodb:
-      uri: mongodb://94.191.83.120:27017/mall
+      uri: mongodb://47.101.195.110:27017/mall
   datasource:
     initialize: false
   application:

@@ -1,6 +1,6 @@
 package cn.hezhiling.config;
 
-import cn.hezhiling.mall.constant.SsoConstants;
+import cn.hezhiling.mask.constant.SsoConstants;
 import cn.hezhiling.sys.security.MySessionListener;
 import cn.hezhiling.sys.security.ShiroAuthFilter;
 import cn.hezhiling.sys.security.ShiroRealm;
@@ -60,7 +60,8 @@ public class ShiroConfiguration {
         RedisManager redisManager = new RedisManager();
         redisManager.setHost(host);
         redisManager.setPort(port);
-        redisManager.setExpire(7200);// 配置缓存过期时间
+        // 配置缓存过期时间
+        redisManager.setExpire(7200);
         redisManager.setPassword(password);
         return redisManager;
     }

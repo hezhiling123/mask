@@ -52,7 +52,7 @@ public class UserServiceImpl implements IUserService {
      */
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void addUser(SysUser record, String sessionUserId, String departIds, String roleIds) {
         if (StringUtils.isEmpty(record.getId())) {
             //新增用户校验邮箱是否已被注册

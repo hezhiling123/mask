@@ -1,7 +1,7 @@
 package cn.hezhiling.sys.security;
 
 import cn.hezhiling.core.utils.HttpUtil;
-import cn.hezhiling.mall.constant.RedisKey;
+import cn.hezhiling.mask.constant.RedisKey;
 import cn.hezhiling.sys.model.Oauth2Client;
 import cn.hezhiling.sys.service.IAuthorizeService;
 import org.apache.shiro.session.Session;

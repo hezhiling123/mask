@@ -1,7 +1,7 @@
 package cn.hezhiling.util;
 
-import cn.hezhiling.mall.constant.RedisCacheNames;
-import cn.hezhiling.mall.constant.SsoConstants;
+import cn.hezhiling.mask.constant.RedisCacheNames;
+import cn.hezhiling.mask.constant.SsoConstants;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 
