@@ -90,7 +90,7 @@ spring:
   datasource:
     initialize: false
   application:
-    name: mall-user-service
+    name: mask-user-service
 
 eureka:
   client:

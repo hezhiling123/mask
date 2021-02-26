@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@Configuration
+//@Configuration
 public class DataSourceConfig {
 
     @Value("${mybatis.mapper-locations}")

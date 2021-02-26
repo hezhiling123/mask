@@ -128,10 +128,10 @@ public class DruidConfig {
         //添加白名单
         servletRegistrationBean.addInitParameter("allow","");
         //添加ip黑名单
-        servletRegistrationBean.addInitParameter("deny","192.168.16.111");
+        servletRegistrationBean.addInitParameter("deny","47.101.195.110");
         //登录查看信息的账号密码
         servletRegistrationBean.addInitParameter("loginUsername","admin");
-        servletRegistrationBean.addInitParameter("loginPassword","123");
+        servletRegistrationBean.addInitParameter("loginPassword","1659868245");
         //是否能够重置数据
         servletRegistrationBean.addInitParameter("resetEnable","false");
         return servletRegistrationBean;

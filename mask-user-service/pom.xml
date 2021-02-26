@@ -188,7 +188,7 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.enjoy</groupId>
+            <groupId>cn.hezhiling</groupId>
             <artifactId>baidu-id-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
