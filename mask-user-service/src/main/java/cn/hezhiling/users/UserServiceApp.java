@@ -14,7 +14,7 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
  * 用户以及授权启动类
  */
 @SpringBootApplication
-@MapperScan("cn.enjoy.**.dao")
+@MapperScan("cn.hezhiling.**.dao")
 @EnableEurekaClient
 public class UserServiceApp {
     public static void main(String[] args) {

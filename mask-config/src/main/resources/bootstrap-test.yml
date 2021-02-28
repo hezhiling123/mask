@@ -1,20 +1,20 @@
 spring:
   application:
-    name: mall-config
+    name: mask-config
   cloud:
     config:
       server:
         git:
-          uri: https://e.coding.net/xiangxueman/mall-config-repo.git
+          uri: https://github.com/hezhiling123/mask-config-repo.git
           search-paths: mall
-          username: 2181935941@qq.com
-          password: XKcs_0731@123)$3
+          username: 1605489109@qq.com
+          password: 1659868245hzl2
           #强制从GitHub配置中心中拉取配置信息，不走缓存
           force-pull: true
     stream:
       kafka:
         binder:
-          brokers: 106.52.62.38:9092
+          brokers: 47.101.195.110:9092
     bus:
       refresh:
         enabled: true
@@ -29,7 +29,7 @@ spring:
     sender:
       type: kafka
   kafka:
-    bootstrap-servers: 106.52.62.38:9092
+    bootstrap-servers: 47.101.195.110:9092
     consumer:
       group-id: config-bus
 #  rabbitmq:

@@ -18,8 +18,8 @@ public class DBContextHolder {
     };
 
 
-//    private static final ThreadLocal<DBTypeEnum> contextHolder
-//            = new ThreadLocal<>();
+    private static final ThreadLocal<DBTypeEnum> contextHolder
+            = new ThreadLocal<>();
 
 
     public static void set(DBTypeEnum dbType) {
