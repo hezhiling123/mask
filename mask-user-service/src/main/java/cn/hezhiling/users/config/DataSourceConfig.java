@@ -3,6 +3,7 @@ package cn.hezhiling.users.config;
 import cn.hezhiling.users.dbutils.DBTypeEnum;
 import cn.hezhiling.users.dbutils.MyRoutingDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,7 +55,7 @@ public class DataSourceConfig {
      * 从库的数据源
      * @return DataSource
      */
-    @Bean("slave1DataSource")
+    @Bean("slaveDataSource")
     @ConfigurationProperties("c3p0-slave")
     public DataSource slave1DataSource() {
         return DataSourceBuilder.create().build();

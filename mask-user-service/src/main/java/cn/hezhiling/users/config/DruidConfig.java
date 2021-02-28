@@ -17,9 +17,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
-@Configuration
-@ConfigurationProperties(prefix = "druid-mycat",ignoreInvalidFields = true)
+//@Data
+//@Configuration
+//@ConfigurationProperties(prefix = "druid-mycat",ignoreInvalidFields = true)
 public class DruidConfig {
 
     private String driverClassName;
@@ -44,7 +44,7 @@ public class DruidConfig {
     //这里需要注意默认是读取的application.properties配置文件。
     //如果你的配置文件不在默认文件中。
     //需要在类中引入配置文件例如：@PropertySource(value = "classpath:druid.properties")
-    @Bean(destroyMethod = "close",initMethod = "init")
+    @Bean(destroyMethod = "",initMethod = "init")
     public DataSource getMasterDs(){
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setDriverClassName(driverClassName);

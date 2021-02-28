@@ -38,14 +38,11 @@ public class DefaultUidGeneratorTest {
      */
     @Test
     public void testSerialGenerate() {
-        // Generate UID serially
-        Set<Long> uidSet = new HashSet<>(SIZE);
-        for (int i = 0; i < SIZE; i++) {
-            doGenerate(uidSet, i);
-        }
+        long uid = uidGenerator.getUID();
 
-        // Check UIDs are all unique
-        checkUniqueID(uidSet);
+        // Parse UID into [Timestamp, WorkerId, Sequence]
+        // {"UID":"180363646902239241","parsed":{    "timestamp":"2017-01-19 12:15:46",    "workerId":"4",    "sequence":"9"        }}
+        System.out.println(uidGenerator.parseUID(uid));
     }
 
     /**
@@ -118,5 +115,6 @@ public class DefaultUidGeneratorTest {
         System.out.println(uidSet.size());
         Assert.assertEquals(SIZE, uidSet.size());
     }
+
 
 }

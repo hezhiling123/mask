@@ -2,7 +2,8 @@ dfs:
   url: 94.191.83.120:8181
 # 114.115.171.119 root Mall123!#$
 
-druid-master:
+c3p0-master:
+  url
   jdbcUrl: jdbc:mysql://47.101.195.110:3306/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
   jdbcUrl1: jdbc:mysql://47.101.195.110:3306/malk?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
   username: admin
@@ -21,7 +22,7 @@ druid-master:
   maxPoolPreparedStatementPerConnectionSize: 20
   filters: stat,wall
   connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-druid-slave:
+c3p0-slave:
   url: jdbc:mysql://47.101.195.110:3306/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
   username: root
   password: root
@@ -40,10 +41,10 @@ druid-slave:
   filters: stat,wall
   connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 druid-mycat:
-  jdbcUrl: jdbc:mysql://localhost:8066/userdb?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  jdbcUrl: jdbc:mysql://47.101.195.110:3306/userdb?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
   #jdbcUrl1: jdbc:mysql://94.191.83.120:3308/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
-  username: enjoy
-  password: 123456
+  username: root
+  password: root
   driver-class-name: com.mysql.jdbc.Driver
   minIdle: 2
   maxActive: 10
@@ -69,17 +70,17 @@ spring:
     web:
       client:
         enabled: true
-  zipkin:
-#    base-url: http://106.55.152.41:9411/
-    sender:
-      type: kafka
-  cloud:
-    stream:
-      kafka:
-        binder:
-          brokers: 47.101.195.110:9092
-  kafka:
-    bootstrap-servers: 47.101.195.110:9092
+#  zipkin:
+##    base-url: http://106.55.152.41:9411/
+#    sender:
+#      type: kafka
+#  cloud:
+#    stream:
+#      kafka:
+#        binder:
+#          brokers: 47.101.195.110:9092
+#  kafka:
+#    bootstrap-servers: 47.101.195.110:9092
   redis:
     host: 47.101.195.110
     port: 6379
@@ -88,7 +89,7 @@ spring:
     mongodb:
       uri: mongodb://47.101.195.110:27017/mall
   datasource:
-    initialize: false
+    initialization-mode: never
   application:
     name: mask-user-service
 
