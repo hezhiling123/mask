@@ -1,6 +1,6 @@
 FROM docker.io/relateiq/oracle-java8
 #VOLUME /tmp
-ADD mall-config.jar app.jar
+ADD mask-config.jar app.jar
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
