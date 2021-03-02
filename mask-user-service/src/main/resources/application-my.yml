@@ -1,9 +1,9 @@
 dfs:
   url: 192.168.244.10:8181
 druid:
-  url: jdbc:mysql://47.101.195.110:3306/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
-  username: admin
-  password: 1659868245
+  url: jdbc:mysql://47.101.195.110:3307/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  username: root
+  password: root
   driver-class-name: com.mysql.jdbc.Driver
   minPoolSize: 2
   maxPoolSize: 10
@@ -33,3 +33,7 @@ spring:
       uri: mongodb://47.101.195.110:27017/mall
   datasource:
     initialization-mode: always
+  zipkin:
+    base-url: http://47.101.195.110:9411/
+    sender:
+      type: kafka

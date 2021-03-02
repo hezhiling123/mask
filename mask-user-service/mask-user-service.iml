@@ -212,7 +212,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:jconsole:1.8.0">
         <CLASSES>
-          <root url="jar://E:/applaunch/java/lib/jconsole.jar!/" />
+          <root url="jar://D:/toolBin/Java/jdk1.8.0_144/lib/jconsole.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -221,7 +221,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:tools:1.8.0">
         <CLASSES>
-          <root url="jar://E:/applaunch/java/lib/tools.jar!/" />
+          <root url="jar://D:/toolBin/Java/jdk1.8.0_144/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -236,7 +236,7 @@
     <orderEntry type="module" module-name="baidu-id-starter" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:2.1" level="project" />
-    <orderEntry type="module" module-name="uid-generator" />
+    <orderEntry type="library" name="Maven: com.baidu.fsg:uid-generator:1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:log4j-over-slf4j:1.7.29" level="project" />
     <orderEntry type="library" name="Maven: io.github.yedaxia:japidocs:1.4.2" level="project" />
