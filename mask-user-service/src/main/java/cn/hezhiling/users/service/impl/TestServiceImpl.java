@@ -20,10 +20,20 @@ import java.util.Map;
 @RequestMapping("/test")
 public class TestServiceImpl implements TestService {
 	@Override
-	@RequestMapping(value = "/loginByToken", method = RequestMethod.GET)
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public Map<String, Object> test(String userId) {
 		Map<String, Object> result = new HashMap<>(1);
+		log.info(userId);
 		result.put("userId", userId);
+		return result;
+	}
+
+	@Override
+	@RequestMapping(value = "/test1", method = RequestMethod.POST)
+	public Map<String, Object> test1(String userId) {
+		Map<String, Object> result = new HashMap<>(1);
+		result.put("userId", userId);
+		log.info(userId);
 		return result;
 	}
 }
