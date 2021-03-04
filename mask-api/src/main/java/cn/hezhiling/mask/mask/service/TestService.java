@@ -1,4 +1,4 @@
-package cn.hezhiling.sys.service;
+package cn.hezhiling.mask.mask.service;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
