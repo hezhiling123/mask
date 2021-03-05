@@ -6,7 +6,7 @@ import cn.hezhiling.core.utils.response.HttpResponseBody;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
 import cn.hezhiling.sys.fs.FastDFSClientService;
 import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.ILoginService;
+import cn.hezhiling.sys.service.LoginService;
 import cn.hezhiling.util.ShiroCacheUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,7 +35,7 @@ public class LoginController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private ILoginService iLoginService;
+    private LoginService loginService;
 
     @Resource
     private FastDFSClientService fastDFSClientService;

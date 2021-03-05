@@ -4,11 +4,10 @@ package cn.hezhiling.sys.security;
 
 import cn.hezhiling.core.exception.BusinessException;
 import cn.hezhiling.core.utils.CommonConstant;
-import cn.hezhiling.core.utils.JsonUtils;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
 import cn.hezhiling.sys.model.MenuModel;
 import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.ILoginService;
+import cn.hezhiling.sys.service.LoginService;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -40,7 +39,7 @@ public class ShiroRealm extends AuthorizingRealm {
     private final static Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
     
     @Autowired
-    private ILoginService iLoginService;
+    private LoginService loginService;
 
     /**
      * 获取授权信息
@@ -57,7 +56,7 @@ public class ShiroRealm extends AuthorizingRealm {
 //            }
 //        }
         // 添加用户权限信息
-        List<MenuModel> permissionList = iLoginService.queryPermissionList(user);
+        List<MenuModel> permissionList = loginService.queryPermissionList(user);
         if (permissionList != null) {
             addMyPermission(info, permissionList);
         }
@@ -86,14 +85,14 @@ public class ShiroRealm extends AuthorizingRealm {
         loginUser.setLoginAccount(userName);
         loginUser.setPassword(password);
         try{
-            Map<String, Object> user = iLoginService.loginByStrToken(JSONObject.toJSONString(authcToken));
+            Map<String, Object> user = loginService.loginByStrToken(JSONObject.toJSONString(authcToken));
             JSONObject userJo = (JSONObject)user.get("user");
             logger.info("userJo" + userJo.toJSONString());
             SysUser sysUser = JSONObject.parseObject(userJo.toJSONString(), SysUser.class);
             user.remove("user");
 
             Session session = SecurityUtils.getSubject().getSession();
-            setResource(iLoginService, session,sysUser);
+            setResource(loginService, session,sysUser);
             logger.info("登录认证成功*******");
             return new SimpleAuthenticationInfo(token.getPrincipal(), token.getPassword(), token.getUsername());
         }catch(Exception e){
@@ -112,7 +111,7 @@ public class ShiroRealm extends AuthorizingRealm {
 //        }
     }
 
-    public static void setResource(ILoginService loginService, Session session, SysUser user){
+    public static void setResource(LoginService loginService, Session session, SysUser user){
 //        List<MenuModel> menuList = loginService.queryMenus(user.getId(),"null");
         session.setAttribute(CommonConstant.SESSION_USER_KEY, user);
         session.setAttribute(CommonConstant.SESSION_USER_NAME_KEY, user.getUserName());

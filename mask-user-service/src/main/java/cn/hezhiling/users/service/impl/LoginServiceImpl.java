@@ -8,7 +8,7 @@ import cn.hezhiling.core.utils.response.ResponseCodeConstant;
 import cn.hezhiling.sys.model.MenuModel;
 import cn.hezhiling.sys.model.SysUser;
 import cn.hezhiling.sys.security.OpenApiToken;
-import cn.hezhiling.sys.service.ILoginService;
+import cn.hezhiling.sys.service.LoginService;
 import cn.hezhiling.users.dao.SysUserMapper;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +30,8 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@RequestMapping("/user/sys/service/ILoginService")
-public class LoginServiceImpl implements ILoginService {
+@RequestMapping("/user/sys/service/loginService")
+public class LoginServiceImpl implements LoginService {
     @Resource
     private SysUserMapper sysUserMapper;
 
@@ -49,10 +49,8 @@ public class LoginServiceImpl implements ILoginService {
      */
     @RequestMapping(value = "/loginByToken", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public Map<String, Object> login(@RequestBody AuthenticationToken token) {
+    public Map<String, Object> loginByToken(@RequestBody AuthenticationToken token) {
         SysUser user = null;
-        String loginAccount;
-        String password;
         Map<String, Object> paramMap = new HashMap<>();
         //微信登录
         if (token instanceof OpenApiToken) {
@@ -61,49 +59,18 @@ public class LoginServiceImpl implements ILoginService {
             paramMap.put("loginAccount", user.getEmail());
         } else if (token instanceof UsernamePasswordToken) {
             UsernamePasswordToken sysToken = (UsernamePasswordToken) token;
-            loginAccount = sysToken.getUsername();
-            password = new String(sysToken.getPassword());
-
-            paramMap.put("loginAccount", loginAccount);
+            String password = new String(sysToken.getPassword());
+            paramMap.put("loginAccount", sysToken.getUsername());
             user = sysUserMapper.getUserByAccount(paramMap);
-            String md5Password = MD5Util.generateMD5(password, user.getPasswordRand());
-
             //!password.equals(user.getPassword()) 是为了自动登陆取不到用户的真实密码使用
-            if (!md5Password.equals(user.getPassword()) && !password.equals(user.getPassword())) {
+            if (!MD5Util.generateMD5(password, user.getPasswordRand()).equals(user.getPassword()) && !password.equals(user.getPassword())) {
                 // 密码错误
                 throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
                         ResponseCodeConstant.USER_LOGIN_FAIL_PASSWORD_FAIL_MSG);
             }
         }
-        if (user == null) {
-            // 用户不存在
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_NO_USER_MSG);
-        }
-        if (user.getStatus() == CommonConstant.USER_STATUS_NO_ACTIVATION) {
-            // 用户未激活
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_NO_ACTIVATION_MSG);
-        }
-        if (user.getStatus() == CommonConstant.USER_STATUS_FREEZE) {
-            // 用户已冻结
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_FREEZEED_MSG);
-        }
-        if (user.getStatus() == CommonConstant.USER_STATUS_CANCEL) {
-            // 用户已作废
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_CANCELED_MSG);
-        }
-
-        Map<String, Object> resultUser = sysUserMapper.getUserByAccountWithLogin(paramMap);
-        Object icon = resultUser.get("icon");
-        if (icon != null) {
-            icon = getResAccessUrl(icon.toString());
-            resultUser.put("icon", icon);
-        }
-        resultUser.put("user", user);
-        return resultUser;
+        checkUserStatus(user);
+        return getUserHeadIcon(user, paramMap);
     }
 
     /**
@@ -119,51 +86,25 @@ public class LoginServiceImpl implements ILoginService {
     @RequestMapping(value = "/loginByTokenStr", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Map<String, Object> loginByStrToken(@RequestParam("token") String token) {
-        log.info(token);
-        System.out.println(token);
-        UsernamePasswordToken usernamePasswordToken = JSONObject.parseObject(token, UsernamePasswordToken.class);
-        SysUser user = null;
-        String loginAccount;
-        String password;
+        UsernamePasswordToken sysToken = JSONObject.parseObject(token, UsernamePasswordToken.class);
         Map<String, Object> paramMap = new HashMap<>();
         //微信登录
-        UsernamePasswordToken sysToken = usernamePasswordToken;
-        loginAccount = sysToken.getUsername();
-        password = new String(sysToken.getPassword());
-        log.info(password);
-        paramMap.put("loginAccount", loginAccount);
-        user = sysUserMapper.getUserByAccount(paramMap);
-        String md5Password = MD5Util.generateMD5(password, user.getPasswordRand());
-        log.info("md5Password:" + md5Password);
-        log.info("user.getPassword():" + user.getPassword());
+        String password = new String(sysToken.getPassword());
+        paramMap.put("loginAccount", sysToken.getUsername());
+        SysUser user = sysUserMapper.getUserByAccount(paramMap);
         //!password.equals(user.getPassword()) 是为了自动登陆取不到用户的真实密码使用
-        if (!md5Password.equals(user.getPassword()) && !password.equals(user.getPassword())) {
+        if (!MD5Util.generateMD5(password, user.getPasswordRand()).equals(user.getPassword())
+                && !password.equals(user.getPassword())) {
             // 密码错误
             throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
                     ResponseCodeConstant.USER_LOGIN_FAIL_PASSWORD_FAIL_MSG);
         }
-        if (user == null) {
-            // 用户不存在
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_NO_USER_MSG);
-        }
-        if (user.getStatus() == CommonConstant.USER_STATUS_NO_ACTIVATION) {
-            // 用户未激活
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_NO_ACTIVATION_MSG);
-        }
-        if (user.getStatus() == CommonConstant.USER_STATUS_FREEZE) {
-            // 用户已冻结
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_FREEZEED_MSG);
-        }
-        if (user.getStatus() == CommonConstant.USER_STATUS_CANCEL) {
-            // 用户已作废
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_CANCELED_MSG);
-        }
+        checkUserStatus(user);
+        return getUserHeadIcon(user, paramMap);
+    }
 
-        Map<String, Object> resultUser = sysUserMapper.getUserByAccountWithLogin(paramMap);
+    private Map<String, Object> getUserHeadIcon(SysUser user, String loginAccount) {
+        Map<String, Object> resultUser = sysUserMapper.getUserByAccountWithLogin(loginAccount);
         Object icon = resultUser.get("icon");
         if (icon != null) {
             icon = getResAccessUrl(icon.toString());
@@ -194,26 +135,7 @@ public class LoginServiceImpl implements ILoginService {
 //		paramMap.put("sysCode",sysCode);
         user = sysUserMapper.getUserByAccount(paramMap);
 
-        if (user == null) {
-            // 用户不存在
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_NO_USER_MSG);
-        }
-        if (user.getStatus() == CommonConstant.USER_STATUS_NO_ACTIVATION) {
-            // 用户未激活
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_NO_ACTIVATION_MSG);
-        }
-        if (user.getStatus() == CommonConstant.USER_STATUS_FREEZE) {
-            // 用户已冻结
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_FREEZEED_MSG);
-        }
-        if (user.getStatus() == CommonConstant.USER_STATUS_CANCEL) {
-            // 用户已作废
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
-                    ResponseCodeConstant.USER_LOGIN_FAIL_CANCELED_MSG);
-        }
+        checkUserStatus(user);
         String md5Password = MD5Util.generateMD5(password, user.getPasswordRand());
 
         //!password.equals(user.getPassword()) 是为了自动登陆取不到用户的真实密码使用
@@ -223,14 +145,7 @@ public class LoginServiceImpl implements ILoginService {
                     ResponseCodeConstant.USER_LOGIN_FAIL_PASSWORD_FAIL_MSG);
         }
 
-        Map<String, Object> resultUser = sysUserMapper.getUserByAccountWithLogin(paramMap);
-        Object icon = resultUser.get("icon");
-        if (icon != null) {
-            icon = getResAccessUrl(icon.toString());
-            resultUser.put("icon", icon);
-        }
-        resultUser.put("user", user);
-        return resultUser;
+        return getUserHeadIcon(user, paramMap);
     }
 
     @Override
@@ -291,6 +206,11 @@ public class LoginServiceImpl implements ILoginService {
         if (user == null) {
             user = sysUserMapper.selectByPrimaryKey(loginAccount);
         }
+        checkUserStatus(user);
+        return user;
+    }
+
+    private void checkUserStatus(SysUser user) {
         if (user == null) {
             // 用户不存在
             throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
@@ -311,7 +231,6 @@ public class LoginServiceImpl implements ILoginService {
             throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL,
                     ResponseCodeConstant.USER_LOGIN_FAIL_CANCELED_MSG);
         }
-        return user;
     }
 
     private String getResAccessUrl(String storePath) {

@@ -7,16 +7,16 @@ import org.apache.shiro.authc.UsernamePasswordToken;
  */
 public class OpenApiToken extends UsernamePasswordToken {
 
-    public static String passWrod = "12346578";
+    public static String password = "12346578";
 
     public String getPassWrod() {
-        return passWrod;
+        return password;
     }
 
     private String userId;
 
     public OpenApiToken(String userId, boolean rememberMe) {
-        super(userId, passWrod, rememberMe);
+        super(userId, password, rememberMe);
         super.setRememberMe(rememberMe);
         this.userId = userId;
         this.setUsername(userId);

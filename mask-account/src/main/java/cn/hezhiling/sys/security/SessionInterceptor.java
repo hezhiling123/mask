@@ -1,7 +1,7 @@
 package cn.hezhiling.sys.security;
 
 import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.ILoginService;
+import cn.hezhiling.sys.service.LoginService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SessionInterceptor implements HandlerInterceptor {
     private final Logger logger = LoggerFactory.getLogger(SessionInterceptor.class);
     @Autowired
-    private ILoginService iLoginService;
+    private LoginService loginService;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
 
@@ -32,7 +32,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         if(!currentUser.isAuthenticated() && currentUser.isRemembered()){
             logger.debug("-{}--isRemembered--", currentUser.getPrincipals());
             //如果之前是用的微信登录，那么这个principals将会是userId,见cn/toroot/controller/WechatController.java:171
-            SysUser user = iLoginService.login(currentUser.getPrincipals().toString());
+            SysUser user = loginService.login(currentUser.getPrincipals().toString());
             //对密码进行加密后验证
             UsernamePasswordToken token = new UsernamePasswordToken(user.getEmail(), user.getPassword(),currentUser.isRemembered());
             //把当前用户放入session

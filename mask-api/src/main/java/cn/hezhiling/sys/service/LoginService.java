@@ -13,9 +13,15 @@ import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/user/sys/service/ILoginService")
-public interface ILoginService {
+public interface LoginService {
+
+    /**
+     * 通过token登录
+     * @param token 系统标识
+     * @return
+     */
     @RequestMapping(value = "/loginByToken", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
-    Map<String, Object> login(@RequestBody AuthenticationToken token);
+    Map<String, Object> loginByToken(@RequestBody AuthenticationToken token);
 
     @RequestMapping(value = "/loginByTokenStr", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
     Map<String, Object> loginByStrToken(@RequestParam("token") String token);

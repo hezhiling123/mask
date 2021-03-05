@@ -2,14 +2,13 @@ package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.response.HttpResponseBody;
 import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.ILoginService;
+import cn.hezhiling.sys.service.LoginService;
 import cn.hezhiling.sys.service.IUserService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,7 +20,7 @@ public class PersonalController extends BaseController {
     @Autowired
     private IUserService iUserService;
     @Autowired
-    private ILoginService iLoginService;
+    private LoginService loginService;
 
     /**
      * 获取用户详细信息
