@@ -1,4 +1,4 @@
-package cn.hezhiling.sys.service;
+package cn.hezhiling.mask.service.system;
 
 import cn.hezhiling.sys.model.Oauth2Client;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +11,8 @@ import java.util.Map;
  * @author Ray
  * @date 2018/3/23.
  */
-@RequestMapping("/user/sys/service/IAuthorizeService")
-public interface IAuthorizeService {
+@RequestMapping("/authorize")
+public interface AuthorizeService {
 
      /**
       * 验证oauth2.0客户端是否存在

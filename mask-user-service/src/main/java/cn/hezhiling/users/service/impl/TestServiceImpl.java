@@ -1,8 +1,7 @@
 package cn.hezhiling.users.service.impl;
 
-import cn.hezhiling.sys.service.TestService;
+import cn.hezhiling.mask.service.TestService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,15 +24,6 @@ public class TestServiceImpl implements TestService {
 		Map<String, Object> result = new HashMap<>(1);
 		log.info(userId);
 		result.put("userId", userId);
-		return result;
-	}
-
-	@Override
-	@RequestMapping(value = "/test1", method = RequestMethod.POST)
-	public Map<String, Object> test1(String userId) {
-		Map<String, Object> result = new HashMap<>(1);
-		result.put("userId", userId);
-		log.info(userId);
 		return result;
 	}
 }

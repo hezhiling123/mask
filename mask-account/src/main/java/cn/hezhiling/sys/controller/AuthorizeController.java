@@ -4,7 +4,7 @@ import cn.hezhiling.core.exception.BusinessException;
 import cn.hezhiling.core.utils.response.HttpResponseBody;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
 import cn.hezhiling.mask.constant.SsoConstants;
-import cn.hezhiling.sys.service.IAuthorizeService;
+import cn.hezhiling.mask.service.system.AuthorizeService;
 import cn.hezhiling.util.ShiroCacheUtil;
 import org.apache.oltu.oauth2.as.issuer.MD5Generator;
 import org.apache.oltu.oauth2.as.issuer.OAuthIssuerImpl;
@@ -44,7 +44,7 @@ public class AuthorizeController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private IAuthorizeService authorizeService;
+    private AuthorizeService authorizeService;
 
     @Resource
     private ShiroCacheUtil shiroCacheUtil;

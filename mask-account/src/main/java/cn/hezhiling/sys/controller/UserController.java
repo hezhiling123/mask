@@ -2,8 +2,7 @@ package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.GridModel;
 import cn.hezhiling.core.utils.response.HttpResponseBody;
-import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.IUserService;
+import cn.hezhiling.mask.service.user.UserService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class UserController extends BaseController {
 
 
     @Autowired
-    private IUserService iUserService;
+    private UserService userService;
 
     /**
      * 新增用户
@@ -41,7 +40,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("addUser")
     public HttpResponseBody addUser(SysUser user, @RequestParam(name = "departIds", required = false, defaultValue = "") String[] departIds, @RequestParam(name = "roleIds", required = false, defaultValue = "") String[] roleIds) {
-        iUserService.addUser(user, getSessionUserId(), JSONObject.toJSONString(departIds), JSONObject.toJSONString(roleIds));
+        userService.addUser(user, getSessionUserId(), JSONObject.toJSONString(departIds), JSONObject.toJSONString(roleIds));
         return HttpResponseBody.successResponse("新增成功");
     }
 
@@ -62,7 +61,7 @@ public class UserController extends BaseController {
     @GetMapping("queryUserPage")
     public HttpResponseBody<GridModel<SysUser>> searchUsers(@RequestParam(required = false, defaultValue = "") String param, @RequestParam(required = false, defaultValue = "0") int page,
                                                             @RequestParam(required = false, defaultValue = "10") int pageSize, @RequestParam(required = false, defaultValue = "") String sidx, @RequestParam(required = false, defaultValue = "") String sord) {
-        GridModel<SysUser> sysUserGridModel = iUserService.queryByPage(param, "", page, pageSize, sidx, sord);
+        GridModel<SysUser> sysUserGridModel = userService.queryByPage(param, "", page, pageSize, sidx, sord);
         //return sysUserGridModel;
         return HttpResponseBody.successResponse("查询成功", sysUserGridModel);
     }
@@ -78,7 +77,7 @@ public class UserController extends BaseController {
      */
     @GetMapping("queryUserList")
     public HttpResponseBody<List<SysUser>> searchUserList() {
-        List<SysUser> sysUsers = iUserService.queryList();
+        List<SysUser> sysUsers = userService.queryList();
         return HttpResponseBody.successResponse("查询成功", sysUsers);
     }
 
@@ -94,7 +93,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("deleteUser")
     public HttpResponseBody delete(String id) {
-        iUserService.freezeUser(id, "0", getSessionUserId());
+        userService.freezeUser(id, "0", getSessionUserId());
         return HttpResponseBody.successResponse("删除成功");
     }
 
@@ -114,7 +113,7 @@ public class UserController extends BaseController {
     public HttpResponseBody update(SysUser user, @RequestParam(name = "departIds", required = false, defaultValue = "") String[] departIds,
                                    @RequestParam(name = "roleIds", required = false, defaultValue = "") String[] roleIds) {
         user.setUpdateUser(this.getSessionUserId());
-        boolean result = iUserService.update(user, JSONObject.toJSONString(departIds), JSONObject.toJSONString(roleIds));
+        boolean result = userService.update(user, JSONObject.toJSONString(departIds), JSONObject.toJSONString(roleIds));
         if (result) {
             return HttpResponseBody.successResponse("修改成功");
         } else {
@@ -135,7 +134,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("batchDeleteUser")
     public HttpResponseBody batchDelete(@RequestParam(name = "ids") String[] ids) {
-        iUserService.deleteByIds(Arrays.asList(ids));
+        userService.deleteByIds(Arrays.asList(ids));
         return HttpResponseBody.successResponse("删除成功");
     }
 
@@ -152,7 +151,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "getUserByIdentityCode", method = {RequestMethod.GET, RequestMethod.POST})
     public HttpResponseBody<SysUser> getUserByIdentityCode(String identityCode) {
-        SysUser user = iUserService.getUserByIdentityCode(identityCode);
+        SysUser user = userService.getUserByIdentityCode(identityCode);
         return HttpResponseBody.successResponse("查询成功", user);
     }
 
@@ -174,7 +173,7 @@ public class UserController extends BaseController {
     @GetMapping("queryTimeExtraPage")
     public HttpResponseBody<GridModel<Map<String, Object>>> queryTimeExtralPage(@RequestParam(required = false, defaultValue = "") String param, @RequestParam(required = false, defaultValue = "0") int page,
                                                                                 @RequestParam(required = false, defaultValue = "10") int pageSize, @RequestParam(required = false, defaultValue = "") String sidx, @RequestParam(required = false, defaultValue = "") String sord) {
-        GridModel<Map<String, Object>> sysUserGridModel = iUserService.queryTimeExtraPage(param, page, pageSize, sidx, sord);
+        GridModel<Map<String, Object>> sysUserGridModel = userService.queryTimeExtraPage(param, page, pageSize, sidx, sord);
         return HttpResponseBody.successResponse("查询成功", sysUserGridModel);
     }
 
@@ -191,7 +190,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("resetPassword")
     public HttpResponseBody resetPassword(String userId) {
-        iUserService.resetPassword(userId, getSessionUserId());
+        userService.resetPassword(userId, getSessionUserId());
         return HttpResponseBody.successResponse("密码重置成功");
     }
 
@@ -209,7 +208,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("updatePassword")
     public HttpResponseBody updatePassword(String originalPwd, String newPwd, String conPwd) {
-        iUserService.updatePassword(getSessionUserId(), originalPwd, newPwd, conPwd, getSessionUserId());
+        userService.updatePassword(getSessionUserId(), originalPwd, newPwd, conPwd, getSessionUserId());
         return HttpResponseBody.successResponse("密码修改成功");
     }
 
@@ -230,7 +229,7 @@ public class UserController extends BaseController {
     @GetMapping("queryContactsPage")
     public HttpResponseBody<GridModel<SysUser>> queryContactsPage(@RequestParam(required = false, defaultValue = "") String param, @RequestParam(required = false, defaultValue = "0") int page,
                                                                   @RequestParam(required = false, defaultValue = "10") int pageSize, @RequestParam(required = false, defaultValue = "") String sidx, @RequestParam(required = false, defaultValue = "") String sord) {
-        GridModel<SysUser> list = iUserService.queryContacts(param, page, pageSize, sidx, sord);
+        GridModel<SysUser> list = userService.queryContacts(param, page, pageSize, sidx, sord);
         return HttpResponseBody.successResponse("查询成功", list);
     }
 
@@ -248,7 +247,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "freezeUser", method = {RequestMethod.GET, RequestMethod.POST})
     public HttpResponseBody freezeUser(String userId, String status) {
 
-        iUserService.freezeUser(userId, status, getSessionUserId());
+        userService.freezeUser(userId, status, getSessionUserId());
         if ("2".equals(status)) {
             return HttpResponseBody.successResponse("冻结成功");
         } else {
@@ -269,7 +268,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("register")
     public HttpResponseBody register(SysUser sysUser) {
-        iUserService.register(sysUser);
+        userService.register(sysUser);
         return HttpResponseBody.successResponse("注册成功");
     }
 
@@ -287,7 +286,7 @@ public class UserController extends BaseController {
         logger.info("----------getUserInfo:----------");
         String sessionUserId = getSessionUserId();
         logger.info("--------sessionUserId:" + sessionUserId);
-        SysUser sysUser = iUserService.selectByPrimaryKey(sessionUserId);
+        SysUser sysUser = userService.selectByPrimaryKey(sessionUserId);
         logger.info("----------sysUser:" + JSONObject.toJSONString(sysUser));
         if (sysUser == null) {
             return HttpResponseBody.failResponse("请重新登录");

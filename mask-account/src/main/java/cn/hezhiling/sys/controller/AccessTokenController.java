@@ -2,9 +2,8 @@ package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.response.HttpResponseBody;
 import cn.hezhiling.mask.constant.RedisKey;
-import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.IAuthorizeService;
-import cn.hezhiling.sys.service.IUserService;
+import cn.hezhiling.mask.service.system.AuthorizeService;
+import cn.hezhiling.mask.service.user.UserService;
 import cn.hezhiling.util.ShiroCacheUtil;
 import org.apache.oltu.oauth2.as.issuer.MD5Generator;
 import org.apache.oltu.oauth2.as.issuer.OAuthIssuer;
@@ -46,9 +45,9 @@ import javax.servlet.http.HttpServletResponse;
 public class AccessTokenController extends BaseController {
 
     @Autowired
-    private IAuthorizeService authorizeService;
+    private AuthorizeService authorizeService;
     @Autowired
-    private IUserService userService;
+    private UserService userService;
     @Resource
     private ShiroCacheUtil shiroCacheUtil;
     @Resource

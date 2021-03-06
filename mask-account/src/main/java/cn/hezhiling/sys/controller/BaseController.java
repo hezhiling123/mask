@@ -1,7 +1,6 @@
 package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.CommonConstant;
-import cn.hezhiling.sys.model.SysUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;

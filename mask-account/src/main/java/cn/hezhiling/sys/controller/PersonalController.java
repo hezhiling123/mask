@@ -1,9 +1,8 @@
 package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.response.HttpResponseBody;
-import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.LoginService;
-import cn.hezhiling.sys.service.IUserService;
+import cn.hezhiling.mask.service.user.LoginService;
+import cn.hezhiling.mask.service.user.UserService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/api/personal/")
 public class PersonalController extends BaseController {
     @Autowired
-    private IUserService iUserService;
+    private UserService userService;
     @Autowired
     private LoginService loginService;
 
@@ -32,7 +31,7 @@ public class PersonalController extends BaseController {
     */
     @GetMapping("getPersonalInfo")
     public HttpResponseBody<Map<String, Object>> getPersonInfo() {
-        SysUser sysUser = iUserService.selectByPrimaryKey(getSessionUserId());
+        SysUser sysUser = userService.selectByPrimaryKey(getSessionUserId());
         if (sysUser == null) {
             return HttpResponseBody.failResponse("请重新登录");
         }
@@ -57,7 +56,7 @@ public class PersonalController extends BaseController {
     @PostMapping("updatePersonalInfo")
     public HttpResponseBody updatePersonalInfo(SysUser user, @RequestParam(name = "departIds", required = false, defaultValue = "") String[] departIds,
                                                @RequestParam(name = "roleIds", required = false, defaultValue = "") String[] roleIds) {
-        iUserService.update(user, JSONObject.toJSONString(departIds), JSONObject.toJSONString(roleIds));
+        userService.update(user, JSONObject.toJSONString(departIds), JSONObject.toJSONString(roleIds));
         return HttpResponseBody.successResponse("修改成功");
     }
 
@@ -73,7 +72,7 @@ public class PersonalController extends BaseController {
     @PostMapping("updateUserInfo")
     public HttpResponseBody updateUserInfo(SysUser user) {
         user.setId(getSessionUserId());
-        iUserService.updateUserInfo(user);
+        userService.updateUserInfo(user);
         return HttpResponseBody.successResponse("修改成功");
     }
 

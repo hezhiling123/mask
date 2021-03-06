@@ -1,9 +1,8 @@
-package cn.hezhiling.sys.service;
+package cn.hezhiling.mask.service.user;
 
 
 import cn.hezhiling.core.exception.BusinessException;
 import cn.hezhiling.core.utils.GridModel;
-import cn.hezhiling.sys.model.SysUser;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/user/sys/service/IUserService")
-public interface IUserService {
+@RequestMapping("/user")
+public interface UserService {
 
     /**
      * @param user

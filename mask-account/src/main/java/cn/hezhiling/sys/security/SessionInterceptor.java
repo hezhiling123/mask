@@ -1,7 +1,6 @@
 package cn.hezhiling.sys.security;
 
-import cn.hezhiling.sys.model.SysUser;
-import cn.hezhiling.sys.service.LoginService;
+import cn.hezhiling.mask.service.user.LoginService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
