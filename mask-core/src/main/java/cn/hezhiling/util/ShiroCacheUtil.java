@@ -78,16 +78,16 @@ public class ShiroCacheUtil {
         cache.remove(key);
     }
 
-    public void putUser(String userName, String value){
-        cache.put(SsoConstants.SSO_USERS + ":" + userName, value);
+    public void putUser(Integer userId, String value){
+        cache.put(SsoConstants.SSO_USERS + ":" + userId, value);
     }
 
-    public String getUser(String userName){
-        return (String )cache.get(SsoConstants.SSO_USERS + ":" + userName);
+    public String getUser(Integer userId){
+        return (String )cache.get(SsoConstants.SSO_USERS + ":" + userId);
     }
 
-    public void removeUser(String userName){
-        cache.remove(SsoConstants.SSO_USERS + ":" + userName);
+    public void removeUser(Integer userId){
+        cache.remove(SsoConstants.SSO_USERS + ":" + userId);
     }
 
     public long getExpireIn() {

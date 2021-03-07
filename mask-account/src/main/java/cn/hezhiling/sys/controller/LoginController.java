@@ -4,8 +4,9 @@ import cn.hezhiling.core.exception.BusinessException;
 import cn.hezhiling.core.utils.CommonConstant;
 import cn.hezhiling.core.utils.response.HttpResponseBody;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
+import cn.hezhiling.mask.model.user.po.UserPO;
 import cn.hezhiling.sys.fs.FastDFSClientService;
-import cn.hezhiling.mask.service.user.LoginService;
+import cn.hezhiling.mask.service.auth.LoginService;
 import cn.hezhiling.util.ShiroCacheUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -141,14 +142,14 @@ public class LoginController extends BaseController {
     @PostMapping("logout")
     public HttpResponseBody logout() {
         SecurityUtils.getSubject().logout();
-        shiroCacheUtil.removeUser(this.getSessionUser().getUserName());
+        shiroCacheUtil.removeUser(this.getSessionUser().getId());
         return HttpResponseBody.successResponse("登出成功");
     }
 
     private Map<String, Object> loginAuthenticate(String loginName, String password, boolean rememberMe) {
         logger.info("用户{}尝试登录", loginName);
         Map<String, Object> data = new HashMap<>();
-        SysUser user;
+        UserPO user;
         //host 用来判断前后台登陆。
         UsernamePasswordToken token = new UsernamePasswordToken(loginName, password);
 
@@ -157,14 +158,12 @@ public class LoginController extends BaseController {
         }
         try {
             Subject subject = SecurityUtils.getSubject();
-            logger.info("------------------subject.hashCode():--------------" + subject.hashCode());
             subject.login(token);
             logger.info("------------------subject.isAuthenticated():--------------" + subject.isAuthenticated());
-            user = (SysUser) subject.getSession().getAttribute(CommonConstant.SESSION_USER_KEY);
+            user = (UserPO) subject.getSession().getAttribute(CommonConstant.SESSION_USER_KEY);
             if (user != null) {
-                user.setPasswordRand(null);
                 user.setPassword(null);
-                shiroCacheUtil.putUser(user.getUserName(), "1");
+                shiroCacheUtil.putUser(user.getId(), "1");
             }
 
             data.put("userInfo", user);

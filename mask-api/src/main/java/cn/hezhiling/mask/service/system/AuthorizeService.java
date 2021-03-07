@@ -1,6 +1,6 @@
 package cn.hezhiling.mask.service.system;
 
-import cn.hezhiling.sys.model.Oauth2Client;
+import cn.hezhiling.mask.model.system.Oauth2Client;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,6 +1,7 @@
 package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.CommonConstant;
+import cn.hezhiling.mask.model.user.po.UserPO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -42,12 +43,12 @@ public class BaseController {
         return this.getSessionUserId(this.getRequest());
     }
 
-    public SysUser getSessionUser(HttpServletRequest request) {
+    public UserPO getSessionUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        return (SysUser) session.getAttribute(CommonConstant.SESSION_USER_KEY);
+        return (UserPO) session.getAttribute(CommonConstant.SESSION_USER_KEY);
     }
 
-    public SysUser getSessionUser() {
+    public UserPO getSessionUser() {
         return this.getSessionUser(this.getRequest());
     }
 
@@ -56,14 +57,12 @@ public class BaseController {
     }
 
     public String getSessionUrl(HttpServletRequest request) {
-        StringBuffer sb = new StringBuffer();
-        sb.append(request.getScheme());
-        sb.append("://");
-        sb.append(request.getServerName());
-        sb.append(":");
-        sb.append(request.getServerPort());
-        sb.append(request.getContextPath());
-        return sb.toString();
+        return request.getScheme() +
+                "://" +
+                request.getServerName() +
+                ":" +
+                request.getServerPort() +
+                request.getContextPath();
     }
 }
 

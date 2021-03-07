@@ -2,7 +2,7 @@ package cn.hezhiling.sys.security;
 
 import cn.hezhiling.core.utils.HttpUtil;
 import cn.hezhiling.mask.constant.RedisKey;
-import cn.hezhiling.sys.model.Oauth2Client;
+import cn.hezhiling.mask.model.system.Oauth2Client;
 import cn.hezhiling.mask.service.system.AuthorizeService;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
@@ -26,6 +26,7 @@ public class MySessionListener implements SessionListener {
 
     @Resource
     private RedisTemplate<String, String> redisTemplate;
+
     @Autowired
     private AuthorizeService authorizeService;
 

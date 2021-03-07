@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hezhiling.users.dao.UserDao">
+    <insert id="addUser">
+        INSERT INTO user (id, username, password, gender, birthday, last_login_time, last_login_ip,
+                user_level, nickname, mobile, avatar, weixin_openid, session_key, status,
+                add_time, update_time, deleted)
+        VALUES((#{id,jdbcType=INTEGER},#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{gender,jdbcType=TINYINT},
+                #{birthday,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR},
+                #{userLevel,jdbcType=TINYINT}, #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+                #{avatar,jdbcType=VARCHAR}, #{weixinOpenid,jdbcType=VARCHAR}, #{sessionKey,jdbcType=VARCHAR},
+                #{status,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+                #{deleted,jdbcType=BIT}))
+    </insert>
+    <update id="updateLoginMessage">
+        UPDATE user
+        SET last_login_time = #{user.lastLoginTime}, last_login_ip = #{user.lastLoginIp},
+         session_key = #{user.sessionKey}
+        WHERE id = #{user.id}
+    </update>
+    <select id="getUserByUserName" resultType="cn.hezhiling.mask.model.user.po.UserPO">
+        SELECT id, username, password, gender, birthday, last_login_time, last_login_ip,
+                user_level, nickname, mobile, avatar, weixin_openid, session_key, status,
+                add_time, update_time, deleted
+        FROM user
+        WHERE nickname = #{userName}
+    </select>
+    <select id="getUserByOpenId" resultType="cn.hezhiling.mask.model.user.po.UserPO">
+        SELECT id, username, password, gender, birthday, last_login_time, last_login_ip,
+                user_level, nickname, mobile, avatar, weixin_openid, session_key, status,
+                add_time, update_time, deleted
+        FROM user
+        WHERE weixin_openid = #{openId}
+    </select>
+    <select id="getUserInfoByPhone" resultType="cn.hezhiling.mask.model.user.dto.UserInfo">
+        SELECT id, username, password, gender, birthday, last_login_time, last_login_ip,
+                user_level, nickname, mobile, avatar, weixin_openid, session_key, status,
+                add_time, update_time, deleted
+        FROM user
+        WHERE weixin_openid = #{openId}
+    </select>
+    <select id="getUserInfoById" resultType="cn.hezhiling.mask.model.user.dto.UserInfo">
+        SELECT id, username, password, gender, birthday, last_login_time, last_login_ip,
+                user_level, nickname, mobile, avatar, weixin_openid, session_key, status,
+                add_time, update_time, deleted
+        FROM user
+        WHERE id = #{id}
+    </select>
+    <select id="checkPhoneExist" resultType="java.lang.Integer">
+        SELECT count(1) FROM user WHERE phone = #{phone}
+    </select>
+</mapper>

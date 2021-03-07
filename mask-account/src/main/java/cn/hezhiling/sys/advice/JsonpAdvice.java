@@ -43,7 +43,7 @@ public class JsonpAdvice extends FastJsonHttpMessageConverter implements Respons
             if (this.isValidJsonpQueryParam(value)) {
                 JSONPObject jsonp = new JSONPObject(value, o);
                 String text = JSON.toJSONString(jsonp.getValue(), this.features);
-                String jsonpText = new StringBuilder(jsonp.getFunction()).append("(").append(text).append(")").toString();
+                String jsonpText = jsonp.getFunction() + "(" + text + ")";
                 byte[] bytes = jsonpText.getBytes(this.charset);
                 OutputStream out = null;
                 try {

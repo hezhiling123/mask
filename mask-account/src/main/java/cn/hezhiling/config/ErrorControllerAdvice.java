@@ -21,7 +21,7 @@ public class ErrorControllerAdvice {
     @ResponseBody
     public Object errorHandle(Exception e){
         String errMsg = e.getMessage();
-        if(e instanceof BusinessException || (e instanceof RuntimeException && errMsg.contains("BusinessException"))){
+        if(e instanceof BusinessException || (e instanceof RuntimeException && errMsg.contains("MaskRuntimeException"))){
             logger.error(errMsg);
         }else {
             logger.error("", e);

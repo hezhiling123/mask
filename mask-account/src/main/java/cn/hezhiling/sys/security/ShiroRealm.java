@@ -5,7 +5,8 @@ package cn.hezhiling.sys.security;
 import cn.hezhiling.core.exception.BusinessException;
 import cn.hezhiling.core.utils.CommonConstant;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
-import cn.hezhiling.mask.service.user.LoginService;
+import cn.hezhiling.mask.model.user.dto.UserInfo;
+import cn.hezhiling.mask.service.auth.LoginService;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -19,19 +20,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
 import java.util.Map;
 
-
 /**
- * @Title
- * @Description 获取认证和授权信息
- * @Copyright Copyright (c) 2009</p>
- * @Company 享学信息科技有限公司 Co., Ltd.</p>
- * @author ZhouMin
- * @version 1.0
- * @修改记录
- * @修改序号，修改日期，修改人，修改内容
+ * @author hezhiling
  */
 public class ShiroRealm extends AuthorizingRealm {
     private final static Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
@@ -44,7 +36,7 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-        SysUser user = (SysUser) SecurityUtils.getSubject().getSession().getAttribute(CommonConstant.SESSION_USER_KEY);
+        UserInfo user = (UserInfo) SecurityUtils.getSubject().getSession().getAttribute(CommonConstant.SESSION_USER_KEY);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 添加用户角色信息
 //        List<SysRole> roleList = user.getRoleList();
@@ -53,11 +45,11 @@ public class ShiroRealm extends AuthorizingRealm {
 //                info.addRole(role.getRoleCode());
 //            }
 //        }
-        // 添加用户权限信息
-        List<MenuModel> permissionList = loginService.queryPermissionList(user);
-        if (permissionList != null) {
-            addMyPermission(info, permissionList);
-        }
+//        // 添加用户权限信息
+//        List<MenuModel> permissionList = loginService.queryPermissionList(user);
+//        if (permissionList != null) {
+//            addMyPermission(info, permissionList);
+//        }
 //        SecurityUtils.getSubject().getSession().setAttribute(CommonConstant.SESSION_USER_PERMISSIONS,info.getStringPermissions());
         return info;
     }
@@ -68,7 +60,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
     	UsernamePasswordToken token = (UsernamePasswordToken)authcToken;
-        SysUser loginUser;
+
         String userName = token.getUsername();
         String password = new String(token.getPassword());
 
@@ -79,42 +71,33 @@ public class ShiroRealm extends AuthorizingRealm {
         if (StringUtils.isEmpty(password)){
             throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL, "密码不能为空");
         }
-        loginUser = new SysUser();
-        loginUser.setLoginAccount(userName);
-        loginUser.setPassword(password);
         try{
-            Map<String, Object> user = loginService.loginByStrToken(JSONObject.toJSONString(authcToken));
-            JSONObject userJo = (JSONObject)user.get("user");
-            logger.info("userJo" + userJo.toJSONString());
-            SysUser sysUser = JSONObject.parseObject(userJo.toJSONString(), SysUser.class);
-            user.remove("user");
-
+            UserInfo user = loginService.loginByToken(JSONObject.toJSONString(authcToken));
             Session session = SecurityUtils.getSubject().getSession();
-            setResource(loginService, session,sysUser);
+            setResource(loginService, session,user);
             logger.info("登录认证成功*******");
             return new SimpleAuthenticationInfo(token.getPrincipal(), token.getPassword(), token.getUsername());
         }catch(Exception e){
             throw new AuthenticationException("认证出错", e);
         }
     }
-    //添加权限方法
-    private void addMyPermission(SimpleAuthorizationInfo info, List<MenuModel> permissionList) {
-//        for (MenuModel menu : permissionList) {
-//            if (!StringUtils.isEmpty(menu.getCode())) {
-//                String permission = menu.getCode();
-//                if (!StringUtils.isEmpty(permission)) {
-//                    info.addStringPermission(permission);
-//                }
-//            }
-//        }
-    }
+//    //添加权限方法
+//    private void addMyPermission(SimpleAuthorizationInfo info, List<MenuModel> permissionList) {
+////        for (MenuModel menu : permissionList) {
+////            if (!StringUtils.isEmpty(menu.getCode())) {
+////                String permission = menu.getCode();
+////                if (!StringUtils.isEmpty(permission)) {
+////                    info.addStringPermission(permission);
+////                }
+////            }
+////        }
+//    }
 
-    public static void setResource(LoginService loginService, Session session, SysUser user){
+    public static void setResource(LoginService loginService, Session session, UserInfo user){
 //        List<MenuModel> menuList = loginService.queryMenus(user.getId(),"null");
         session.setAttribute(CommonConstant.SESSION_USER_KEY, user);
-        session.setAttribute(CommonConstant.SESSION_USER_NAME_KEY, user.getUserName());
+        session.setAttribute(CommonConstant.SESSION_USER_NAME_KEY, user.getNickName());
         session.setAttribute(CommonConstant.SESSION_USER_ID_KEY, user.getId());
-        session.setAttribute(CommonConstant.SESSION_USER_REAL_NAME_KEY, user.getRealName());
 //        session.setAttribute(CommonConstant.SESSION_MENUS_KEY, JsonUtils.obj2json(menuList));
     }
 

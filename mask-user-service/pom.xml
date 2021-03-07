@@ -34,6 +34,16 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>cn.hezhiling</groupId>
+            <artifactId>mask-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hezhiling</groupId>
+            <artifactId>baidu-id-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -188,9 +198,9 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.hezhiling</groupId>
-            <artifactId>baidu-id-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
         </dependency>
         <dependency>
             <groupId>io.github.yedaxia</groupId>
@@ -208,6 +218,17 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream-binder-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-miniapp</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.1.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

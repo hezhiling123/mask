@@ -1,6 +1,6 @@
 package cn.hezhiling.users.dao;
 
-import cn.hezhiling.sys.model.KeyIdentity;
+import cn.hezhiling.mask.model.system.KeyIdentity;
 
 public interface KeyIdentityMapper {
     /**

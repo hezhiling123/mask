@@ -52,7 +52,6 @@ public class AuthorizeController extends BaseController {
     /**
      * 校验是否登录及后去授权码
      *
-     * @param model
      * @param request
      * @return
      * @throws Exception
@@ -61,7 +60,7 @@ public class AuthorizeController extends BaseController {
      * @version
      */
     @RequestMapping("authorize")
-    public Object authorize(Model model, HttpServletRequest request) throws OAuthSystemException, URISyntaxException {
+    public Object authorize(HttpServletRequest request) throws OAuthSystemException{
 
         Cookie[] cookies = request.getCookies();
         if(cookies != null) {

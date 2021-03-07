@@ -2,6 +2,8 @@ package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.response.HttpResponseBody;
 import cn.hezhiling.mask.constant.RedisKey;
+import cn.hezhiling.mask.model.user.dto.UserInfo;
+import cn.hezhiling.mask.model.user.po.UserPO;
 import cn.hezhiling.mask.service.system.AuthorizeService;
 import cn.hezhiling.mask.service.user.UserService;
 import cn.hezhiling.util.ShiroCacheUtil;
@@ -107,11 +109,8 @@ public class AccessTokenController extends BaseController {
             logger.info("accessToken generated : {}", accessToken);
 
             //需要保存clientSessionId和clientId的关系到redis，便于在Logout时通知系统logout
-            String clientSessionId = request.getParameter("sid");
-            //System.out.println("clientSessionId = " + clientSessionId);
-            String clientId = oAuthTokenRequest.getClientId();
-            //System.out.println("clientId = " + clientId);
-            redisTemplate.opsForHash().put(RedisKey.CLIENT_SESSIONS, clientSessionId, clientId);
+            redisTemplate.opsForHash().put(RedisKey.CLIENT_SESSIONS, request.getParameter("sid"),
+                    oAuthTokenRequest.getClientId());
 
             // 生成OAuth响应
             OAuthResponse response = OAuthASResponse.tokenResponse(HttpServletResponse.SC_OK)
@@ -160,7 +159,7 @@ public class AccessTokenController extends BaseController {
             }
             //返回用户名
             String username = shiroCacheUtil.getUsernameByAccessToken(accessToken);
-            SysUser user = userService.selectByAccount(username);
+            UserInfo user = userService.getUserInfoById(username);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (OAuthProblemException e) {
             //检查是否设置了错误码
@@ -202,7 +201,7 @@ public class AccessTokenController extends BaseController {
      */
     @RequestMapping("logout")
     public Object logout(HttpServletRequest request) {
-        shiroCacheUtil.removeUser(this.getSessionUser().getUserName());
+        shiroCacheUtil.removeUser(this.getSessionUser().getId());
         SecurityUtils.getSubject().logout();
         return HttpResponseBody.successResponse("ok");
     }

@@ -16,14 +16,18 @@ import java.io.IOException;
 import java.util.Set;
 
 
+/**
+ * @author hezhiling
+ */
 public class ShiroAuthFilter extends PassThruAuthenticationFilter {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 这是没权限的路径，不是没登录的
      */
     private String unauthorizedUrl  = "/api/system/accessDenied";
-    //在xml文件中加载不需要保存的url链接
+    /**
+     * 在xml文件中加载不需要保存的url链接
+     */
     private Set<String> ignoreSaveRequestUrl;
 
     public Set<String> getIgnoreSaveRequestUrl() {
@@ -46,16 +50,17 @@ public class ShiroAuthFilter extends PassThruAuthenticationFilter {
     public boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         Subject subject = getSubject(request, response);
         //1.判断是否已认证过
-        boolean isAuthenticated = subject.isAuthenticated();
         //没有认证并且没有记住登录
-        //            return true;
-        return isAuthenticated || subject.isRemembered();
+        return subject.isAuthenticated() || subject.isRemembered();
     }
 
-
-
-
-    //处理被阻止的请求
+    /**
+     *
+     * @param request   req
+     * @param response  rep
+     * @return  该请求是否被拦截
+     * @throws IOException  io
+     */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
         Subject subject = getSubject(request, response);
@@ -76,7 +81,10 @@ public class ShiroAuthFilter extends PassThruAuthenticationFilter {
         return false;
     }
 
-    //重写saveRequest,在配置文件中配置的地址不需要保存。实现登录后直接跳转到之前输入的地址。
+    /**
+     * 重写saveRequest,在配置文件中配置的地址不需要保存。实现登录后直接跳转到之前输入的地址。
+     * @param request   req
+     */
     @Override
     protected void saveRequest(ServletRequest request) {
         String reqUrl =((ShiroHttpServletRequest)request).getRequestURI();
