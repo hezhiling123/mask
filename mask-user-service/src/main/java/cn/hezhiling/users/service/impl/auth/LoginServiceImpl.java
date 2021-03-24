@@ -4,7 +4,6 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.hezhiling.core.exception.MaskRuntimeException;
 import cn.hezhiling.core.exception.ResultStatusCode;
-import cn.hezhiling.core.utils.IpUtil;
 import cn.hezhiling.core.utils.RegexUtil;
 import cn.hezhiling.mask.model.user.dto.WxLoginInfo;
 import cn.hezhiling.mask.model.user.po.UserPO;
@@ -14,6 +13,7 @@ import cn.hezhiling.core.utils.JacksonUtil;
 import cn.hezhiling.core.utils.ResponseUtil;
 import cn.hezhiling.users.dao.UserDao;
 import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.druid.support.http.util.IPAddress;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,12 +46,13 @@ public class LoginServiceImpl implements LoginService {
      * @param request     请求对象
      * @return 登录结果
      */
-    @PostMapping("login_by_weixin")
-
-
-    public Object loginByWeixin(@RequestBody WxLoginInfo wxLoginInfo, HttpServletRequest request) {
+    @Override
+    @PostMapping("loginByWeiXin")
+    public Object loginByWeiXin(@RequestBody WxLoginInfo wxLoginInfo, HttpServletRequest request) {
         String code = wxLoginInfo.getCode();
         UserInfo userInfo = wxLoginInfo.getUserInfo();
+        log.info(code);
+        log.info(userInfo.toString());
         if (code == null || userInfo == null) {
             return ResponseUtil.badArgument();
         }
@@ -73,24 +73,24 @@ public class LoginServiceImpl implements LoginService {
 
         UserPO user = userDao.getUserByOpenId(openId);
         if (user == null) {
-            user = new UserPO();
-            user.setUsername(openId);
-            user.setPassword(openId);
-            user.setWeiXinOpenid(openId);
-            user.setAvatar(userInfo.getAvatarUrl());
-            user.setNickname(userInfo.getNickName());
-            user.setGender(userInfo.getGender());
-            user.setUserLevel((byte) 0);
-            user.setStatus((byte) 0);
-            user.setLastLoginTime(LocalDateTime.now());
-            user.setLastLoginIp(IpUtil.getIpAddr(request));
-            user.setSessionKey(sessionKey);
-
+            user = UserPO.builder()
+                    .username(openId)
+                    .nickname(openId)
+                    .addTime(LocalDateTime.now())
+                    .password(new BCryptPasswordEncoder().encode(openId))
+                    .weiXinOpenid(openId)
+                    .avatar("https://yanxuan.nosdn.127.net/80841d741d7fa3073e0ae27bf487339f.jpg?imageView&quality=90&thumbnail=64x64")
+                    .gender((byte)0)
+                    .userLevel((byte)0)
+                    .status((byte)0)
+                    .lastLoginIp("")
+                    .lastLoginTime(LocalDateTime.now())
+                    .build();
             userDao.addUser(user);
 
         } else {
             user.setLastLoginTime(LocalDateTime.now());
-            user.setLastLoginIp(IpUtil.getIpAddr(request));
+            user.setLastLoginIp("");
             user.setSessionKey(sessionKey);
             userDao.updateLoginMessage(user);
         }
@@ -170,7 +170,7 @@ public class LoginServiceImpl implements LoginService {
                 .gender((byte)0)
                 .userLevel((byte)0)
                 .status((byte)0)
-                .lastLoginIp(IpUtil.getIpAddr(request))
+                .lastLoginIp("")
                 .lastLoginTime(LocalDateTime.now())
                 .build();
         userDao.addUser(user);

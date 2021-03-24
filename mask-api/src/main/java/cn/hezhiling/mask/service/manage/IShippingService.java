@@ -1,6 +1,6 @@
 package cn.hezhiling.mask.service.manage;
 
-import cn.hezhiling.mask.model.Shipping;
+import cn.hezhiling.mask.model.system.Shipping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;

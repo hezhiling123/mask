@@ -4,6 +4,9 @@ import cn.hezhiling.mask.model.user.dto.UserInfo;
 import cn.hezhiling.mask.model.user.po.UserPO;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author hezhiling
+ */
 public interface UserDao {
     /**
      * 根据用户名称获取用户信息

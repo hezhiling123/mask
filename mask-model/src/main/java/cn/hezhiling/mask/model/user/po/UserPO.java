@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
  */
 @Data
 @Builder
-@NoArgsConstructor
 public class UserPO {
     private Integer id;
     private String username;

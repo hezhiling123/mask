@@ -85,6 +85,16 @@ ribbon:
   MaxAutoRetriesNextServer: 0
   MaxAutoRetries: 0
 
+wx:
+  appId: wxd2bf68f18c88352a
+  app-secret: 6121b5aeca6adb9df720f8618bfd0d5b
+  mchId: xxxxxxxx
+  key: xxxxxxxx
+  certPath:
+  notify_url: http://thesunbig.imwork.net/wx/notify
+  wap_url: https://pay.qq.com
+  spbill_create_ip: 127.0.0.1
+
 logging:
   level:
     root: info

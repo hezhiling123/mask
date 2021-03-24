@@ -15,6 +15,7 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
  */
 @SpringBootApplication
 @MapperScan("cn.hezhiling.**.dao")
+@MapperScan("cn.binarywang.**")
 @EnableEurekaClient
 public class UserServiceApp {
     public static void main(String[] args) {
