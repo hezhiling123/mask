@@ -22,8 +22,7 @@ public interface LoginService {
      * @param request     请求对象
      * @return 登录结果
      */
-    @PostMapping("loginByWeiXin")
-    Object loginByWeiXin(@RequestBody WxLoginInfo wxLoginInfo, HttpServletRequest request);
+//    Object loginByWeiXin(@RequestBody WxLoginInfo wxLoginInfo, HttpServletRequest request);
 
     /**
      * 通过token登录
@@ -40,4 +39,29 @@ public interface LoginService {
      * @return {@link UserInfo}
      */
     UserInfo loginByToken(String tokenStr);
+//
+//    /**
+//     * 注册
+//     *
+//     * @param body  body
+//     * @param request request
+//     * @return
+//     */
+//    Object register(String body, HttpServletRequest request);
+//
+//    /**
+//     * 登出
+//     *
+//     * @param userId    用户id
+//     * @return  登出结果
+//     */
+//    Object logout(Integer userId);
+//
+//    /**
+//     * 获取用户信息
+//     *
+//     * @param userId    用户id
+//     * @return  用户信息
+//     */
+//    Object info(Integer userId);
 }

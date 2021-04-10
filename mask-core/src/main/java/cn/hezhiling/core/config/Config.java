@@ -1,14 +1,11 @@
-package cn.hezhiling.config;
+package cn.hezhiling.core.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-
 /**
  *
- * @author Ray
- * @date 2017/10/16
+ * @author hezhiling
  */
 @Component
 public class Config {
@@ -22,7 +19,6 @@ public class Config {
     @Value("${wx.redirect_uri}")
     private String wxRedirectUri;
 
-    private CompanyConfig company;
 
     public String getDfsUrl() {
         return dfsUrl;
@@ -46,14 +42,5 @@ public class Config {
 
     public void setWxRedirectUri(String wxRedirectUri) {
         this.wxRedirectUri = wxRedirectUri;
-    }
-
-    public CompanyConfig getCompany() {
-        return company;
-    }
-
-    @Resource
-    public void setCompany(CompanyConfig company) {
-        this.company = company;
     }
 }
