@@ -86,8 +86,9 @@ ribbon:
   MaxAutoRetries: 0
 
 wx:
-  appId: wxd2bf68f18c88352a
+  app-id: wxd2bf68f18c88352a
   app-secret: 6121b5aeca6adb9df720f8618bfd0d5b
+  redirect-uri: https://hezhiling.cn
   mchId: xxxxxxxx
   key: xxxxxxxx
   certPath:
