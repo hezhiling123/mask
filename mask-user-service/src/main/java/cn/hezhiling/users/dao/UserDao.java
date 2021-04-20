@@ -28,7 +28,7 @@ public interface UserDao {
      *
      * @param userPo    {@link UserPO}
      */
-    void addUser(UserPO userPo);
+    void addUser(@Param("userPo") UserPO userPo);
 
     /**
      *  通过手机号获取用户信息

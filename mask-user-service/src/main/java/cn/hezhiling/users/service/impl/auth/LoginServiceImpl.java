@@ -33,8 +33,6 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private WxMaService wxService;
 
-    @Autowired
-    private Config config;
     /**
      * 微信登录
      *
@@ -84,6 +82,7 @@ public class LoginServiceImpl implements LoginService {
                     .status((byte)0)
                     .lastLoginIp("")
                     .lastLoginTime(LocalDateTime.now())
+                    .sessionKey(sessionKey)
                     .build();
             userDao.addUser(user);
 
