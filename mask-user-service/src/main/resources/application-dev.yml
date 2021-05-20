@@ -1,0 +1,55 @@
+dfs:
+  url: 192.168.244.10:8181
+# 114.115.171.119 root Mall123!#$
+c3p0-master:
+  url: jdbc:mysql://47.101.195.110:3306/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  username: admin
+  password: 1659868245
+  driverClassName: com.mysql.jdbc.Driver
+  minPoolSize: 2
+  maxPoolSize: 10
+  maxIdleTime: 1800000
+  acquireIncrement: 3
+  maxStatements: 1000
+  initialPoolSize: 3
+  idleConnectionTestPeriod: 30
+  acquireRetryAttempts: 30
+  acquireRetryDelay: 1000
+  breakAfterAcquireFailure: false
+  testConnectionOnCheckout: true
+  testConnectionOnCheckin: true
+c3p0-slave:
+  url: jdbc:mysql://47.101.195.110:3307/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  username: root
+  password: root
+  driverClassName: com.mysql.jdbc.Driver
+  minPoolSize: 2
+  maxPoolSize: 10
+  maxIdleTime: 1800000
+  acquireIncrement: 3
+  maxStatements: 1000
+  initialPoolSize: 3
+  idleConnectionTestPeriod: 30
+  acquireRetryAttempts: 30
+  acquireRetryDelay: 1000
+  breakAfterAcquireFailure: false
+  testConnectionOnCheckout: true
+  testConnectionOnCheckin: true
+
+
+zookeeper:
+  url: zookeeper://47.101.195.110:2181 #114.115.171.119
+
+mybatis:
+  mapper-locations: classpath*:mapping/**/*.xml
+  config-location: classpath:SqlMapConfig.xml
+spring:
+  redis:
+    host: 47.101.195.110
+    port: 6379
+    password: 123456
+  data:
+    mongodb:
+      uri: mongodb://47.101.195.110:27017/mall
+  datasource:
+    initialization-mode: always
