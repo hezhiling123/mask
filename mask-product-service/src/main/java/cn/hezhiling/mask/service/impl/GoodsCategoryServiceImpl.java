@@ -352,7 +352,6 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
     @Override
     public List<HotGoodsVo> getHotGoods() {
         //查询推荐二级分类TOP5
-        List<String> propertiesList = new ArrayList();
         List<HotGoodsVo> hotCats = hotCategoryDao.find(new Query().with(Sort.by("sortOrder")).limit(5), HotGoodsVo.class);
         for (HotGoodsVo vo : hotCats) {
             //找商品: 属于该分类或其子分类，并且是推荐的商品

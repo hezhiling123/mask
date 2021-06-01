@@ -5,8 +5,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/hezhiling123/mask-config-repo.git
-          search-paths: mall
+          uri: https://gitlab.com/hezhiling123/mask-config-repo.git
+          search-paths: mask
           username: 1605489109@qq.com
           password: 1659868245hzl2
           #强制从GitHub配置中心中拉取配置信息，不走缓存

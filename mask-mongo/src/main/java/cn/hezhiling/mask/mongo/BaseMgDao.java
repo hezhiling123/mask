@@ -20,10 +20,10 @@ public abstract class BaseMgDao {
     protected MongoTemplate mongoTemplate;
 
     public <T> GridModel<T> queryPage(Integer page, Integer size, Class<T> entityClass, Query query) {
-        if( page.intValue() == 0 ){
+        if(page == 0 ){
             page = 1;
         }
-        if( size.intValue() == 0 ){
+        if(size == 0 ){
             size = 10;
         }
         //Query query = new Query(Criteria.where("status").exists(false));
