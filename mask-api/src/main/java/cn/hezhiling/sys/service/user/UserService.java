@@ -15,6 +15,7 @@ public interface UserService {
      * @param userName  用户名称
      * @return  {@link UserInfo}
      */
+    @RequestMapping("/getUserInfoById")
     UserInfo getUserInfoById(String userName);
 
     /**
@@ -22,5 +23,6 @@ public interface UserService {
      *
      * @param user  {@link UserPO}
      */
+    @RequestMapping("/addUser")
     void addUser(UserPO user);
 }

@@ -204,7 +204,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>mall-account</finalName>
+        <finalName>mask-account</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

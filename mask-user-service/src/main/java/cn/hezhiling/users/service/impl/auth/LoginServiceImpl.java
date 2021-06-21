@@ -36,14 +36,13 @@ public class LoginServiceImpl implements LoginService {
      * 微信登录
      *
      * @param wxLoginInfo 请求内容，{ code: xxx, userInfo: xxx }
-     * @param request     请求对象
      * @return 登录结果
      *
      *
      **/
     @Override
     @PostMapping("loginByWeiXin")
-    public Object loginByWeiXin(@RequestBody WxLoginInfo wxLoginInfo, HttpServletRequest request) {
+    public Object loginByWeiXin(@RequestBody WxLoginInfo wxLoginInfo) {
         String code = wxLoginInfo.getCode();
         UserInfo userInfo = wxLoginInfo.getUserInfo();
         log.info(code);
@@ -230,7 +229,7 @@ public class LoginServiceImpl implements LoginService {
      * @return {@link UserInfo}
      */
     @Override
-    @GetMapping("loginByToken")
+    @PostMapping("loginByToken")
     public UserInfo loginByToken(String tokenStr) {
         return null;
     }

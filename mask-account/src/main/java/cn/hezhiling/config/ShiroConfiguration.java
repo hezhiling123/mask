@@ -39,7 +39,7 @@ import java.util.*;
 public class ShiroConfiguration {
 
     @Value("${shiro.maxAge.day}")
-    private Integer maxAgeDay =  10;
+    private final Integer maxAgeDay =  10;
     @Value("${spring.redis.host}")
     private String host;
     @Value("${spring.redis.port}")
@@ -136,7 +136,6 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/api/authorize", "anon");
         filterChainDefinitionMap.put("/api/accessToken", "anon");
         filterChainDefinitionMap.put("/api/userInfo", "anon");
-        filterChainDefinitionMap.put("/api/user/register", "anon");
 
         filterChainDefinitionMap.put("/wx/login", "anon");
         filterChainDefinitionMap.put("/api/system/logout", "anon");

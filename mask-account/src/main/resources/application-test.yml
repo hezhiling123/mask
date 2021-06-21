@@ -33,7 +33,7 @@ spring:
   redis:
     host: 47.101.195.110
     port: 6379
-    password: 123456
+    password: 1659868245
   #  data:
   #    mongodb:
   #      uri: mongodb://94.191.83.120:27017/mall   #114.115.171.119
@@ -52,9 +52,15 @@ company:
     logo:
     login-bg:
 wx:
-  appid: wxc5eae5bf209e986f
-  appsecret:
-  redirect_uri:
+  app-id: wxd2bf68f18c88352a
+  app-secret: 6121b5aeca6adb9df720f8618bfd0d5b
+  redirect-uri: https://hezhiling.cn
+  mchId: xxxxxxxx
+  key: xxxxxxxx
+  certPath:
+  notify_url: http://thesunbig.imwork.net/wx/notify
+  wap_url: https://pay.qq.com
+  spbill_create_ip: 127.0.0.1
 
 goods:
   pic:

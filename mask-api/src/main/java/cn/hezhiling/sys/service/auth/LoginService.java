@@ -19,11 +19,10 @@ public interface LoginService {
      * 微信登录
      *
      * @param wxLoginInfo 请求内容，{ code: xxx, userInfo: xxx }
-     * @param request     请求对象
      * @return 登录结果
      */
     @PostMapping("loginByWeiXin")
-    Object loginByWeiXin(@RequestBody WxLoginInfo wxLoginInfo, HttpServletRequest request);
+    Object loginByWeiXin(@RequestBody WxLoginInfo wxLoginInfo);
 
     /**
      * 通过token登录
@@ -31,6 +30,7 @@ public interface LoginService {
      * @param tokenStr token
      * @return {@link UserPO}
      */
+    @PostMapping("login")
     UserPO login(String tokenStr);
 
     /**
@@ -39,6 +39,7 @@ public interface LoginService {
      * @param tokenStr token
      * @return {@link UserInfo}
      */
+    @PostMapping("loginByToken")
     UserInfo loginByToken(String tokenStr);
 //
 //    /**

@@ -16,10 +16,10 @@ public class Config {
     @Value("${dfs.url}")
     private String dfsUrl;
 
-    @Value("${wx.appId}")
+    @Value("${wx.app-id}")
     private String wxAppId;
 
-    @Value("${wx.redirect_uri}")
+    @Value("${wx.redirect-uri}")
     private String wxRedirectUri;
 
     private CompanyConfig company;
