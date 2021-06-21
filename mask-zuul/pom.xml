@@ -131,7 +131,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.hezhiling.ZuulApplication</mainClass>
+                    <mainClass>cn.hezhiling.mask.zuul.ZuulApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>

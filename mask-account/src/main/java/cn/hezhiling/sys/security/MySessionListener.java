@@ -3,7 +3,7 @@ package cn.hezhiling.sys.security;
 import cn.hezhiling.core.utils.HttpUtil;
 import cn.hezhiling.mask.constant.RedisKey;
 import cn.hezhiling.mask.model.system.Oauth2Client;
-import cn.hezhiling.mask.service.system.AuthorizeService;
+import cn.hezhiling.sys.service.auth.AuthorizeService;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
 import org.slf4j.Logger;

@@ -5,7 +5,7 @@ import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.hezhiling.mask.model.user.dto.WxLoginInfo;
 import cn.hezhiling.mask.model.user.po.UserPO;
 import cn.hezhiling.mask.model.user.dto.UserInfo;
-import cn.hezhiling.mask.service.auth.LoginService;
+import cn.hezhiling.sys.service.auth.LoginService;
 import cn.hezhiling.core.utils.ResponseUtil;
 import cn.hezhiling.users.dao.UserDao;
 import lombok.extern.slf4j.Slf4j;

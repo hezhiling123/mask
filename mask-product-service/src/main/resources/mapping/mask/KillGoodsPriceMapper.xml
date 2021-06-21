@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.hezhiling.mask.dao.KillGoodsPriceMapper">
+<mapper namespace="cn.hezhiling.mask.productService.dao.KillGoodsPriceMapper">
   <resultMap id="BaseResultMap" type="cn.hezhiling.mask.model.goods.KillGoodsPrice">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="spec_goods_id" jdbcType="INTEGER" property="specGoodsId" />
@@ -123,7 +123,7 @@
     where spec_goods_id = #{specGoodsId,jdbcType=INTEGER} and kill_count > 0
   </update>
 
-  <resultMap id="DetailBaseResultMap" type="cn.hezhiling.mask.model.vo.KillGoodsSpecPriceDetailVo">
+  <resultMap id="DetailBaseResultMap" type="cn.hezhiling.mask.vo.KillGoodsSpecPriceDetailVo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="spec_goods_id" jdbcType="INTEGER" property="specGoodsId" />
     <result column="key" jdbcType="VARCHAR" property="key" />

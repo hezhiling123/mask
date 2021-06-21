@@ -1,4 +1,4 @@
-package cn.hezhiling.sys.advice;
+package cn.hezhiling.account.sys.advice;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;

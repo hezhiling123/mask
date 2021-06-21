@@ -2,6 +2,7 @@ package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.config.Config;
 import cn.hezhiling.core.utils.response.HttpResponseBody;
+import cn.hezhiling.sys.controller.BaseController;
 import cn.hezhiling.util.ShiroCacheUtil;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.web.bind.annotation.GetMapping;
