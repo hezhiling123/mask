@@ -42,4 +42,11 @@ public interface GoodsCategoryMapper {
      * @return list of {@link RecommendGoods}
      */
     List<RecommendGoods> listRecommendGoods();
+
+    /**
+     * 列出小程序首页推荐商品祖先id
+     *
+     * @return
+     */
+    List<GoodsCategory> listAppHomeGoodsParentId();
 }

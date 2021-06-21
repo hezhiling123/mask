@@ -67,15 +67,26 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
     private RedisTemplate redisTemplate;
 
     private static String topCategoryTree = "topCategoryTree";
+    private static String appHomeCategoryTree = "appHomeCategoryTree";
 
     @PostConstruct
     public void cacheCategoryTree() {
-//        if (!redisTemplate.hasKey(topCategoryTree)) {
-//            new Thread(() -> {
-//                List<CategoryTree> categoryTrees = goodsCategoryMapper.selectCategoryTree3("0", "");
-//                redisTemplate.opsForValue().set(topCategoryTree, categoryTrees);
-//            }).start();
-//        }
+        if (!redisTemplate.hasKey(topCategoryTree)) {
+            new Thread(() -> {
+                List<CategoryTree> categoryTrees = goodsCategoryMapper.selectCategoryTree3("0", "");
+                redisTemplate.opsForValue().set(topCategoryTree, categoryTrees);
+            }).start();
+        }
+    }
+
+    @PostConstruct
+    public void cacheAppHomeCategoryTree() {
+        if (!redisTemplate.hasKey(appHomeCategoryTree)) {
+            new Thread(() -> {
+                List<CategoryTree> categoryTrees = goodsCategoryMapper.selectCategoryTree3("999", "");
+                redisTemplate.opsForValue().set(appHomeCategoryTree, categoryTrees);
+            }).start();
+        }
     }
 
     /**
@@ -117,6 +128,32 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
             log.info("----------从数据库获取商品分类数据---------");
             List<CategoryTree> categoryTrees = goodsCategoryMapper.selectCategoryTree3(parentId, keywords);
             redisTemplate.opsForValue().set(topCategoryTree, categoryTrees);
+            return categoryTrees;
+        }
+    }
+
+    /**
+     * 查询3级目录树
+     *
+     * @param parentId
+     * @param keywords
+     * @return
+     * @throws Exception
+     * @author Jack
+     * @date 2020/9/8
+     * @version
+     */
+    @RequestMapping(value = "/selectAppHomeCategoryTree", method = RequestMethod.POST)
+    @Override
+    public List<CategoryTree> selectAppHomeCategoryTree(String parentId, String keywords) {
+        if (redisTemplate.hasKey(appHomeCategoryTree)) {
+            log.info("----------从缓存获取小程序首页商品分类数据---------");
+            List<CategoryTree> categoryTrees = (List<CategoryTree>) redisTemplate.opsForValue().get(topCategoryTree);
+            return categoryTrees;
+        } else {
+            log.info("----------从数据库获取小程序首页商品分类数据---------");
+            List<CategoryTree> categoryTrees = goodsCategoryMapper.selectCategoryTree3("999", keywords);
+            redisTemplate.opsForValue().set(appHomeCategoryTree, categoryTrees);
             return categoryTrees;
         }
     }
@@ -432,5 +469,17 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
     public List<RecommendGoods> listRecommendGoods() {
         List<RecommendGoods> recommendGoods = goodsCategoryMapper.listRecommendGoods();
         return recommendGoods;
+    }
+
+    /**
+     * 获取小程序首页推荐商品列表
+     *
+     * @return list of {@link HotGoodsVo}
+     */
+    @Override
+    public List<HotGoodsVo> listAppHomeGoods() {
+        List<GoodsCategory> goodsCategory = goodsCategoryMapper.listAppHomeGoodsParentId();
+//        List<CategoryTree> appHomeGoodsTree = goodsCategoryMapper.selectList()
+        return null;
     }
 }

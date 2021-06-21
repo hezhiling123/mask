@@ -23,6 +23,10 @@ public interface GoodsCategoryService {
     @RequestMapping(value = "/selectCategoryTree3", method = RequestMethod.POST)
     List<CategoryTree> selectCategoryTree3(@RequestParam(value = "parentId",required = false) String parentId, @RequestParam(value = "keywords",required = false) String keywords);
 
+    //三层分类树
+    @RequestMapping(value = "/selectAppHomeCategoryTree", method = RequestMethod.POST)
+    List<CategoryTree> selectAppHomeCategoryTree(@RequestParam(value = "parentId",required = false) String parentId, @RequestParam(value = "keywords",required = false) String keywords);
+
     @RequestMapping(value = "/selectCategoryByParentId", method = RequestMethod.POST)
     List<CategoryTree> selectCategoryByParentId(@RequestParam("parentId") Integer parentId);
 
@@ -80,4 +84,13 @@ public interface GoodsCategoryService {
      */
     @RequestMapping(value = "/listRecommendGoods", method = RequestMethod.POST)
     List<RecommendGoods> listRecommendGoods();
+
+    /**
+     * 获取小程序首页推荐商品列表
+     *
+     * @return  list of {@link HotGoodsVo}
+     */
+    @RequestMapping(value = "/listAppHomeGoods", method = RequestMethod.POST)
+    List<HotGoodsVo> listAppHomeGoods();
+
 }

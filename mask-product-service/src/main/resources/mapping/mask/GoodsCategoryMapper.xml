@@ -335,6 +335,10 @@
     SELECT goods_id, recommend_image FROM recommend_goods;
   </select>
 
+  <select id="listAppHomeGoodsParentId" resultType="cn.hezhiling.mask.model.goods.GoodsCategory">
+    SELECT parent_id, group_image FROM app_home_goods
+  </select>
+
   <resultMap id="recommendGoods" type="cn.hezhiling.mask.model.goods.RecommendGoods">
     <result column="goods_id" property="goodsId" javaType="integer" jdbcType="INTEGER"/>
     <result column="recommend_image" property="recommendImage" javaType="string" jdbcType="VARCHAR"/>
