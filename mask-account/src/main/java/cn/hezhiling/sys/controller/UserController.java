@@ -1,10 +1,9 @@
 package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.response.HttpResponseBody;
-import cn.hezhiling.mask.model.user.UserVO;
 import cn.hezhiling.mask.model.user.dto.UserInfo;
 import cn.hezhiling.mask.model.user.po.UserPO;
-import cn.hezhiling.mask.service.user.UserService;
+import cn.hezhiling.sys.service.user.UserService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

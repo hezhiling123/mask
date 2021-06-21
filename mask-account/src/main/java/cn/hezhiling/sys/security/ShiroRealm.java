@@ -1,4 +1,3 @@
-
 package cn.hezhiling.sys.security;
 
 
@@ -6,7 +5,7 @@ import cn.hezhiling.core.exception.BusinessException;
 import cn.hezhiling.core.utils.CommonConstant;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
 import cn.hezhiling.mask.model.user.dto.UserInfo;
-import cn.hezhiling.mask.service.auth.LoginService;
+import cn.hezhiling.sys.service.auth.LoginService;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -19,8 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-
-import java.util.Map;
 
 /**
  * @author hezhiling

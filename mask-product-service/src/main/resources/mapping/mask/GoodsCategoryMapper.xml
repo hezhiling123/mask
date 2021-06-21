@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.hezhiling.mask.dao.GoodsCategoryMapper" >
+<mapper namespace="cn.hezhiling.mask.productService.dao.GoodsCategoryMapper" >
   <resultMap id="BaseResultMap" type="cn.hezhiling.mask.model.goods.GoodsCategory" >
     <!--
       WARNING - @mbggenerated
@@ -214,21 +214,21 @@
     where id = #{id,jdbcType=SMALLINT}
   </update>
 
-  <resultMap id="categoryTree" type="cn.hezhiling.mask.model.vo.CategoryTree">
+  <resultMap id="categoryTree" type="cn.hezhiling.mask.vo.CategoryTree">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="image" jdbcType="VARCHAR" property="image" />
-    <collection column="{parentId=id}" ofType="cn.hezhiling.mask.model.vo.CategoryTree" property="nodes" select="selectCategoryTree">
+    <collection column="{parentId=id}" ofType="cn.hezhiling.mask.vo.CategoryTree" property="nodes" select="selectCategoryTree">
     </collection>
   </resultMap>
 
-  <resultMap id="categoryTree3" type="cn.hezhiling.mask.model.vo.CategoryTree">
+  <resultMap id="categoryTree3" type="cn.hezhiling.mask.vo.CategoryTree">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="image" jdbcType="VARCHAR" property="image" />
-    <collection column="{parentId=id}" ofType="cn.hezhiling.mask.model.vo.CategoryTree" property="nodes" select="selectCategoryTree3">
+    <collection column="{parentId=id}" ofType="cn.hezhiling.mask.vo.CategoryTree" property="nodes" select="selectCategoryTree3">
     </collection>
   </resultMap>
 
@@ -252,7 +252,7 @@
     </if>
   </select>
 
-  <select id="selectCategoryByParentId" resultType="cn.hezhiling.mask.model.vo.CategoryTree">
+  <select id="selectCategoryByParentId" resultType="cn.hezhiling.mask.vo.CategoryTree">
     SELECT id, name, level, image
     FROM tp_goods_category gc
     WHERE parent_id = ${parentId}

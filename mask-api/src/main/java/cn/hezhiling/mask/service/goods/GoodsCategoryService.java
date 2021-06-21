@@ -2,9 +2,9 @@ package cn.hezhiling.mask.service.goods;
 
 import cn.hezhiling.mask.model.goods.GoodsCategory;
 import cn.hezhiling.mask.model.goods.RecommendGoods;
-import cn.hezhiling.mask.model.vo.CategoryCountVo;
-import cn.hezhiling.mask.model.vo.CategoryTree;
-import cn.hezhiling.mask.model.vo.HotGoodsVo;
+import cn.hezhiling.mask.vo.CategoryCountVo;
+import cn.hezhiling.mask.vo.CategoryTree;
+import cn.hezhiling.mask.vo.HotGoodsVo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

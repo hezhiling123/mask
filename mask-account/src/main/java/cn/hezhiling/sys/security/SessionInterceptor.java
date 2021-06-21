@@ -1,10 +1,9 @@
 package cn.hezhiling.sys.security;
 
 import cn.hezhiling.mask.model.user.po.UserPO;
-import cn.hezhiling.mask.service.auth.LoginService;
+import cn.hezhiling.sys.service.auth.LoginService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

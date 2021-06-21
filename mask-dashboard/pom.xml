@@ -64,7 +64,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.hezhiling.MaskDashboardApplication</mainClass>
+                    <mainClass>cn.hezhiling.mask.dashboard.MaskDashboardApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>
