@@ -18,7 +18,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 @MapperScan("cn.hezhiling.**.dao")
 @EnableEurekaClient
 public class LabelApp {
-	public static void main(String[] args) { SpringApplication.run(LabelApp.class)}
+	public static void main(String[] args) { SpringApplication.run(LabelApp.class);}
 
 	public PageInterceptor pageInterceptor() { return new PageInterceptor(); }
 
