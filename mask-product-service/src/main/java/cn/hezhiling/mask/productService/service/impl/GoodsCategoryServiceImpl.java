@@ -43,7 +43,7 @@ import java.util.List;
  * @date 2018/2/5.
  */
 @RestController
-@RequestMapping("/product/mask/service/GoodsCategoryService")
+@RequestMapping("/product/mask/service/goodsCategory")
 public class GoodsCategoryServiceImpl implements GoodsCategoryService {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());

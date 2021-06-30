@@ -262,7 +262,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>mall-product</finalName>
+        <finalName>mask-product</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
