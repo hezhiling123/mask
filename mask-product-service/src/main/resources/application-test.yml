@@ -49,20 +49,20 @@ spring:
     web:
       client:
         enabled: true
-  #zipkin:
-    #base-url: http://106.55.152.41:9411/
-    #sender:
-      #type: kafka
+  zipkin:
+    base-url: http://106.55.152.41:9411/
+    sender:
+      type: kafka
   cloud:
-    #stream:
-      #kafka:
-        #binder:
-          #brokers: 47.101.195.110:9092
+    stream:
+      kafka:
+        binder:
+          brokers: 47.102.147.24:9092
     alibaba:
       seata:
         tx-service-group: pay_tx_group
-  #kafka:
-    #bootstrap-servers: 47.101.195.110:9092
+  kafka:
+    bootstrap-servers: 47.102.147.24:9092
   redis:
     host: 47.101.195.110
     port: 6379
@@ -123,8 +123,8 @@ logging:
   level:
     root: info
     cn:
-      enjoy:
-        mall:
+      hezhiling:
+        mask:
           dao: debug
     org:
       springframework:

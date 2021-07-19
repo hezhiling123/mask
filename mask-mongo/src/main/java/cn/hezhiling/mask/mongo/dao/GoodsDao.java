@@ -15,7 +15,7 @@ import java.util.Map;
  * @date 2018/2/5.
  */
 @Repository
-public class GoodsDao extends BaseMgDao{
+public class GoodsDao extends BaseMgDao {
 
     @Override
     String getCollectionName() {

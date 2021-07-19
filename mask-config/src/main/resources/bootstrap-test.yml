@@ -14,7 +14,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 47.101.195.110:9092
+          brokers: 47.102.147.24:9092
     bus:
       refresh:
         enabled: true
@@ -29,7 +29,7 @@ spring:
     sender:
       type: kafka
   kafka:
-    bootstrap-servers: 47.101.195.110:9092
+    bootstrap-servers: 47.102.147.24:9092
     consumer:
       group-id: config-bus
 #  rabbitmq:

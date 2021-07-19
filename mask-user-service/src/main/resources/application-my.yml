@@ -46,7 +46,7 @@ spring:
     sender:
       type: kafka
   kafka:
-    bootstrap-servers: 47.101.195.110:9092
+    bootstrap-servers: 47.102.147.24:9092
 
 eureka:
   client:

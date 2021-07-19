@@ -57,12 +57,12 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 47.101.195.110:9092
+          brokers: 47.102.147.24:9092
     alibaba:
       seata:
         tx-service-group: pay_tx_group
   kafka:
-    bootstrap-servers: 47.101.195.110:9092
+    bootstrap-servers: 47.102.147.24:9092
     producer:
       retries: 0
       batch-size: 16384
