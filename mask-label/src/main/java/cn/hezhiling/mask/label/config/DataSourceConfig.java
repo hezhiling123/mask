@@ -1,8 +1,8 @@
 package cn.hezhiling.mask.label.config;
 
 
-import cn.hezhiling.mask.productService.dbutils.DBTypeEnum;
-import cn.hezhiling.mask.productService.dbutils.MyRoutingDataSource;
+import cn.hezhiling.mask.label.dbutils.DBTypeEnum;
+import cn.hezhiling.mask.label.dbutils.MyRoutingDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

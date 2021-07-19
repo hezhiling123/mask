@@ -19,11 +19,27 @@ import java.util.List;
 public interface GoodsCategoryService {
     @RequestMapping(value = "/selectCategoryTree", method = RequestMethod.POST)
     List<CategoryTree> selectCategoryTree(@RequestParam("parentId") String parentId, @RequestParam("keywords") String keywords);
-    //三层分类树
+    //
+
+    /**
+     * 三层分类树
+     *
+     * @param parentId 父级id
+     * @param keywords  搜索关键字
+     * @return  三层分类树
+     */
     @RequestMapping(value = "/selectCategoryTree3", method = RequestMethod.POST)
     List<CategoryTree> selectCategoryTree3(@RequestParam(value = "parentId",required = false) String parentId, @RequestParam(value = "keywords",required = false) String keywords);
 
-    //三层分类树
+    //
+
+    /**
+     * 获取微信小程序首页分类树
+     *
+     * @param parentId 父级id
+     * @param keywords  搜索关键字
+     * @return  微信小程序首页分类树
+     */
     @RequestMapping(value = "/selectAppHomeCategoryTree", method = RequestMethod.POST)
     List<CategoryTree> selectAppHomeCategoryTree(@RequestParam(value = "parentId",required = false) String parentId, @RequestParam(value = "keywords",required = false) String keywords);
 

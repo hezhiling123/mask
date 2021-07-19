@@ -14,10 +14,11 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
     <c3p0-version>0.9.5.2</c3p0-version>
+    <seata.version>1.0.0</seata.version>
   </properties>
 
   <parent>
@@ -93,6 +94,23 @@
       <version>1.5.9.RELEASE</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-alibaba-seata</artifactId>
+      <version>2.1.0.RELEASE</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>seata-all</artifactId>
+          <groupId>io.seata</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.seata</groupId>
+      <artifactId>seata-all</artifactId>
+      <version>${seata.version}</version>
+    </dependency>
+
     <!-- 工具类相关 -->
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -105,6 +123,37 @@
       <version>1.2.37</version>
     </dependency>
 
+    <!-- 消息中间件相关 -->
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-stream-binder-kafka</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-stream-kafka</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.101tec</groupId>
+      <artifactId>zkclient</artifactId>
+      <version>0.11</version>
+    </dependency>
+
+    <!-- 测试相关 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <!-- 其他相关 -->
     <dependency>
       <groupId>javax.validation</groupId>

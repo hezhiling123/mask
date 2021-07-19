@@ -21,7 +21,7 @@ import java.util.List;
  * @author Ray
  * @date 2018/2/5.
  */
-@RequestMapping("/product/mall/service/goods")
+@RequestMapping("/product/mask/service/goods")
 public interface GoodsService {
     /**
      * 从mongodb中查找完整信息
