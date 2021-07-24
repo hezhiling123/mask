@@ -57,12 +57,32 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 47.101.195.110:9092
+          brokers: 47.102.147.24:9092
     alibaba:
       seata:
         tx-service-group: pay_tx_group
   kafka:
-    bootstrap-servers: 47.101.195.110:9092
+    bootstrap-servers: 47.102.147.24:9092
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: spring-boot-demo
+      # 手动提交
+      enable-auto-commit: false
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        session.timeout.ms: 60000
+    listener:
+      log-container-config: false
+      concurrency: 5
+      # 手动提交
+      ack-mode: manual_immediate
   redis:
     host: 47.101.195.110
     port: 6379

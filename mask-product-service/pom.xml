@@ -226,11 +226,6 @@
             <version>${seata.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.11</version>
-        </dependency>
-        <dependency>
             <groupId>io.github.yedaxia</groupId>
             <artifactId>japidocs</artifactId>
             <version>1.4.2</version>
