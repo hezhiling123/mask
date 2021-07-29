@@ -1,6 +1,10 @@
 package cn.hezhiling.mask.service.label;
 
+import cn.hezhiling.mask.vo.label.LabelVO;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * @author hezhiling
@@ -9,4 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @RequestMapping("/product/mask/service/label")
 public interface LabelService {
+    @RequestMapping(value = "/listAllMyLabel", method = RequestMethod.POST)
+    List<LabelVO> listAllMyLabel(String userId);
 }
