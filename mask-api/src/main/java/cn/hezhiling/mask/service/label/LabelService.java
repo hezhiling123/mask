@@ -1,8 +1,9 @@
 package cn.hezhiling.mask.service.label;
 
-import cn.hezhiling.mask.vo.label.LabelVO;
+import cn.hezhiling.mask.model.label.entity.LabelEntity;
+import cn.hezhiling.mask.model.label.vo.LabelListVO;
+import cn.hezhiling.mask.model.label.vo.LabelVO;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -13,6 +14,18 @@ import java.util.List;
  */
 @RequestMapping("/product/mask/service/label")
 public interface LabelService {
-    @RequestMapping(value = "/listAllMyLabel", method = RequestMethod.POST)
-    List<LabelVO> listAllMyLabel(String userId);
+	/**
+	 * 列出我所有的标签
+	 *
+	 * @param ownerId	拥有者id
+	 * @return	该拥有者所有的标签
+	 */
+	List<LabelVO> listMyLabel(String ownerId);
+
+	/**
+	 * 增加一个标签
+	 *
+	 * @param labelEntity	标签
+	 */
+	void addLabel(LabelEntity labelEntity);
 }
