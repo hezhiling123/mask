@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
-    <!-- 驱动文件，请修改为自己机器的对应目录 -->
-    <classPathEntry location="F:\apache-tomcat-8.0.36\lib\mysql-connector-java-5.1.40.jar"/>
+    <!--配置要链接的数据库的数据源-->
+    <classPathEntry location="D:/applaunch/apache-maven-3.6.3-bin/MavenRepository/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar"/>
     <context id="context1" defaultModelType="flat" targetRuntime="MyBatis3" >
         <property name="autoDelimitKeywords" value="true" />
         <property name="beginningDelimiter" value="" />
@@ -29,7 +29,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 生成实体类地址 -->
-        <javaModelGenerator targetPackage="cn.hezhiling.mask.model.label" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="cn.hezhiling.mask.model.label.entity" targetProject="src/main/java">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
             <property name="enableSubPackages" value="true" />
             <!-- 是否针对string类型的字段在set的时候进行trim调用 -->
@@ -37,13 +37,13 @@
         </javaModelGenerator>
 
         <!-- 生成mapxml文件 -->
-        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources/">
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources/mapping">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- 生成mapxml对应client，也就是接口dao -->
-        <javaClientGenerator targetPackage="cn.hezhiling.mask.mapper" targetProject="src/main/java" type="XMLMAPPER">
+        <javaClientGenerator targetPackage="cn.hezhiling.mask.label.mapper" targetProject="src/main/java" type="XMLMAPPER">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
