@@ -1,4 +1,4 @@
-package cn.hezhiling.mask.label.constants;
+package cn.hezhiling.mask.label.common.constants;
 
 /**
  * <p>

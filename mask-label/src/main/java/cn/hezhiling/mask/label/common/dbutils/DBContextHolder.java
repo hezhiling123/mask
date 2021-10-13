@@ -1,4 +1,4 @@
-package cn.hezhiling.mask.label.dbutils;
+package cn.hezhiling.mask.label.common.dbutils;
 
 import java.util.Stack;
 

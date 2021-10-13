@@ -1,8 +1,8 @@
-package cn.hezhiling.mask.label.service.impl;
+package cn.hezhiling.mask.label.label.service.impl;
 
+import cn.hezhiling.mask.label.label.bo.LabelBO;
 import cn.hezhiling.mask.label.mapper.LabelMapper;
 import cn.hezhiling.mask.model.label.entity.LabelEntity;
-import cn.hezhiling.mask.model.label.vo.LabelListVO;
 import cn.hezhiling.mask.model.label.vo.LabelVO;
 import cn.hezhiling.mask.service.label.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,9 @@ public class LabelServiceImpl implements LabelService {
 	@Autowired
 	private LabelMapper labelMapper;
 
+	@Autowired
+	private LabelBO labelBO;
+
 	/**
 	 * 列出我所有的标签
 	 *
@@ -33,7 +36,7 @@ public class LabelServiceImpl implements LabelService {
 	@RequestMapping(value = "/listMyLabel", method = RequestMethod.POST)
 	@Override
 	public List<LabelVO> listMyLabel(String ownerId) {
-		return labelMapper.listLabelByOwnerId(ownerId);
+		return labelBO.listMyLabel(ownerId);
 	}
 
 	/**
@@ -43,7 +46,7 @@ public class LabelServiceImpl implements LabelService {
 	 */
 	@Override
 	public void addLabel(LabelEntity labelEntity) {
-		labelMapper.insertOne(labelEntity);
+		labelBO.addLabel(labelEntity);
 	}
 
 }

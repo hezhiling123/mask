@@ -1,4 +1,4 @@
-package cn.hezhiling.mask.label.annotation;
+package cn.hezhiling.mask.label.common.annotation;
 
 /**
  * @author Mark老师   享学课堂 https://enjoy.ke.qq.com

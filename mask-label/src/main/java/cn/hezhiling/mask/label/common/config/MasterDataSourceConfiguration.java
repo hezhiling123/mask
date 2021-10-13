@@ -1,4 +1,4 @@
-package cn.hezhiling.mask.label.config;
+package cn.hezhiling.mask.label.common.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import io.seata.rm.datasource.DataSourceProxy;

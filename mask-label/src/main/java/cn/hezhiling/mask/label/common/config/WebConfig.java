@@ -1,4 +1,4 @@
-package cn.hezhiling.mask.label.config;
+package cn.hezhiling.mask.label.common.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

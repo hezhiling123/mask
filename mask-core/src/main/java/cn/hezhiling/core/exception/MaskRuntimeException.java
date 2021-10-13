@@ -26,6 +26,11 @@ public class MaskRuntimeException extends RuntimeException {
 		this.code = code;
 	}
 
+	public MaskRuntimeException(ResultStatusCode resultStatusCode, String msg) {
+		this.code = resultStatusCode.getCode();
+		this.msg = resultStatusCode.getMsg();
+	}
+
 	public String getCode() {
 		return code;
 	}

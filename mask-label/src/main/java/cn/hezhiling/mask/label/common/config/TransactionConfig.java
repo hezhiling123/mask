@@ -1,4 +1,4 @@
-package cn.hezhiling.mask.label.config;
+package cn.hezhiling.mask.label.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;

@@ -1,4 +1,4 @@
-package cn.hezhiling.mask.label.config;
+package cn.hezhiling.mask.label.common.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.springframework.context.annotation.Bean;
