@@ -2,7 +2,7 @@ dfs:
   url: 94.191.83.120:8181
 # 114.115.171.119 root Mall123!#$
 druid-master:
-  jdbcUrl: jdbc:mysql://47.101.195.110:3307/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  jdbcUrl: jdbc:mysql://119.3.30.5:3307/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
   username: root
   password: root
   driver-class-name: com.mysql.jdbc.Driver
@@ -20,7 +20,7 @@ druid-master:
   filters: stat,wall
   connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 druid-slave:
-  jdbcUrl: jdbc:mysql://47.101.195.110:3308/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  jdbcUrl: jdbc:mysql://119.3.30.5:3308/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
   username: root
   password: root
   driver-class-name: com.mysql.jdbc.Driver
@@ -64,7 +64,7 @@ spring:
   kafka:
     bootstrap-servers: 47.102.147.24:9092
   redis:
-    host: 47.101.195.110
+    host: 119.3.30.5
     port: 6379
     password: 1659868245
     jedis:
@@ -75,7 +75,7 @@ spring:
         min-idle: 0
   data:
     mongodb:
-      uri: mongodb://47.101.195.110:27017/mask
+      uri: mongodb://119.3.30.5:27017/mask
   datasource:
     initialize: false
   application:

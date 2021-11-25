@@ -46,7 +46,7 @@ eureka:
     fetch-registry: true
   instance:
     hostname:
-    ip-address: 47.101.195.110
+    ip-address: 119.3.30.5
     prefer-ip-address: true
     instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${server.port}
 

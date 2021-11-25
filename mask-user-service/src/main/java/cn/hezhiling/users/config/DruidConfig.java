@@ -126,7 +126,7 @@ public class DruidConfig {
         //添加白名单
         servletRegistrationBean.addInitParameter("allow","");
         //添加ip黑名单
-        servletRegistrationBean.addInitParameter("deny","47.101.195.110");
+        servletRegistrationBean.addInitParameter("deny","119.3.30.5");
         //登录查看信息的账号密码
         servletRegistrationBean.addInitParameter("loginUsername","admin");
         servletRegistrationBean.addInitParameter("loginPassword","1659868245");

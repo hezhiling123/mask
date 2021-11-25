@@ -20,7 +20,7 @@
         </commentGenerator>
 
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://47.101.195.110:3307/mask?useUnicode=true&amp;characterEncoding=utf-8"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://119.3.30.5:3307/mask?useUnicode=true&amp;characterEncoding=utf-8"
                         userId="root" password="root" />
 
         <!-- 类型转换 -->

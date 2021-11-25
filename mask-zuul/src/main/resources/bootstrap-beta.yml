@@ -6,7 +6,7 @@ spring:
       client:
         enabled: true
   zipkin:
-    base-url: http://47.101.195.110:9411/
+    base-url: http://119.3.30.5:9411/
     sender:
       type: kafka
   application:
@@ -20,7 +20,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 47.101.195.110:9092
+          brokers: 119.3.30.5:9092
     config:
       profile:
       label: master
@@ -39,7 +39,7 @@ spring:
       refresh:
         enabled: true
   kafka:
-    bootstrap-servers: 47.101.195.110:9092
+    bootstrap-servers: 119.3.30.5:9092
 #  rabbitmq:
 #    host: 94.191.83.120
 #    port: 5672

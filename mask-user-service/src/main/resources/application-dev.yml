@@ -2,7 +2,7 @@ dfs:
   url: 192.168.244.10:8181
 # 114.115.171.119 root Mall123!#$
 c3p0-master:
-  url: jdbc:mysql://47.101.195.110:3306/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  url: jdbc:mysql://119.3.30.5:3306/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
   username: admin
   password: 1659868245
   driverClassName: com.mysql.jdbc.Driver
@@ -19,7 +19,7 @@ c3p0-master:
   testConnectionOnCheckout: true
   testConnectionOnCheckin: true
 c3p0-slave:
-  url: jdbc:mysql://47.101.195.110:3307/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+  url: jdbc:mysql://119.3.30.5:3307/mask?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
   username: root
   password: root
   driverClassName: com.mysql.jdbc.Driver
@@ -38,18 +38,18 @@ c3p0-slave:
 
 
 zookeeper:
-  url: zookeeper://47.101.195.110:2181 #114.115.171.119
+  url: zookeeper://119.3.30.5:2181 #114.115.171.119
 
 mybatis:
   mapper-locations: classpath*:mapping/**/*.xml
   config-location: classpath:SqlMapConfig.xml
 spring:
   redis:
-    host: 47.101.195.110
+    host: 119.3.30.5
     port: 6379
     password: 123456
   data:
     mongodb:
-      uri: mongodb://47.101.195.110:27017/mall
+      uri: mongodb://119.3.30.5:27017/mall
   datasource:
     initialization-mode: always
