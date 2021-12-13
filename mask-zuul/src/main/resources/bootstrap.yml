@@ -12,4 +12,4 @@ server:
     min-spare-threads: 100
 spring:
   profiles:
-    active: beta
+    active: test

@@ -14,7 +14,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 47.102.147.24:9092
+          brokers: 119.3.30.5:9092
     bus:
       refresh:
         enabled: true
@@ -29,7 +29,7 @@ spring:
     sender:
       type: kafka
   kafka:
-    bootstrap-servers: 47.102.147.24:9092
+    bootstrap-servers: 119.3.30.5:9092
     consumer:
       group-id: config-bus
 #  rabbitmq:
@@ -41,12 +41,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:admin@localhost:8763/eureka/
+      defaultZone: http://admin:admin@119.3.30.5:8763/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:
     hostname:
-    ip-address: localhost
+    ip-address: 119.3.30.5
     prefer-ip-address: true
     instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${server.port}
 

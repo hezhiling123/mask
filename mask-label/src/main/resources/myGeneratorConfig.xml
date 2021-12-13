@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
     <!--配置要链接的数据库的数据源-->
-    <classPathEntry location="D:/applaunch/apache-maven-3.6.3-bin/MavenRepository/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar"/>
+    <classPathEntry location="D:/app/toolbin/apache-maven-3.8.1/repository/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar"/>
     <context id="context1" defaultModelType="flat" targetRuntime="MyBatis3" >
         <property name="autoDelimitKeywords" value="true" />
         <property name="beginningDelimiter" value="" />

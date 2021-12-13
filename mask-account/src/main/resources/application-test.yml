@@ -27,9 +27,9 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 47.102.147.24:9092
+          brokers: 119.3.30.5:9092
   kafka:
-    bootstrap-servers: 47.102.147.24:9092
+    bootstrap-servers: 119.3.30.5:9092
   redis:
     host: 119.3.30.5
     port: 6379

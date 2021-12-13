@@ -57,12 +57,12 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 47.102.147.24:9092
+          brokers: 119.3.30.5:9092
     alibaba:
       seata:
         tx-service-group: pay_tx_group
   kafka:
-    bootstrap-servers: 47.102.147.24:9092
+    bootstrap-servers: 119.3.30.5:9092
     producer:
       retries: 0
       batch-size: 16384
@@ -105,7 +105,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:admin@localhost:8763/eureka/
+      defaultZone: http://admin:admin@119.3.30.5:8763/eureka/
     register-with-eureka: true
     fetch-registry: true
   #instance:

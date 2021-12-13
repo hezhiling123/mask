@@ -249,12 +249,12 @@
           <overwrite>true</overwrite>
         </configuration>
         <executions>
-          <execution>
-            <id>Generate MyBatis Artifacts</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
+<!--          <execution>-->
+<!--            <id>Generate MyBatis Artifacts</id>-->
+<!--            <goals>-->
+<!--              <goal>generate</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
         </executions>
         <dependencies>
           <dependency>
