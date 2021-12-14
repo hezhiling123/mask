@@ -62,10 +62,10 @@ management:
       exposure:
         include: "*"
 
-#keytool -genkeypair -alias mall-config -keyalg RSA -keystore mall-config.keystore-local -validity 365
+#keytool -genkeypair -alias mall-config -keyalg RSA -keystore mask-config.keystore-local -validity 365
 encrypt:
   key-store:
-    location: mall-config.keystore
+    location: mask-config.keystore
     alias: mall-config
     password: 123456
     secret: 123456

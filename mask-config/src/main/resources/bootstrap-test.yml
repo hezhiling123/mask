@@ -41,12 +41,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:admin@119.3.30.5:8763/eureka/
+      defaultZone: http://admin:admin@42.192.182.126:8763/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:
     hostname:
-    ip-address: 119.3.30.5
+    ip-address: 42.192.182.126
     prefer-ip-address: true
     instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${server.port}
 
@@ -61,11 +61,11 @@ management:
       exposure:
         include: "*"
 
-#keytool -genkeypair -alias mall-config -keyalg RSA -keystore mall-config.keystore-local -validity 365
+#keytool -genkeypair -alias mall-config -keyalg RSA -keystore mask-config.keystore-local -validity 365
 encrypt:
   key-store:
-    location: mall-config.keystore
-    alias: mall-config
+    location: mask-config.keystore
+    alias: mask-config
     password: 123456
     secret: 123456
 

@@ -9,6 +9,7 @@ import cn.hezhiling.mask.model.label.vo.LabelVO;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * @version 1.0
  * @date 2021-10-13 20:59:10
  */
+@Service
 public class LabelBOImpl implements LabelBO {
 
     @Autowired
