@@ -84,7 +84,7 @@ spring:
       # 手动提交
       ack-mode: manual_immediate
   redis:
-    host: 119.3.30.5
+    host: 42.192.182.126
     port: 6379
     password: 1659868245
     jedis:

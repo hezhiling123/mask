@@ -128,28 +128,28 @@ zuul:
   ribbon-isolation-strategy: thread
   routes:
     mask-user-service:
-      path: /user/**
+      path: /mask/service/user/**
       serviceId: mask-user-service
       sensitive-headers:
     mask-product-service:
-      path: /product/**
+      path: /mask/service/product/**
       serviceId: mask-product-service
       sensitive-headers:
     mask-order-service:
-      path: /order/**
+      path: /mask/service/order/**
       serviceId: mask-order-service
       sensitive-headers:
       retryable: false
     mask-account:
-      path: /account/**
+      path: /mask/service/account/**
       serviceId: mask-account
       sensitive-headers:
     mask-pay:
-      path: /pay/**
+      path: /mask/service/pay/**
       serviceId: mask-pay-service
       sensitive-headers:
     mask-label:
-      path: /label/**
+      path: /mask/service/label/**
       serviceId: mask-label
       sensitive-headers:
   add-host-header: true
