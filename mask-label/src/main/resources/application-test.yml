@@ -99,7 +99,7 @@ spring:
   datasource:
     initialize: false
   application:
-    name: mask-product-service
+    name: mask-label-service
   main:
     allow-bean-definition-overriding: true
 eureka:

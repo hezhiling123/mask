@@ -142,7 +142,7 @@ zuul:
       retryable: false
     mask-account:
       path: /mask/service/account/**
-      serviceId: mask-account
+      serviceId: mask-account-service
       sensitive-headers:
     mask-pay:
       path: /mask/service/pay/**
@@ -150,7 +150,7 @@ zuul:
       sensitive-headers:
     mask-label:
       path: /mask/service/label/**
-      serviceId: mask-label
+      serviceId: mask-label-service
       sensitive-headers:
   add-host-header: true
   add-proxy-headers: true
