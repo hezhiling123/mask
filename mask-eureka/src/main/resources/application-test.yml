@@ -2,6 +2,7 @@ eureka:
   instance:
     hostname: 127.0.0.1
     secure-port: 8763
+    preferIpAddress: true
   client:
     registerWithEureka: false
     fetchRegistry: false

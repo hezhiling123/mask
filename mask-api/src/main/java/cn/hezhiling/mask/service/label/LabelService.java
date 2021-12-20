@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2021/6/24 11:06
  * @since V1.0
  */
-@RequestMapping("/product/mask/service/label")
+@RequestMapping("/mask/service/label")
 public interface LabelService {
 	/**
 	 * 列出我所有的标签
