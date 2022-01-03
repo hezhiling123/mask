@@ -22,7 +22,7 @@ spring:
         binder:
           brokers: 119.3.30.5:9092
     config:
-      profile:
+      profile: dev
       label: master
       #连单机configserver
 #      uri: http://119.3.30.5:8195/
@@ -36,6 +36,7 @@ spring:
         max-interval: 2000
         max-attempts: 6
     bus:
+      env: dev
       refresh:
         enabled: true
   kafka:
