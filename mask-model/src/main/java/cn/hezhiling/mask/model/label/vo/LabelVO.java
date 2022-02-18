@@ -16,10 +16,7 @@ public class LabelVO extends LabelEntity {
 	 * 标签类型名称
 	 */
 	private String labelCategoryName;
-	/**
-	 * 祖标签类型id
-	 */
-	private Integer rootCategoryId;
+
 	/**
 	 * 图片url
 	 */
@@ -31,13 +28,15 @@ public class LabelVO extends LabelEntity {
 	/**
 	 * 是否在售
 	 */
-	private Boolean isOnSale;
+	private Boolean onSale;
+
 	/**
-	 * 是否为新的
+	 * 是否新上架
 	 */
-	private Boolean isNew;
+	private Boolean newFlag;
+
 	/**
-	 * 是否是热销
+	 * 是否热卖
 	 */
-	private Boolean isHot;
+	private Boolean hotFlag;
 }

@@ -8,6 +8,7 @@ import cn.hezhiling.mask.service.label.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -36,7 +37,7 @@ public class LabelServiceImpl implements LabelService {
 	 */
 	@RequestMapping(value = "/listMyLabel", method = RequestMethod.POST)
 	@Override
-	public List<LabelVO> listMyLabel(String ownerId) {
+	public List<LabelVO> listMyLabel(@RequestParam("ownerId") String ownerId) {
 		return labelBO.listMyLabel(ownerId);
 	}
 

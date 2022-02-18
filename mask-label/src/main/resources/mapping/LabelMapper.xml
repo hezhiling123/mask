@@ -21,7 +21,7 @@
         values (#{id}, #{labelCategoryId}, #{labelName}, #{ownerId}, #{createTime}, #{openTime}, #{open})
     </insert>
     <select id="listLabelByOwnerId" resultType="cn.hezhiling.mask.model.label.vo.LabelVO">
-        SELECT l.id, l.label_category_id, c.label_category_name, c.label_category_id, c.root_category_id, c.pic_url, c.share_url, c.is_on_sale, c.is_new, c.is_hot,
+        SELECT l.id, l.label_category_id, c.label_category_name, c.label_category_id,  c.pic_url, c.share_url, c.on_sale, c.new_flag, c.hot_flag,
                l.label_name, l.owner_id, l.create_time, l.open_time, l.open
         FROM label l
         LEFT JOIN label_category c on c.label_category_id = l.label_category_id
