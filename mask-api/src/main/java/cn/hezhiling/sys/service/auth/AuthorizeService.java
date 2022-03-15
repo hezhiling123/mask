@@ -11,7 +11,7 @@ import java.util.Map;
  * @author Ray
  * @date 2018/3/23.
  */
-@RequestMapping("/authorize")
+@RequestMapping("/sys/service/authorize")
 public interface AuthorizeService {
 
      /**

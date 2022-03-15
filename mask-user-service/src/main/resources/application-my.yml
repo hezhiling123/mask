@@ -33,12 +33,12 @@ spring:
   application:
     name: mask-user-service
   redis:
-    host: 119.3.30.5
+    host: 42.192.182.126
     port: 6379
     password: 1659868245
   data:
     mongodb:
-      uri: mongodb://119.3.30.5:27017/mask
+      uri: mongodb://42.192.182.126:27017/mask
   datasource:
     initialization-mode: always
   zipkin:
@@ -51,7 +51,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:admin@127.0.0.1:8763/eureka/
+      defaultZone: http://admin:admin@42.192.182.126:8763/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:
@@ -79,6 +79,8 @@ hystrix:
           thread:
             timeoutInMilliseconds: 10000
 ribbon:
+  eureka:
+    enabled: false
   ConnectTimeout: 1000
   ReadTimeout: 5000
   OkToRetryOnAllOperations: false

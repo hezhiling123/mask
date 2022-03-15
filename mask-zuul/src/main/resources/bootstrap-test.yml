@@ -36,7 +36,7 @@ spring:
         max-interval: 2000
         max-attempts: 6
     bus:
-      env: dev
+      env: test
       refresh:
         enabled: true
   kafka:

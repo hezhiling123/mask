@@ -10,4 +10,4 @@ spring:
   profiles:
     active: ${spring.profiles.active:test}
   application:
-    name: mall-dashboard
+    name: mask-dashboard
