@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- *
  * @author Ray
  * @date 2017/10/16
  */

@@ -2,18 +2,20 @@ package cn.hezhiling.users.service.impl.auth;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import cn.hezhiling.core.utils.ResponseUtil;
+import cn.hezhiling.mask.model.user.dto.UserInfo;
 import cn.hezhiling.mask.model.user.dto.WxLoginInfo;
 import cn.hezhiling.mask.model.user.po.UserPO;
-import cn.hezhiling.mask.model.user.dto.UserInfo;
 import cn.hezhiling.sys.service.auth.LoginService;
-import cn.hezhiling.core.utils.ResponseUtil;
 import cn.hezhiling.users.dao.UserDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,8 +39,6 @@ public class LoginServiceImpl implements LoginService {
      *
      * @param wxLoginInfo 请求内容，{ code: xxx, userInfo: xxx }
      * @return 登录结果
-     *
-     *
      **/
     @Override
     @PostMapping("loginByWeiXin")
@@ -75,9 +75,9 @@ public class LoginServiceImpl implements LoginService {
                     .password(new BCryptPasswordEncoder().encode(openId))
                     .weiXinOpenid(openId)
                     .avatar("https://yanxuan.nosdn.127.net/80841d741d7fa3073e0ae27bf487339f.jpg?imageView&quality=90&thumbnail=64x64")
-                    .gender((byte)0)
-                    .userLevel((byte)0)
-                    .status((byte)0)
+                    .gender((byte) 0)
+                    .userLevel((byte) 0)
+                    .status((byte) 0)
                     .lastLoginIp("")
                     .lastLoginTime(LocalDateTime.now())
                     .sessionKey(sessionKey)
@@ -99,8 +99,6 @@ public class LoginServiceImpl implements LoginService {
         result.put("userInfo", userInfo);
         return ResponseUtil.ok(result);
     }
-
-
 
 
 //    @Override
@@ -231,6 +229,46 @@ public class LoginServiceImpl implements LoginService {
     @Override
     @PostMapping("loginByToken")
     public UserInfo loginByToken(String tokenStr) {
+//        log.info(tokenStr);
+//        System.out.println(tokenStr);
+//        UsernamePasswordToken usernamePasswordToken = JSONObject.parseObject(tokenStr, UsernamePasswordToken.class);
+//        UserInfo user = null;
+//        String loginAccount;
+//        String password;
+//        Map<String, Object> paramMap = new HashMap<>();
+//        //微信登录
+//        UsernamePasswordToken sysToken = usernamePasswordToken;
+//        loginAccount = sysToken.getUsername();
+//        password = new String(sysToken.getPassword());
+//        log.info(password);
+//        paramMap.put("loginAccount", loginAccount);
+//        user = userDao.getUserInfoById(1);
+//        String md5Password = MD5Util.generateMD5(password, user.getPasswordRand());
+//        log.info("md5Password:" + md5Password);
+//        log.info("user.getPassword():" + user.getPassword());
+//        //!password.equals(user.getPassword()) 是为了自动登陆取不到用户的真实密码使用
+//        if (!md5Password.equals(user.getPassword()) && !password.equals(user.getPassword())) {
+//            // 密码错误
+//            throw new MaskRuntimeException(ResponseCodeConstant.USER_LOGIN_FAIL,
+//                    ResponseCodeConstant.USER_LOGIN_FAIL_PASSWORD_FAIL_MSG);
+//        }
+//        if (user.getStatus() == CommonConstant.USER_STATUS_NO_ACTIVATION) {
+//            // 用户未激活
+//            throw new MaskRuntimeException(ResponseCodeConstant.USER_LOGIN_FAIL,
+//                    ResponseCodeConstant.USER_LOGIN_FAIL_NO_ACTIVATION_MSG);
+//        }
+//        if (user.getStatus() == CommonConstant.USER_STATUS_FREEZE) {
+//            // 用户已冻结
+//            throw new MaskRuntimeException(ResponseCodeConstant.USER_LOGIN_FAIL,
+//                    ResponseCodeConstant.USER_LOGIN_FAIL_FREEZEED_MSG);
+//        }
+//        if (user.getStatus() == CommonConstant.USER_STATUS_CANCEL) {
+//            // 用户已作废
+//            throw new MaskRuntimeException(ResponseCodeConstant.USER_LOGIN_FAIL,
+//                    ResponseCodeConstant.USER_LOGIN_FAIL_CANCELED_MSG);
+//        }
+//
+//        return resultUser;
         return null;
     }
 }

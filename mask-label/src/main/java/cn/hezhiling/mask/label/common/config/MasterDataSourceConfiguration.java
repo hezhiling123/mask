@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "druid-master",ignoreInvalidFields = true)
+@ConfigurationProperties(prefix = "druid-master", ignoreInvalidFields = true)
 public class MasterDataSourceConfiguration {
 
     private String driverClassName;
@@ -38,8 +38,8 @@ public class MasterDataSourceConfiguration {
     private String filters;
     private String connectionProperties;
 
-    @Bean(name = "masterDataSource",destroyMethod = "close",initMethod = "init")
-    public DataSource getMasterDs(){
+    @Bean(name = "masterDataSource", destroyMethod = "close", initMethod = "init")
+    public DataSource getMasterDs() {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setDriverClassName(driverClassName);
         druidDataSource.setUrl(jdbcUrl);

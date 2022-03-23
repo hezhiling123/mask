@@ -2,7 +2,7 @@ package cn.hezhiling.mask.vo;
 
 import java.io.Serializable;
 
-public class OrderCreateVo implements Serializable{
+public class OrderCreateVo implements Serializable {
     private Long addressId;
 
     public Long getAddressId() {

@@ -10,7 +10,7 @@ import java.util.List;
  * 商品已选规格和属性
  * 【用于后端：用户保存商品已选规格和属性】
  */
-public class GoodsSpecPriceAttrVo implements Serializable{
+public class GoodsSpecPriceAttrVo implements Serializable {
     private Integer goodsId;
     private Short goodsType;
     private List<SpecGoodsPrice> specPriceList;

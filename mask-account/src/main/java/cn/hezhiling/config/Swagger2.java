@@ -35,7 +35,7 @@ public class Swagger2 {
                 .title("APIs")
                 .description("api文档")
                 .termsOfServiceUrl("http://xxxxxxxxxx")
-                .contact(new Contact("pzh","",""))
+                .contact(new Contact("pzh", "", ""))
                 .version("1.0")
                 .build();
     }

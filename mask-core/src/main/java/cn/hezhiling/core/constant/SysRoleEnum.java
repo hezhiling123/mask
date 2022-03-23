@@ -2,6 +2,7 @@ package cn.hezhiling.core.constant;
 
 /**
  * 系统的固定角色
+ *
  * @author Ray
  * @date 2017/11/30.
  */
@@ -21,7 +22,9 @@ public enum SysRoleEnum {
     GENERAL_MANAGER,
     //资产管理员
     ASSETS_MANAGER,
-    /** 资源申请 中【选择最终审批人】 的角色code**/
+    /**
+     * 资源申请 中【选择最终审批人】 的角色code
+     **/
     FINALAPPROVER,
     //财务部负责人
     FINANCE_HEAD,

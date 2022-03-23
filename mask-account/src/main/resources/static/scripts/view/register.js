@@ -1,7 +1,7 @@
 define(['css!@css/assets/css/login'], function () {
-  return {
-    // 选项
-    template: `
+    return {
+        // 选项
+        template: `
     <div>
         <div class="wrapper">
             <div class="wrap">
@@ -65,66 +65,66 @@ define(['css!@css/assets/css/login'], function () {
         <c-footer/>
     </div>
     `,
-    data () {
-      return {
-        form: {
-          userName: '',
-          password: ''
+        data() {
+            return {
+                form: {
+                    userName: '',
+                    password: ''
+                },
+                rePassword: '',
+                err: {
+                    userName: false,
+                    password: false,
+                    rePassword: false,
+                    msg: ''
+                }
+            }
         },
-        rePassword: '',
-        err: {
-          userName: false,
-          password: false,
-          rePassword: false,
-          msg: ''
+        computed: {
+            errUserName() {
+                return this.err.userName ? 'error_bg' : ''
+            },
+            errPassword() {
+                return this.err.password ? 'error_bg' : ''
+            },
+            errShow() {
+                return this.err.userName || this.err.password || this.err.rePassword
+            }
+        },
+        methods: {
+            onKey() {
+                this.err.userName = false
+                this.err.password = false
+            },
+            validate() {
+                if (this.$lodash.isEmpty(this.form.userName)) {
+                    this.err.userName = true
+                    this.err.msg = '请输入帐号'
+                    return false
+                }
+                if (this.$lodash.isEmpty(this.form.password)) {
+                    this.err.password = true
+                    this.err.msg = '请输入密码'
+                    return false
+                }
+                if (this.form.password !== this.rePassword) {
+                    this.err.password = true
+                    this.err.msg = '您两次输入的密码不一致'
+                    return false
+                }
+                return true
+            },
+            handleRegister() {
+                if (this.validate()) {
+                    this.$service.account.register(this.form).then(() => {
+                        alert('注册成功')
+                        this.$router.push('/login')
+                    }).catch(res => {
+                        this.err.userName = true
+                        this.err.msg = res.msg
+                    })
+                }
+            }
         }
-      }
-    },
-    computed: {
-      errUserName () {
-        return this.err.userName ? 'error_bg' : ''
-      },
-      errPassword () {
-        return this.err.password ? 'error_bg' : ''
-      },
-      errShow () {
-        return this.err.userName || this.err.password || this.err.rePassword
-      }
-    },
-    methods: {
-      onKey () {
-        this.err.userName = false
-        this.err.password = false
-      },
-      validate () {
-        if (this.$lodash.isEmpty(this.form.userName)) {
-          this.err.userName = true
-          this.err.msg = '请输入帐号'
-          return false
-        }
-        if (this.$lodash.isEmpty(this.form.password)) {
-          this.err.password = true
-          this.err.msg = '请输入密码'
-          return false
-        }
-        if (this.form.password !== this.rePassword) {
-          this.err.password = true
-          this.err.msg = '您两次输入的密码不一致'
-          return false
-        }
-        return true
-      },
-      handleRegister () {
-        if (this.validate()) {
-          this.$service.account.register(this.form).then(() => {
-            alert('注册成功')
-            this.$router.push('/login')
-          }).catch(res => {
-            this.err.userName = true
-            this.err.msg = res.msg
-          })
-        }
-      }
     }
-  }
 })

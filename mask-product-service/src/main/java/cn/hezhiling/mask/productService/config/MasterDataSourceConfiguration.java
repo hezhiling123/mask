@@ -3,15 +3,10 @@ package cn.hezhiling.mask.productService.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import io.seata.rm.datasource.DataSourceProxy;
 import lombok.Data;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.transaction.SpringManagedTransactionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -22,7 +17,7 @@ import java.sql.SQLException;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "druid-master",ignoreInvalidFields = true)
+@ConfigurationProperties(prefix = "druid-master", ignoreInvalidFields = true)
 public class MasterDataSourceConfiguration {
 
     private String driverClassName;
@@ -43,8 +38,8 @@ public class MasterDataSourceConfiguration {
     private String filters;
     private String connectionProperties;
 
-    @Bean(name = "masterDataSource",destroyMethod = "close",initMethod = "init")
-    public DataSource getMasterDs(){
+    @Bean(name = "masterDataSource", destroyMethod = "close", initMethod = "init")
+    public DataSource getMasterDs() {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setDriverClassName(driverClassName);
         druidDataSource.setUrl(jdbcUrl);

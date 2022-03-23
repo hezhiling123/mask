@@ -2,7 +2,7 @@ package cn.hezhiling.mask.vo;
 
 import java.io.Serializable;
 
-public class KillOrderVo implements Serializable{
+public class KillOrderVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private KillGoodsSpecPriceDetailVo killGoodsSpecPriceDetailVo;

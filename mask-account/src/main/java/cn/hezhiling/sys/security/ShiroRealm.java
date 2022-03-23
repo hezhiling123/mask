@@ -24,9 +24,17 @@ import org.springframework.util.StringUtils;
  */
 public class ShiroRealm extends AuthorizingRealm {
     private final static Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
-    
+
     @Autowired
     private LoginService loginService;
+
+    public static void setResource(LoginService loginService, Session session, UserInfo user) {
+//        List<MenuModel> menuList = loginService.queryMenus(user.getId(),"null");
+        session.setAttribute(CommonConstant.SESSION_USER_KEY, user);
+        session.setAttribute(CommonConstant.SESSION_USER_NAME_KEY, user.getNickName());
+        session.setAttribute(CommonConstant.SESSION_USER_ID_KEY, user.getId());
+//        session.setAttribute(CommonConstant.SESSION_MENUS_KEY, JsonUtils.obj2json(menuList));
+    }
 
     /**
      * 获取授权信息
@@ -50,34 +58,6 @@ public class ShiroRealm extends AuthorizingRealm {
 //        SecurityUtils.getSubject().getSession().setAttribute(CommonConstant.SESSION_USER_PERMISSIONS,info.getStringPermissions());
         return info;
     }
-    
-    /**
-     * 获取认证信息
-     */
-    @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
-    	UsernamePasswordToken token = (UsernamePasswordToken)authcToken;
-
-        String userName = token.getUsername();
-        String password = new String(token.getPassword());
-
-        logger.info("userName-password" + userName + "-" + password);
-        if (StringUtils.isEmpty(userName)){
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL, "用户名不能为空");
-        }
-        if (StringUtils.isEmpty(password)){
-            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL, "密码不能为空");
-        }
-        try{
-            UserInfo user = loginService.loginByToken(JSONObject.toJSONString(authcToken));
-            Session session = SecurityUtils.getSubject().getSession();
-            setResource(loginService, session,user);
-            logger.info("登录认证成功*******");
-            return new SimpleAuthenticationInfo(token.getPrincipal(), token.getPassword(), token.getUsername());
-        }catch(Exception e){
-            throw new AuthenticationException("认证出错", e);
-        }
-    }
 //    //添加权限方法
 //    private void addMyPermission(SimpleAuthorizationInfo info, List<MenuModel> permissionList) {
 ////        for (MenuModel menu : permissionList) {
@@ -90,12 +70,32 @@ public class ShiroRealm extends AuthorizingRealm {
 ////        }
 //    }
 
-    public static void setResource(LoginService loginService, Session session, UserInfo user){
-//        List<MenuModel> menuList = loginService.queryMenus(user.getId(),"null");
-        session.setAttribute(CommonConstant.SESSION_USER_KEY, user);
-        session.setAttribute(CommonConstant.SESSION_USER_NAME_KEY, user.getNickName());
-        session.setAttribute(CommonConstant.SESSION_USER_ID_KEY, user.getId());
-//        session.setAttribute(CommonConstant.SESSION_MENUS_KEY, JsonUtils.obj2json(menuList));
+    /**
+     * 获取认证信息
+     */
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
+        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+
+        String userName = token.getUsername();
+        String password = new String(token.getPassword());
+
+        logger.info("userName-password" + userName + "-" + password);
+        if (StringUtils.isEmpty(userName)) {
+            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL, "用户名不能为空");
+        }
+        if (StringUtils.isEmpty(password)) {
+            throw new BusinessException(ResponseCodeConstant.USER_LOGIN_FAIL, "密码不能为空");
+        }
+        try {
+            UserInfo user = loginService.loginByToken(JSONObject.toJSONString(authcToken));
+            Session session = SecurityUtils.getSubject().getSession();
+            setResource(loginService, session, user);
+            logger.info("登录认证成功*******");
+            return new SimpleAuthenticationInfo(token.getPrincipal(), token.getPassword(), token.getUsername());
+        } catch (Exception e) {
+            throw new AuthenticationException("认证出错", e);
+        }
     }
 
 }

@@ -9,12 +9,20 @@ import java.util.List;
 
 public interface GoodsTypeMapper {
     int deleteByPrimaryKey(Short id);
+
     int insert(GoodsType record);
+
     int insertSelective(GoodsType record);
+
     GoodsType selectByPrimaryKey(Short id);
+
     int updateByPrimaryKeySelective(GoodsType record);
+
     int updateByPrimaryKey(GoodsType record);
+
     PageList<GoodsType> queryByPage(@Param("name") String name, PageBounds pageBounds);
+
     Integer queryByPageTotalCount(@Param("name") String name);
+
     List<GoodsType> queryAll();
 }

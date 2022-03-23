@@ -1,9 +1,9 @@
-define(['@mixins/user', 'view/home/comps/EditUserDialog', 'view/home/comps/EditUserAvatarDialog'], function(user, EditUserDialog, EditUserAvatarDialog) {
-  return {
-    components: {EditUserDialog, EditUserAvatarDialog},
-    mixins: [user],
-    // 选项
-    template: `
+define(['@mixins/user', 'view/home/comps/EditUserDialog', 'view/home/comps/EditUserAvatarDialog'], function (user, EditUserDialog, EditUserAvatarDialog) {
+    return {
+        components: {EditUserDialog, EditUserAvatarDialog},
+        mixins: [user],
+        // 选项
+        template: `
     <div class="n-frame">
         <div class="uinfo c_b">
             <div class="">
@@ -50,13 +50,13 @@ define(['@mixins/user', 'view/home/comps/EditUserDialog', 'view/home/comps/EditU
         </div>
     </div>
     `,
-    data () {
-      return {
-        dialog: {
-          editUser: false,
-          editUserAvatar: false
+        data() {
+            return {
+                dialog: {
+                    editUser: false,
+                    editUserAvatar: false
+                }
+            }
         }
-      }
     }
-  }
 })

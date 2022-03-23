@@ -12,14 +12,21 @@ import java.util.Map;
 
 public interface GoodsCategoryMapper {
     int deleteByPrimaryKey(Short id);
+
     int insert(GoodsCategory record);
+
     int insertSelective(GoodsCategory record);
+
     GoodsCategory selectByPrimaryKey(Short id);
+
     int updateByPrimaryKeySelective(GoodsCategory record);
+
     int updateByPrimaryKey(GoodsCategory record);
 
     List<CategoryTree> selectCategoryTree(@Param("parentId") String parentId, @Param("keywords") String keywords);
+
     List<CategoryTree> selectCategoryTree3(@Param("parentId") String parentId, @Param("keywords") String keywords);
+
     List<CategoryTree> selectCategoryByParentId(@Param("parentId") Integer parentId, @Param("isHot") Integer isHot);
 
     List<GoodsCategory> selectSubCategoryByParentId(@Param("parentId") Integer parentId);

@@ -3,16 +3,15 @@ package cn.hezhiling.mask.model.order;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 public class Order {
 
     /*
-    * 用来标识是普通订单还是秒杀订单
-    * P:普通订单
-    * K:秒杀订单
-    * */
+     * 用来标识是普通订单还是秒杀订单
+     * P:普通订单
+     * K:秒杀订单
+     * */
     private String orderType;
     private Long orderId;
     private String orderSn;

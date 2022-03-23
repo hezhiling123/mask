@@ -20,7 +20,7 @@ public class GoodsBasePageVo {
     private Boolean isHot;//是否热卖
 
     public String getOriginalImg() {
-        return SysPropUtil.getPicDomain(originalImg) ;
+        return SysPropUtil.getPicDomain(originalImg);
     }
 }
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @date 2018/2/5.
  */
 @Repository
-public class GoodsCategoryDao extends BaseMgDao{
+public class GoodsCategoryDao extends BaseMgDao {
 
     @Override
     String getCollectionName() {

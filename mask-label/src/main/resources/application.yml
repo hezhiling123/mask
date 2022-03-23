@@ -8,6 +8,3 @@ server:
 spring:
   profiles:
     active: ${cn.pro.active:test}
-goods:
-      pic:
-        domain: http://demo5.tp-shop.cn

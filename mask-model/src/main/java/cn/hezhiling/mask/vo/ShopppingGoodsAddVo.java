@@ -2,7 +2,7 @@ package cn.hezhiling.mask.vo;
 
 import java.io.Serializable;
 
-public class ShopppingGoodsAddVo implements Serializable{
+public class ShopppingGoodsAddVo implements Serializable {
     private Integer specGoodsId;
     private Integer num;
 

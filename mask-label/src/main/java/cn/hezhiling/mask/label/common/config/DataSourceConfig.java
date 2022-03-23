@@ -40,19 +40,20 @@ public class DataSourceConfig {
     @Bean("myRoutingDataSource")
     @Primary
     public DataSource myRoutingDataSource(
-            @Qualifier("masterDataSource")DataSource masterDataSource,
-            @Qualifier("slaveDataSource")DataSource slaveDataSource){
+            @Qualifier("masterDataSource") DataSource masterDataSource,
+            @Qualifier("slaveDataSource") DataSource slaveDataSource) {
         Map<Object, Object> targetDataSources = new HashMap<>();
-        targetDataSources.put(DBTypeEnum.MASTER,masterDataSource);
-        targetDataSources.put(DBTypeEnum.SLAVE,slaveDataSource);
+        targetDataSources.put(DBTypeEnum.MASTER, masterDataSource);
+        targetDataSources.put(DBTypeEnum.SLAVE, slaveDataSource);
         MyRoutingDataSource myRoutingDataSource = new MyRoutingDataSource();
         myRoutingDataSource.setTargetDataSources(targetDataSources);
         /*当执行的方法没有被Aop拦截时，缺省使用的数据源*/
         myRoutingDataSource.setDefaultTargetDataSource(masterDataSource);
         return myRoutingDataSource;
     }
+
     /**
-     *返回sqlSessionFactory
+     * 返回sqlSessionFactory
      */
     @Bean
     public SqlSessionFactoryBean sqlSessionFactoryBean(ApplicationContext applicationContext) throws IOException {

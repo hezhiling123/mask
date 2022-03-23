@@ -18,6 +18,6 @@ post
 @RefreshScope
 public class MaskConfigApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MaskConfigApplication.class,args);
+        SpringApplication.run(MaskConfigApplication.class, args);
     }
 }

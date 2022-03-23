@@ -26,12 +26,10 @@ public class MySQLDataSourceConfig {
     }
 
 
-
     @Bean(name = "sqlSessionFactory")
     @Primary
     public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource datasource)
-            throws Exception
-    {
+            throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(datasource);
         bean.setMapperLocations(
@@ -44,8 +42,7 @@ public class MySQLDataSourceConfig {
     @Bean("sqlSessionTemplate")
     @Primary
     public SqlSessionTemplate newChainSqlSessionTemplate(
-            @Qualifier("sqlSessionFactory") SqlSessionFactory sessionFactory)
-    {
+            @Qualifier("sqlSessionFactory") SqlSessionFactory sessionFactory) {
         return new SqlSessionTemplate(sessionFactory);
     }
 

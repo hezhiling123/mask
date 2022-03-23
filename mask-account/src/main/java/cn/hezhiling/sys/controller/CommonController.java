@@ -2,7 +2,6 @@ package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.core.utils.response.HttpResponseBody;
 import cn.hezhiling.sys.fs.FastDFSClientService;
-import cn.hezhiling.sys.controller.BaseController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;

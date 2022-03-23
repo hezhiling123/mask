@@ -58,10 +58,10 @@ public class AuthorizeController extends BaseController {
      * @version
      */
     @RequestMapping("authorize")
-    public Object authorize(HttpServletRequest request) throws OAuthSystemException{
+    public Object authorize(HttpServletRequest request) throws OAuthSystemException {
 
         Cookie[] cookies = request.getCookies();
-        if(cookies != null) {
+        if (cookies != null) {
             for (Cookie cookie : cookies) {
                 logger.info("cookieName :" + cookie.getName() + "--cookieValue:" + cookie.getValue());
             }
@@ -70,7 +70,6 @@ public class AuthorizeController extends BaseController {
         OAuthAuthzRequest oAuthAuthzRequest = null;
         try {
             oAuthAuthzRequest = new OAuthAuthzRequest(request);
-
             // 根据传入的clientId 判断 客户端是否存在
             if (!authorizeService.checkClientId(oAuthAuthzRequest.getClientId())) {
                 return HttpResponseBody.failResponse("客户端验证失败，如错误的client_id/client_secret");

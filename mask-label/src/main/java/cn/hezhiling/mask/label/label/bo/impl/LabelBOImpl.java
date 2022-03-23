@@ -23,6 +23,7 @@ public class LabelBOImpl implements LabelBO {
 
     @Autowired
     private LabelMapper labelMapper;
+
     /**
      * 列出我所有的标签
      *

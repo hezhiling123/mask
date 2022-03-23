@@ -15,7 +15,7 @@ public class DataSourceAop {
             "&& (execution(* cn.hezhiling.mask.productService.service.impl..*.select*(..)) " +
             "|| execution(* cn.hezhiling.mask.productService.service.impl..*.get*(..))" +
             "|| execution(* cn.hezhiling.mask.productService.service.impl..*.find*(..))" +
-            "|| execution(* cn.hezhiling.mask.productService.service.impl..*.query*(..)))"+
+            "|| execution(* cn.hezhiling.mask.productService.service.impl..*.query*(..)))" +
             "|| execution(* cn.hezhiling.mask.productService.service.impl..*.list*(..)))")
     public void slavePointcut() {
 
@@ -43,12 +43,12 @@ public class DataSourceAop {
     }
 
     @After("slavePointcut()")
-    public void completeSlave(){
+    public void completeSlave() {
         DBContextHolder.remove();
     }
 
     @After("masterPointcut()")
-    public void completeMaster(){
+    public void completeMaster() {
         DBContextHolder.remove();
     }
 }

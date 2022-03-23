@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class MongodbConfig{
+public class MongodbConfig {
     @Bean
     public CustomConversions customConversions() {
         List<Object> list = new ArrayList<>();
@@ -19,7 +19,7 @@ public class MongodbConfig{
     }
 }
 
-class BigDecimal2DoubleConverter implements Converter<BigDecimal,Double> {
+class BigDecimal2DoubleConverter implements Converter<BigDecimal, Double> {
     @Override
     public Double convert(BigDecimal bigDecimal) {
         return bigDecimal.doubleValue();

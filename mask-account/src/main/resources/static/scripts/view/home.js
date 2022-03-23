@@ -1,11 +1,11 @@
 define(['@mixins/user',
-  'css!@css/assets/css/layout',
-  'css!@css/assets/css/modal',
-  'css!@css/assets/css/reset'], function (user) {
-  return {
-    mixins: [user],
-    // 选项
-    template: `
+    'css!@css/assets/css/layout',
+    'css!@css/assets/css/modal',
+    'css!@css/assets/css/reset'], function (user) {
+    return {
+        mixins: [user],
+        // 选项
+        template: `
     <div>
         <div class="wrapper blockimportant">
             <div class="wrap">
@@ -58,31 +58,31 @@ define(['@mixins/user',
         <c-footer/>
     </div>
     `,
-    filters: {
-      active (val, cVal) {
-        if (val === cVal) {
-          return 'current'
-        }
-        return ''
-      }
-    },
-    data () {
-      return {
-        dialog: {
-          editUser: false
-        }
-      }
-    },
-      created(){
-          this.$service.account.refreshUserInfo()
-      },
+        filters: {
+            active(val, cVal) {
+                if (val === cVal) {
+                    return 'current'
+                }
+                return ''
+            }
+        },
+        data() {
+            return {
+                dialog: {
+                    editUser: false
+                }
+            }
+        },
+        created() {
+            this.$service.account.refreshUserInfo()
+        },
 
-    methods: {
-      onLogout () {
-        this.$service.account.logout().then(() => {
-          this.$router.push('/login')
-        })
-      }
+        methods: {
+            onLogout() {
+                this.$service.account.logout().then(() => {
+                    this.$router.push('/login')
+                })
+            }
+        }
     }
-  }
 })

@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * TCC事务第一阶段成功标识
+ *
  * @Classname TccTryFlagUtil
  * @Description TODO
  * @Author Jack
@@ -12,10 +13,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * Version 1.0
  */
 public class TccTryFlagUtil {
-    private static Map<String,String> map = new ConcurrentHashMap<>();
+    private static Map<String, String> map = new ConcurrentHashMap<>();
 
-    public static void setFlag(String xid,String v) {
-        map.put(xid,v);
+    public static void setFlag(String xid, String v) {
+        map.put(xid, v);
     }
 
     public static String getFlag(String xid) {

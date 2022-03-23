@@ -18,18 +18,18 @@ public class DBContextHolder {
     }
 
     public static void remove() {
-        if(!contextHolderStack.get().empty()){
+        if (!contextHolderStack.get().empty()) {
             contextHolderStack.get().pop();
         }
 //        contextHolder.set(dbType);
     }
 
     public static DBTypeEnum get() {
-        if(contextHolderStack.get().empty()){
+        if (contextHolderStack.get().empty()) {
             return DBTypeEnum.MASTER;
         }
         DBTypeEnum current = contextHolderStack.get().peek();
-        System.out.println("当前数据库："+current);
+        System.out.println("当前数据库：" + current);
         return current;
     }
 

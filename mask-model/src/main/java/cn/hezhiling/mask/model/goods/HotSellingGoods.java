@@ -3,7 +3,7 @@ package cn.hezhiling.mask.model.goods;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class HotSellingGoods implements Serializable{
+public class HotSellingGoods implements Serializable {
     private Integer goodsId;
     private Integer specGoodsId;
     private String goodsName;

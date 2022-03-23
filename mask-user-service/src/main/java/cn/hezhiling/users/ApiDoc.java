@@ -13,7 +13,7 @@ import io.github.yedaxia.apidocs.DocsConfig;
 public class ApiDoc {
     public static void main(String[] args) {
         //开始API的初始化工作
-        DocsConfig config= new DocsConfig();
+        DocsConfig config = new DocsConfig();
         config.setProjectPath("F:\\xiangxueedu\\project\\mall-springcloud\\mall-user-service"); // 项目根目录
         config.setProjectName("享学课堂-小米商城项目-mall-user-service"); // 项目名称
         config.setApiVersion("V1.0");  // 声明该API的版本

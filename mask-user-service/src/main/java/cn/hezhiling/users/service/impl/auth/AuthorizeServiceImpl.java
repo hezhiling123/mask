@@ -3,6 +3,7 @@ package cn.hezhiling.users.service.impl.auth;
 import cn.hezhiling.mask.model.system.Oauth2Client;
 import cn.hezhiling.sys.service.auth.AuthorizeService;
 import cn.hezhiling.users.dao.Oauth2ClientMapper;
+import io.github.yedaxia.apidocs.ApiDoc;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,8 @@ import java.util.Map;
  * @date 2020/9/8
  */
 @RestController
-@RequestMapping("/sys/service/authorize")
+@ApiDoc
+@RequestMapping("/user/sys/service/authorize")
 public class AuthorizeServiceImpl implements AuthorizeService {
 
     @Resource
@@ -36,6 +38,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
     @RequestMapping(value = "/checkClientId", method = RequestMethod.POST)
     @Override
     public boolean checkClientId(String clientId) {
+        Oauth2Client oauth2Client = oauth2ClientMapper.findByClientId(clientId);
         return oauth2ClientMapper.findByClientId(clientId) != null;
     }
 

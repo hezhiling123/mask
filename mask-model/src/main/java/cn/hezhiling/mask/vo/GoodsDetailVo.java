@@ -1,6 +1,9 @@
 package cn.hezhiling.mask.vo;
 
-import cn.hezhiling.mask.model.goods.*;
+import cn.hezhiling.mask.model.goods.Goods;
+import cn.hezhiling.mask.model.goods.GoodsAttr;
+import cn.hezhiling.mask.model.goods.GoodsAttribute;
+import cn.hezhiling.mask.model.goods.GoodsImages;
 import cn.hezhiling.mask.model.spec.Spec;
 import cn.hezhiling.mask.model.spec.SpecGoodsPrice;
 
@@ -10,7 +13,7 @@ import java.util.List;
 /**
  * 后台订单编辑时用
  */
-public class GoodsDetailVo implements Serializable{
+public class GoodsDetailVo implements Serializable {
     private Goods base; //基础信息
     private List<GoodsImages> imageList;//商品相册
     private List<GoodsAttr> attrsList;//商品属性

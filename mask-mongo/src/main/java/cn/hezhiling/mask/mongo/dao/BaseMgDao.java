@@ -14,16 +14,16 @@ import java.util.List;
  */
 public abstract class BaseMgDao {
 
-    abstract String getCollectionName();
-
     @Resource
     protected MongoTemplate mongoTemplate;
 
+    abstract String getCollectionName();
+
     public <T> GridModel<T> queryPage(Integer page, Integer size, Class<T> entityClass, Query query) {
-        if(page == 0 ){
+        if (page == 0) {
             page = 1;
         }
-        if(size == 0 ){
+        if (size == 0) {
             size = 10;
         }
         //Query query = new Query(Criteria.where("status").exists(false));
@@ -32,43 +32,43 @@ public abstract class BaseMgDao {
         GridModel<T> gridModel = new GridModel<T>();
         gridModel.setPage(page);
         gridModel.setRecords(Long.valueOf(count));
-        if(count > 0) {
+        if (count > 0) {
             gridModel.setTotal(count / size + 1);
         }
 
         //排序
         //query.with(new Sort(Sort.Direction.ASC, "listing.id"));
-        query.skip((page - 1 )*size).limit(size);
+        query.skip((page - 1) * size).limit(size);
         List<T> datas = mongoTemplate.find(query, entityClass, getCollectionName());
         gridModel.setRows(datas);
         return gridModel;
     }
 
-    public void insert(Object object){
+    public void insert(Object object) {
         mongoTemplate.insert(object, getCollectionName());
     }
 
-    public void save(Object object){
+    public void save(Object object) {
         mongoTemplate.save(object, getCollectionName());
     }
 
-    public void insert(Collection<? extends Object> batchToSave){
+    public void insert(Collection<? extends Object> batchToSave) {
         mongoTemplate.insert(batchToSave, getCollectionName());
     }
 
-    public void remove(Query query){
+    public void remove(Query query) {
         mongoTemplate.remove(query, getCollectionName());
     }
 
-    public <T> List<T> find(Query query, Class<T> entityClass){
+    public <T> List<T> find(Query query, Class<T> entityClass) {
         return mongoTemplate.find(query, entityClass, getCollectionName());
     }
 
-    public <T> List<T> findAll(Query query, Class<T> entityClass){
+    public <T> List<T> findAll(Query query, Class<T> entityClass) {
         return mongoTemplate.findAll(entityClass, getCollectionName());
     }
 
-    public long count(Query query){
+    public long count(Query query) {
         return mongoTemplate.count(query, getCollectionName());
     }
 }

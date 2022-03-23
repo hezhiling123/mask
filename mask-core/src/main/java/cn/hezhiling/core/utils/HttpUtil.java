@@ -25,8 +25,9 @@ import java.nio.charset.Charset;
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2016</p>
  * <p>Company:享学信息科技有限公司 Co., Ltd.</p>
+ *
  * @author Ray
- *         Created on 2016/10/9.
+ * Created on 2016/10/9.
  */
 public class HttpUtil {
 
@@ -48,23 +49,23 @@ public class HttpUtil {
         httpClient = HttpClients.custom().setConnectionManager(cm).build();
     }
 
-    public static String post(String url, String content){
-        logger.debug("{} - {}",url, content);
+    public static String post(String url, String content) {
+        logger.debug("{} - {}", url, content);
         HttpPost httppost = new HttpPost(url);
         httppost.setConfig(requestConfig);
-        if(content != null) {
+        if (content != null) {
             HttpEntity httpEntity = new StringEntity(content, UTF_8);
             httppost.setEntity(httpEntity);
         }
         return execute(httppost);
     }
 
-    public static String post4GzipResponse(String url, String content){
-        logger.debug("{} - {}",url, content);
+    public static String post4GzipResponse(String url, String content) {
+        logger.debug("{} - {}", url, content);
         HttpPost httppost = new HttpPost(url);
         httppost.setConfig(requestConfig);
         httppost.addHeader("Accept-Encoding", "gzip");
-        if(content != null) {
+        if (content != null) {
             HttpEntity httpEntity = new StringEntity(content, UTF_8);
             httppost.setEntity(httpEntity);
         }
@@ -73,12 +74,13 @@ public class HttpUtil {
 
     /**
      * 以JSON的格式发送请求
+     *
      * @param url
      * @param content
      * @return
      */
     public static String postAsJson(String url, String content) {
-        logger.debug("{} - {}",url, content);
+        logger.debug("{} - {}", url, content);
         HttpPost httppost = new HttpPost(url);
         httppost.setConfig(requestConfig);
         HttpEntity httpEntity = new StringEntity(content, ContentType.APPLICATION_JSON);
@@ -86,24 +88,24 @@ public class HttpUtil {
         return execute(httppost);
     }
 
-    public static String get(String url){
+    public static String get(String url) {
         HttpGet httpGet = new HttpGet(url);
         httpGet.setConfig(requestConfig);
         return execute(httpGet);
     }
 
-    private static String execute(HttpRequestBase httpRequestBase){
+    private static String execute(HttpRequestBase httpRequestBase) {
         String result = null;
         try {
             HttpResponse response = httpClient.execute(httpRequestBase);
             HttpEntity resEntity = response.getEntity();
-            if(resEntity != null){
+            if (resEntity != null) {
                 result = EntityUtils.toString(resEntity, UTF_8);
                 EntityUtils.consume(resEntity);
-                if(result.length() < 2000) {
+                if (result.length() < 2000) {
                     logger.debug(result);
-                }else {
-                    if(logger.isTraceEnabled()){
+                } else {
+                    if (logger.isTraceEnabled()) {
                         logger.trace(result);
                     }
                 }

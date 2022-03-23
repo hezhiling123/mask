@@ -24,7 +24,6 @@ public class GoodsType implements Serializable {
      * This method returns the value of the database column tp_goods_type.id
      *
      * @return the value of tp_goods_type.id
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public Short getId() {
@@ -36,7 +35,6 @@ public class GoodsType implements Serializable {
      * This method sets the value of the database column tp_goods_type.id
      *
      * @param id the value for tp_goods_type.id
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public void setId(Short id) {
@@ -48,7 +46,6 @@ public class GoodsType implements Serializable {
      * This method returns the value of the database column tp_goods_type.name
      *
      * @return the value of tp_goods_type.name
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public String getName() {
@@ -60,7 +57,6 @@ public class GoodsType implements Serializable {
      * This method sets the value of the database column tp_goods_type.name
      *
      * @param name the value for tp_goods_type.name
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public void setName(String name) {

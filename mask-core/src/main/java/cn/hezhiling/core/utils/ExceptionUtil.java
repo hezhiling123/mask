@@ -10,25 +10,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Title 
- * @Description 
- * @Copyright Copyright (c) 2009</p>
- * @Company 享学信息科技有限公司 Co., Ltd.</p>
  * @author ZhouMin
  * @version 1.0
+ * @Title
+ * @Description
+ * @Copyright Copyright (c) 2009</p>
+ * @Company 享学信息科技有限公司 Co., Ltd.</p>
  * @修改记录
  * @修改序号，修改日期，修改人，修改内容
  */
 public class ExceptionUtil {
-    public static final String bizExceptionClassFullName= "com.bussiness.travel.common.exception.BusinessException";
+    public static final String bizExceptionClassFullName = "com.bussiness.travel.common.exception.BusinessException";
+
     /**
-     * 
+     * @param ex Exception
+     * @return boolean
      * @创建人 ZhouMin
      * @创建时间 2015年10月12日
      * @创建目的【判断是否是BussinessExceptio】
      * @修改目的【修改人：，修改时间：】
-     * @param ex Exception
-     * @return boolean
      */
     public static boolean isBussinessException(Exception ex) {
         if (!(ex instanceof RuntimeException)) {
@@ -45,7 +45,7 @@ public class ExceptionUtil {
             String stackArray0ClassName = stackArray[0].getClassName();
             int index = message.indexOf(':');
             if (dubboExceptionFilter.equals(stackArray0ClassName) && index > 1
-                && bizExceptionClassFullName.equals(message.substring(0, index))) {
+                    && bizExceptionClassFullName.equals(message.substring(0, index))) {
                 return true;
             }
         }
@@ -62,7 +62,7 @@ public class ExceptionUtil {
         int indexMsgEnd = message.indexOf("\n");
 
         if (ex instanceof BusinessException) {// 非dubbo调用产生的异常
-            map.put("code", ((BusinessException)ex).getCode());
+            map.put("code", ((BusinessException) ex).getCode());
             map.put("errorInfo",
                     message.substring(indexResCodeEnd + BusinessException.resCodeSplitFlat.length()));// 去掉code
             return map;
@@ -83,18 +83,18 @@ public class ExceptionUtil {
         return map;
     }
 
-    public static boolean isMobileDevice(String requestHeader){
+    public static boolean isMobileDevice(String requestHeader) {
         /**
          * android : 所有android设备
          * mac os : iphone ipad
          * windows phone:Nokia等windows系统的手机
          */
-        String[] deviceArray = new String[]{"android","mac os","windows phone"};
-        if(requestHeader == null)
+        String[] deviceArray = new String[]{"android", "mac os", "windows phone"};
+        if (requestHeader == null)
             return false;
         requestHeader = requestHeader.toLowerCase();
-        for(int i=0;i<deviceArray.length;i++){
-            if(requestHeader.indexOf(deviceArray[i])>0){
+        for (int i = 0; i < deviceArray.length; i++) {
+            if (requestHeader.indexOf(deviceArray[i]) > 0) {
                 return true;
             }
         }

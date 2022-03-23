@@ -25,11 +25,11 @@ public interface GoodsCategoryService {
      * 三层分类树
      *
      * @param parentId 父级id
-     * @param keywords  搜索关键字
-     * @return  三层分类树
+     * @param keywords 搜索关键字
+     * @return 三层分类树
      */
     @RequestMapping(value = "/selectCategoryTree3", method = RequestMethod.POST)
-    List<CategoryTree> selectCategoryTree3(@RequestParam(value = "parentId",required = false) String parentId, @RequestParam(value = "keywords",required = false) String keywords);
+    List<CategoryTree> selectCategoryTree3(@RequestParam(value = "parentId", required = false) String parentId, @RequestParam(value = "keywords", required = false) String keywords);
 
     //
 
@@ -37,11 +37,11 @@ public interface GoodsCategoryService {
      * 获取微信小程序首页分类树
      *
      * @param parentId 父级id
-     * @param keywords  搜索关键字
-     * @return  微信小程序首页分类树
+     * @param keywords 搜索关键字
+     * @return 微信小程序首页分类树
      */
     @RequestMapping(value = "/selectAppHomeCategoryTree", method = RequestMethod.POST)
-    List<CategoryTree> selectAppHomeCategoryTree(@RequestParam(value = "parentId",required = false) String parentId, @RequestParam(value = "keywords",required = false) String keywords);
+    List<CategoryTree> selectAppHomeCategoryTree(@RequestParam(value = "parentId", required = false) String parentId, @RequestParam(value = "keywords", required = false) String keywords);
 
     @RequestMapping(value = "/selectCategoryByParentId", method = RequestMethod.POST)
     List<CategoryTree> selectCategoryByParentId(@RequestParam("parentId") Integer parentId);
@@ -57,6 +57,7 @@ public interface GoodsCategoryService {
 
     /**
      * 自动计算每个分类下的商品数据，存入mongodb
+     *
      * @author Ray
      */
     @RequestMapping(value = "/produceCategoryGoodsCount")
@@ -70,6 +71,7 @@ public interface GoodsCategoryService {
 
     /**
      * 搜索框自动提示
+     *
      * @param keyword 搜索框的输入
      * @return
      * @author Ray
@@ -82,6 +84,7 @@ public interface GoodsCategoryService {
 
     /**
      * 获取5个分类，再每个分类查最多10个商品
+     *
      * @return
      */
     @RequestMapping(value = "/getHotGoods")
@@ -96,7 +99,7 @@ public interface GoodsCategoryService {
     /**
      * 获取推荐商品列表
      *
-     * @return  list of {@link GoodsCategory}
+     * @return list of {@link GoodsCategory}
      */
     @RequestMapping(value = "/listRecommendGoods", method = RequestMethod.POST)
     List<RecommendGoods> listRecommendGoods();
@@ -104,7 +107,7 @@ public interface GoodsCategoryService {
     /**
      * 获取小程序首页推荐商品列表
      *
-     * @return  list of {@link HotGoodsVo}
+     * @return list of {@link HotGoodsVo}
      */
     @RequestMapping(value = "/listAppHomeGoods", method = RequestMethod.POST)
     List<HotGoodsVo> listAppHomeGoods();

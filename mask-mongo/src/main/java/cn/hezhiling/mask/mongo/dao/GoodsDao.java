@@ -39,11 +39,11 @@ public class GoodsDao extends BaseMgDao {
         return mongoTemplate.find(new Query(Criteria.where("base.catId").is(catId)), GoodsVo.class, getCollectionName());
     }
 
-    public long countByCategory(Integer catId){
+    public long countByCategory(Integer catId) {
         return mongoTemplate.count(new Query(Criteria.where("base.catId").is(catId)), getCollectionName());
     }
 
-    public int countByName(String goodsName){
+    public int countByName(String goodsName) {
         return (int) mongoTemplate.count(new Query(Criteria.where("base.goodsName").regex(goodsName)), getCollectionName());
     }
 
@@ -51,11 +51,11 @@ public class GoodsDao extends BaseMgDao {
         mongoTemplate.upsert(new Query(Criteria.where("base.goodsId").is(goodsId)), new Update().set("base.isOnSale", params.get("isOnSale")), GoodsVo.class, getCollectionName());
     }
 
-    public void remove(Integer goodsId ) {
+    public void remove(Integer goodsId) {
         mongoTemplate.remove(new Query(Criteria.where("base.goodsId").is(goodsId)), Map.class, getCollectionName());
     }
 
-    public void removeAll( ) {
+    public void removeAll() {
         mongoTemplate.dropCollection(getCollectionName());
     }
 }

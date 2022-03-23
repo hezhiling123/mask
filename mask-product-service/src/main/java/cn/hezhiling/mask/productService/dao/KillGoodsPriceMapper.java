@@ -12,9 +12,13 @@ public interface KillGoodsPriceMapper {
     int insert(KillGoodsPrice record);
 
     int selectCountBySpecGoodId(Integer specGoodsId);
+
     KillGoodsPrice selectByPrimaryKey(Integer id);
+
     KillGoodsPrice selectBySpecGoodsId(Integer specGoodsId);
+
     KillGoodsSpecPriceDetailVo detailBySpecGoodId(Integer specGoodsId);
+
     KillGoodsSpecPriceDetailVo detail(Integer id);
 
     int updateByPrimaryKey(KillGoodsPrice record);
@@ -26,6 +30,7 @@ public interface KillGoodsPriceMapper {
     PageList<KillGoodsSpecPriceDetailVo> select(@Param("keyword") String keyword, PageBounds pageBounds);
 
     Integer selectTotalCount(@Param("keyword") String keyword);
+
     PageList<KillGoodsSpecPriceDetailVo> selectView(PageBounds pageBounds);
 
     Integer selectViewTotalCount();

@@ -8,16 +8,12 @@ import cn.hezhiling.mask.mongo.dao.CategoryCountDao;
 import cn.hezhiling.mask.mongo.dao.GoodsCategoryDao;
 import cn.hezhiling.mask.mongo.dao.GoodsDao;
 import cn.hezhiling.mask.mongo.dao.HotCategoryDao;
+import cn.hezhiling.mask.productService.dao.GoodsCategoryMapper;
 import cn.hezhiling.mask.productService.dao.SpecGoodsPriceMapper;
 import cn.hezhiling.mask.service.goods.GoodsCategoryService;
-import cn.hezhiling.mask.productService.dao.GoodsCategoryMapper;
+import cn.hezhiling.mask.vo.*;
 import cn.hezhiling.sys.model.SysParam;
 import cn.hezhiling.sys.service.SysParamService;
-import cn.hezhiling.mask.vo.CategoryCountVo;
-import cn.hezhiling.mask.vo.CategoryTree;
-import cn.hezhiling.mask.vo.GoodsPageVo;
-import cn.hezhiling.mask.vo.GoodsVo;
-import cn.hezhiling.mask.vo.HotGoodsVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +42,9 @@ import java.util.List;
 @RequestMapping("/product/mask/service/goodsCategory")
 public class GoodsCategoryServiceImpl implements GoodsCategoryService {
 
+    private static String topCategoryTree = "topCategoryTree";
+    private static String appHomeCategoryTree = "appHomeCategoryTree";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     @Resource
     private GoodsCategoryMapper goodsCategoryMapper;
     @Resource
@@ -58,20 +55,14 @@ public class GoodsCategoryServiceImpl implements GoodsCategoryService {
     private CategoryCountDao categoryCountDao;
     @Resource
     private HotCategoryDao hotCategoryDao;
-
     @Resource
     private SysParamService sysParamService;
-
     @Resource
     private SpecGoodsPriceMapper specGoodsPriceMapper;
     @Value("${goods.pic.domain}")
     private String goodsPicDomain;
-
     @Autowired
     private RedisTemplate redisTemplate;
-
-    private static String topCategoryTree = "topCategoryTree";
-    private static String appHomeCategoryTree = "appHomeCategoryTree";
 
     @PostConstruct
     public void cacheCategoryTree() {

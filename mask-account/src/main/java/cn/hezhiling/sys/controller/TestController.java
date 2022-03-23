@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("test")
-    public Object test(String type){
+    public Object test(String type) {
         return "test";
     }
 }

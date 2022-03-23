@@ -6,7 +6,6 @@ import cn.hezhiling.core.utils.response.HttpResponseBody;
 import cn.hezhiling.core.utils.response.ResponseCodeConstant;
 import cn.hezhiling.mask.model.user.po.UserPO;
 import cn.hezhiling.sys.fs.FastDFSClientService;
-import cn.hezhiling.sys.controller.BaseController;
 import cn.hezhiling.sys.service.auth.LoginService;
 import cn.hezhiling.util.ShiroCacheUtil;
 import org.apache.shiro.SecurityUtils;

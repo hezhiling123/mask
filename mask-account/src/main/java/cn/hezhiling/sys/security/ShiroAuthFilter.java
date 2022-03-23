@@ -22,7 +22,7 @@ public class ShiroAuthFilter extends PassThruAuthenticationFilter {
     /**
      * 这是没权限的路径，不是没登录的
      */
-    private String unauthorizedUrl  = "/api/system/accessDenied";
+    private String unauthorizedUrl = "/api/system/accessDenied";
     /**
      * 在xml文件中加载不需要保存的url链接
      */
@@ -53,11 +53,10 @@ public class ShiroAuthFilter extends PassThruAuthenticationFilter {
     }
 
     /**
-     *
-     * @param request   req
-     * @param response  rep
-     * @return  该请求是否被拦截
-     * @throws IOException  io
+     * @param request  req
+     * @param response rep
+     * @return 该请求是否被拦截
+     * @throws IOException io
      */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
@@ -81,12 +80,13 @@ public class ShiroAuthFilter extends PassThruAuthenticationFilter {
 
     /**
      * 重写saveRequest,在配置文件中配置的地址不需要保存。实现登录后直接跳转到之前输入的地址。
-     * @param request   req
+     *
+     * @param request req
      */
     @Override
     protected void saveRequest(ServletRequest request) {
-        String reqUrl =((ShiroHttpServletRequest)request).getRequestURI();
-        if(reqUrl.indexOf("/") > 1) {
+        String reqUrl = ((ShiroHttpServletRequest) request).getRequestURI();
+        if (reqUrl.indexOf("/") > 1) {
             String url = reqUrl.substring(reqUrl.indexOf("/", 1));
             if (!ignoreSaveRequestUrl.contains(url)) {
                 WebUtils.saveRequest(request);
@@ -94,6 +94,6 @@ public class ShiroAuthFilter extends PassThruAuthenticationFilter {
         }
     }
 
-   
+
 }
 

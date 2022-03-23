@@ -2,6 +2,7 @@ package cn.hezhiling.mask.constant;
 
 /**
  * sso常量
+ *
  * @author Ray
  * @date 2018/3/29.
  */

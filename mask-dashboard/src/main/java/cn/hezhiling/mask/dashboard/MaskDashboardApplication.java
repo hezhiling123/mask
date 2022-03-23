@@ -7,7 +7,6 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 /**
- *
  * 监控界面：http://localhost:8194/hystrix
  * 需要监控的端点（使用了hystrix组件的端点）：http://localhost:8083/actuator/hystrix.stream
  * http://localhost:8194/turbine.stream
@@ -18,6 +17,6 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 @EnableHystrixDashboard
 public class MaskDashboardApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MaskDashboardApplication.class,args);
+        SpringApplication.run(MaskDashboardApplication.class, args);
     }
 }

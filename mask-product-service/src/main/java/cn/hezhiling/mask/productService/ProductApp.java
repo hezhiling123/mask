@@ -21,7 +21,7 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 public class ProductApp {
 
     public static void main(String[] args) {
-         SpringApplication.run(ProductApp.class, args);
+        SpringApplication.run(ProductApp.class, args);
     }
 
     @Bean

@@ -6,7 +6,7 @@ import cn.hezhiling.mask.model.order.Order;
  * @author Ray
  * @date 2018/3/19.
  */
-public class OrderVo extends Order{
+public class OrderVo extends Order {
     private static final long serialVersionUID = 4281411716839679094L;
 
     private String fromTime;

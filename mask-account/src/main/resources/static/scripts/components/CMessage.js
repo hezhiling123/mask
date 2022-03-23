@@ -1,6 +1,6 @@
-define(function(){
-  return {
-    template: `
+define(function () {
+    return {
+        template: `
         <div>
           <div class="modal fade modal-alert" :class="show?'in':''"  v-if="visible">
             <div class="modal-bd">
@@ -17,73 +17,73 @@ define(function(){
           <div class="modal-backdrop fade" :class="show?'in':''" v-if="visible"></div>
         </div>
         `,
-    props: {
-      modal: {
-        default: true
-      },
-      lockScroll: {
-        default: true
-      },
-      showClose: {
-        type: Boolean,
-        default: true
-      },
-      closeOnClickModal: {
-        default: true
-      },
-      closeOnPressEscape: {
-        default: true
-      }
-    },
-    data () {
-      return {
-        $type: '',
-        visible: false,
-        show: false,
-        uid: 1,
-        title: undefined,
-        message: '',
-        type: '',
-        customClass: '',
-        showInput: false,
-        inputValue: null,
-        inputPlaceholder: '',
-        inputPattern: null,
-        inputValidator: null,
-        inputErrorMessage: '',
-        showConfirmButton: true,
-        showCancelButton: false,
-        action: '',
-        confirmButtonText: '',
-        cancelButtonText: '',
-        confirmButtonLoading: false,
-        cancelButtonLoading: false,
-        confirmButtonClass: '',
-        confirmButtonDisabled: false,
-        cancelButtonClass: '',
-        editorErrorMessage: null,
-        callback: null,
-        isOnComposition: false
-      }
-    },
-    watch: {
-      visible (val) {
-        if (val) this.uid++
-        setTimeout(() => {
-          this.show = val
-        }, 100)
-      }
-    },
-    methods: {
-      handleAction (action) {
-        this.action = action
-        this.doClose()
-      },
-      doClose () {
-        if (!this.visible) return
-        this.visible = false
-        if (this.action) this.callback(this.action, this)
-      }
+        props: {
+            modal: {
+                default: true
+            },
+            lockScroll: {
+                default: true
+            },
+            showClose: {
+                type: Boolean,
+                default: true
+            },
+            closeOnClickModal: {
+                default: true
+            },
+            closeOnPressEscape: {
+                default: true
+            }
+        },
+        data() {
+            return {
+                $type: '',
+                visible: false,
+                show: false,
+                uid: 1,
+                title: undefined,
+                message: '',
+                type: '',
+                customClass: '',
+                showInput: false,
+                inputValue: null,
+                inputPlaceholder: '',
+                inputPattern: null,
+                inputValidator: null,
+                inputErrorMessage: '',
+                showConfirmButton: true,
+                showCancelButton: false,
+                action: '',
+                confirmButtonText: '',
+                cancelButtonText: '',
+                confirmButtonLoading: false,
+                cancelButtonLoading: false,
+                confirmButtonClass: '',
+                confirmButtonDisabled: false,
+                cancelButtonClass: '',
+                editorErrorMessage: null,
+                callback: null,
+                isOnComposition: false
+            }
+        },
+        watch: {
+            visible(val) {
+                if (val) this.uid++
+                setTimeout(() => {
+                    this.show = val
+                }, 100)
+            }
+        },
+        methods: {
+            handleAction(action) {
+                this.action = action
+                this.doClose()
+            },
+            doClose() {
+                if (!this.visible) return
+                this.visible = false
+                if (this.action) this.callback(this.action, this)
+            }
+        }
     }
-  }
 })

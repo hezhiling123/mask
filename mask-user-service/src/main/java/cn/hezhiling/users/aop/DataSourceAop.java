@@ -46,12 +46,12 @@ public class DataSourceAop {
     }
 
     @After("slavePointcut()")
-    public void completeSlave(){
+    public void completeSlave() {
         DBContextHolder.remove();
     }
 
     @After("masterPointcut()")
-    public void completeMaster(){
+    public void completeMaster() {
         DBContextHolder.remove();
     }
 }

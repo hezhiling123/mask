@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2018/2/5.
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class CategoryTree implements Serializable{
+public class CategoryTree implements Serializable {
 
     private static final long serialVersionUID = 8627927693404752496L;
     private Integer id;
@@ -47,9 +47,9 @@ public class CategoryTree implements Serializable{
     }
 
     public String getImage() {
-        if(image == null || image.startsWith("http")){
+        if (image == null || image.startsWith("http")) {
             return image;
-        }else {
+        } else {
             return SysPropUtil.getPicDomain(image);
         }
     }

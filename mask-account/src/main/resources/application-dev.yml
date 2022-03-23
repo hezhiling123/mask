@@ -1,12 +1,12 @@
 dfs:
   url: 192.168.244.10:8181
 fdfs:
-    connectTimeout: 600
-    soTimeout: 1500
-    thumbImage:
-        height: 150
-        width: 150
-    trackerList:
+  connectTimeout: 600
+  soTimeout: 1500
+  thumbImage:
+    height: 150
+    width: 150
+  trackerList:
     - 192.168.244.10:12050
 c3p0:
   jdbcUrl: jdbc:mysql://192.168.244.10:3307/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false

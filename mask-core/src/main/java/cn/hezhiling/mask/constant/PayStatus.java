@@ -4,8 +4,8 @@ package cn.hezhiling.mask.constant;
  * 支付状态 （0-未支付，1-已支付）
  */
 public enum PayStatus {
-    UNPAID( 0, "未支付"),
-    PAID( 1, "已支付");
+    UNPAID(0, "未支付"),
+    PAID(1, "已支付");
 
     private Integer code;
     private String desc;

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author Ray
  * @date 2018/2/8.
  */
-public class CategoryCountVo implements Serializable{
+public class CategoryCountVo implements Serializable {
 
     private static final long serialVersionUID = 1868424480807118085L;
     private Integer catId;

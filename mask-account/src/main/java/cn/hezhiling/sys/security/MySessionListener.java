@@ -17,6 +17,7 @@ import java.util.Set;
 
 /**
  * 主要用于通知各子系统Logout
+ *
  * @author Ray
  * @date 2018/3/30.
  */
@@ -52,14 +53,14 @@ public class MySessionListener implements SessionListener {
         logger.info("Session 被销毁");
         //通过HttpClient通知各子系统Logout
         Set keys = redisTemplate.opsForHash().keys(RedisKey.CLIENT_SESSIONS);
-        Map<String , Oauth2Client> clientMap = authorizeService.getClientMap();
-        if(keys != null){
-            for(Object key : keys){
+        Map<String, Oauth2Client> clientMap = authorizeService.getClientMap();
+        if (keys != null) {
+            for (Object key : keys) {
                 String clientSessionId = (String) key;
                 String clientId = (String) redisTemplate.opsForHash().get(RedisKey.CLIENT_SESSIONS, clientSessionId);
                 //发通知给子系统根据sessionId来注销
                 logger.info("通知子系统 [{}] 注销用户 [{}]， URL [{}]", clientId, clientSessionId, clientMap.get(clientId).getLogoutUrl());
-                HttpUtil.post(clientMap.get(clientId).getLogoutUrl()+ clientSessionId, null);
+                HttpUtil.post(clientMap.get(clientId).getLogoutUrl() + clientSessionId, null);
             }
         }
         //删除缓存的子系统session信息

@@ -28,10 +28,16 @@ import java.util.regex.Pattern;
 @ControllerAdvice(basePackages = "cn.enjoy.sys.controller")
 public class JsonpAdvice extends FastJsonHttpMessageConverter implements ResponseBodyAdvice {
 
-    private static final Pattern CALLBACK_PARAM_PATTERN = Pattern.compile("[0-9A-Za-z_\\.]*");
     public static final Charset UTF8 = Charset.forName("UTF-8");
+    private static final Pattern CALLBACK_PARAM_PATTERN = Pattern.compile("[0-9A-Za-z_\\.]*");
     private Charset charset;
     private SerializerFeature[] features;
+
+    public JsonpAdvice() {
+        super();
+        this.charset = UTF8;
+        this.features = new SerializerFeature[0];
+    }
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
@@ -62,7 +68,6 @@ public class JsonpAdvice extends FastJsonHttpMessageConverter implements Respons
         return o;
     }
 
-
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {
         return true;
@@ -70,11 +75,5 @@ public class JsonpAdvice extends FastJsonHttpMessageConverter implements Respons
 
     protected boolean isValidJsonpQueryParam(String value) {
         return CALLBACK_PARAM_PATTERN.matcher(value).matches();
-    }
-
-    public JsonpAdvice() {
-        super();
-        this.charset = UTF8;
-        this.features = new SerializerFeature[0];
     }
 }

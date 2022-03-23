@@ -32,7 +32,6 @@ public class GoodsImages implements Serializable {
      * This method returns the value of the database column tp_goods_images.img_id
      *
      * @return the value of tp_goods_images.img_id
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public Integer getImgId() {
@@ -44,7 +43,6 @@ public class GoodsImages implements Serializable {
      * This method sets the value of the database column tp_goods_images.img_id
      *
      * @param imgId the value for tp_goods_images.img_id
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public void setImgId(Integer imgId) {
@@ -56,7 +54,6 @@ public class GoodsImages implements Serializable {
      * This method returns the value of the database column tp_goods_images.goods_id
      *
      * @return the value of tp_goods_images.goods_id
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public Integer getGoodsId() {
@@ -68,7 +65,6 @@ public class GoodsImages implements Serializable {
      * This method sets the value of the database column tp_goods_images.goods_id
      *
      * @param goodsId the value for tp_goods_images.goods_id
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public void setGoodsId(Integer goodsId) {
@@ -80,7 +76,6 @@ public class GoodsImages implements Serializable {
      * This method returns the value of the database column tp_goods_images.image_url
      *
      * @return the value of tp_goods_images.image_url
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public String getImageUrl() {
@@ -92,7 +87,6 @@ public class GoodsImages implements Serializable {
      * This method sets the value of the database column tp_goods_images.image_url
      *
      * @param imageUrl the value for tp_goods_images.image_url
-     *
      * @mbggenerated Wed Feb 07 09:55:47 CST 2018
      */
     public void setImageUrl(String imageUrl) {

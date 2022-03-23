@@ -18,13 +18,17 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 @MapperScan("cn.hezhiling.**.dao")
 @EnableEurekaClient
 public class LabelApp {
-	public static void main(String[] args) { SpringApplication.run(LabelApp.class);}
+    public static void main(String[] args) {
+        SpringApplication.run(LabelApp.class);
+    }
 
-	public PageInterceptor pageInterceptor() { return new PageInterceptor(); }
+    public PageInterceptor pageInterceptor() {
+        return new PageInterceptor();
+    }
 
-	MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(ObjectMapper objectMapper) {
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		converter.setObjectMapper(objectMapper);
-		return converter;
-	}
+    MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(ObjectMapper objectMapper) {
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setObjectMapper(objectMapper);
+        return converter;
+    }
 }

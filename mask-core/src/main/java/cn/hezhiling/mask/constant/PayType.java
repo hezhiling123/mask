@@ -4,9 +4,9 @@ package cn.hezhiling.mask.constant;
  * 支付方式（alipay-支付宝支付、weixin-微信支付、cod-货到付款）
  */
 public enum PayType {
-    ALIPAY( "alipay", "支付宝支付"),
-    WEIXIN( "weixin", "微信支付"),
-    COD( "cod",  "货到付款");
+    ALIPAY("alipay", "支付宝支付"),
+    WEIXIN("weixin", "微信支付"),
+    COD("cod", "货到付款");
 
     private String code;
     private String desc;
@@ -16,20 +16,20 @@ public enum PayType {
         this.desc = desc;
     }
 
+    public static String getDescByCode(String code) {
+        for (PayType payType : PayType.values()) {
+            if (code.equals(payType.getCode())) {
+                return payType.getDesc();
+            }
+        }
+        return "";
+    }
+
     public String getCode() {
         return code;
     }
 
     public String getDesc() {
         return desc;
-    }
-
-    public static String getDescByCode(String code){
-        for(PayType payType : PayType.values()){
-            if(code.equals(payType.getCode())){
-                return payType.getDesc();
-            }
-        }
-        return "";
     }
 }

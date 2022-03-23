@@ -55,6 +55,7 @@ public interface Oauth2ClientMapper {
     int updateByPrimaryKey(Oauth2Client record);
 
     Oauth2Client findByClientId(String clientId);
+
     Oauth2Client findBySecret(String secret);
 
     @MapKey("clientId")

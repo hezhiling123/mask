@@ -24,7 +24,7 @@ public class SysPropUtil {
             }
         }*/
         System.out.println(originalImg);
-        if(originalImg.startsWith("http")) {
+        if (originalImg.startsWith("http")) {
             return originalImg;
         } else {
             return "http://" + fdfsDomain + originalImg;
@@ -35,6 +35,7 @@ public class SysPropUtil {
     public void setGoodsPicDomain(String goodsPicDomain) {
         SysPropUtil.goodsPicDomain = goodsPicDomain;
     }
+
     @Value("${dfs.url}")
     public void setFdfsDomain(String fdfsDomain) {
         SysPropUtil.fdfsDomain = fdfsDomain;

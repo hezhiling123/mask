@@ -1,13 +1,17 @@
 package cn.hezhiling.mask.vo;
 
-import cn.hezhiling.mask.model.goods.*;
+import cn.hezhiling.mask.model.goods.Goods;
+import cn.hezhiling.mask.model.goods.GoodsAttr;
+import cn.hezhiling.mask.model.goods.GoodsImages;
 import cn.hezhiling.mask.model.spec.Spec;
 import cn.hezhiling.mask.model.spec.SpecGoodsPrice;
 
 import java.io.Serializable;
 import java.util.List;
 
-/** 注意，此VO保存到mongoDb时要用，不能在图片的get方法里加上域名
+/**
+ * 注意，此VO保存到mongoDb时要用，不能在图片的get方法里加上域名
+ *
  * @author zm
  */
 public class GoodsVo implements Serializable {

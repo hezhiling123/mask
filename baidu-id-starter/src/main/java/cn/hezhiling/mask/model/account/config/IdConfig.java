@@ -27,18 +27,18 @@ public class IdConfig {
     }
 
     @Bean(value = "defaultUidGenerator")
-    public DefaultUidGenerator initDefaultUid(DisposableWorkerIdAssigner disposableWorkerIdAssigner){
+    public DefaultUidGenerator initDefaultUid(DisposableWorkerIdAssigner disposableWorkerIdAssigner) {
         DefaultUidGenerator defaultUidGenerator = new DefaultUidGenerator();
         defaultUidGenerator.setWorkerIdAssigner(disposableWorkerIdAssigner);
         defaultUidGenerator.setTimeBits(29);
         defaultUidGenerator.setWorkerBits(21);
         defaultUidGenerator.setSeqBits(13);
-        defaultUidGenerator.setEpochStr(LocalDate.now().format( DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        defaultUidGenerator.setEpochStr(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return defaultUidGenerator;
     }
 
-    @Bean(value ="cachedUidGenerator")
-    public CachedUidGenerator initCachedUidGenerator(DisposableWorkerIdAssigner disposableWorkerIdAssigner){
+    @Bean(value = "cachedUidGenerator")
+    public CachedUidGenerator initCachedUidGenerator(DisposableWorkerIdAssigner disposableWorkerIdAssigner) {
         CachedUidGenerator cachedUidGenerator = new CachedUidGenerator();
         cachedUidGenerator.setWorkerIdAssigner(disposableWorkerIdAssigner);
         return cachedUidGenerator;

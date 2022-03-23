@@ -4,5 +4,6 @@
       "name": "spring.cloud.bus.env",
       "type": "java.lang.String",
       "description": "Description for spring.cloud.bus.env."
-  }
-] }
+    }
+  ]
+}

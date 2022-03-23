@@ -2,13 +2,14 @@ package cn.hezhiling.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@Component
+@Component
 public class CorsFilter implements Filter {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -38,7 +39,7 @@ public class CorsFilter implements Filter {
      * @param req   req
      * @param res   rep
      * @param chain chain
-     * @throws IOException  io
+     * @throws IOException      io
      * @throws ServletException servletException
      */
     @Override
@@ -57,7 +58,7 @@ public class CorsFilter implements Filter {
         //      *不允许携带认证头和cookies
         // 如果不是80端口,需要将端口加上,如果是集群,则用Nginx的地址,同理不是80端口要加上端口
         response.setHeader("Access-Control-Allow-Origin", "http://106.55.152.41:8186");
-        response.setHeader("Access-Control-Allow-Credentials","true");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");

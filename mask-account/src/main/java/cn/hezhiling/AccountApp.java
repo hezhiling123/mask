@@ -27,7 +27,7 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 public class AccountApp {
 
     public static void main(String[] args) {
-         SpringApplication.run(AccountApp.class, args);
+        SpringApplication.run(AccountApp.class, args);
     }
 
     @Bean(name = IntegrationContextUtils.INTEGRATION_DATATYPE_CHANNEL_MESSAGE_CONVERTER_BEAN_NAME)

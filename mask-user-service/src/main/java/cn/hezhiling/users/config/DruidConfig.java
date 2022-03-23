@@ -41,8 +41,8 @@ public class DruidConfig {
     //这里需要注意默认是读取的application.properties配置文件。
     //如果你的配置文件不在默认文件中。
     //需要在类中引入配置文件例如：@PropertySource(value = "classpath:druid.properties")
-    @Bean(destroyMethod = "",initMethod = "init")
-    public DataSource getMasterDs(){
+    @Bean(destroyMethod = "", initMethod = "init")
+    public DataSource getMasterDs() {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setDriverClassName(driverClassName);
         druidDataSource.setUrl(jdbcUrl);
@@ -68,11 +68,11 @@ public class DruidConfig {
         return druidDataSource;
     }
 
-//    @Bean(destroyMethod = "close",initMethod = "init")
+    //    @Bean(destroyMethod = "close",initMethod = "init")
     //这里需要注意默认是读取的application.properties配置文件。
     //如果你的配置文件不在默认文件中。
     //需要在类中引入配置文件例如：@PropertySource(value = "classpath:druid.properties")
-    public DataSource getSlave1Ds(){
+    public DataSource getSlave1Ds() {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setDriverClassName(driverClassName);
         druidDataSource.setUrl(jdbcUrl1);
@@ -103,8 +103,8 @@ public class DruidConfig {
     public DataSource dynamicDataSource() {
         Map<Object, Object> targetDataSources = new HashMap<>();
         DataSource masterDs = getMasterDs();
-        targetDataSources.put(DBTypeEnum.MASTER,masterDs);
-        targetDataSources.put(DBTypeEnum.SLAVE,getSlave1Ds());
+        targetDataSources.put(DBTypeEnum.MASTER, masterDs);
+        targetDataSources.put(DBTypeEnum.SLAVE, getSlave1Ds());
         MyRoutingDataSource myRoutingDataSource = new MyRoutingDataSource();
         myRoutingDataSource.setTargetDataSources(targetDataSources);
         /*当执行的方法没有被Aop拦截时，缺省使用的数据源*/
@@ -117,35 +117,37 @@ public class DruidConfig {
 
     /**
      * 配置访问druid监控
+     *
      * @return
      */
     @Bean
-    public ServletRegistrationBean druidStateViewServlet(){
-        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid/*");
+    public ServletRegistrationBean druidStateViewServlet() {
+        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         //初始化参数initParams
         //添加白名单
-        servletRegistrationBean.addInitParameter("allow","");
+        servletRegistrationBean.addInitParameter("allow", "");
         //添加ip黑名单
-        servletRegistrationBean.addInitParameter("deny","119.3.30.5");
+        servletRegistrationBean.addInitParameter("deny", "119.3.30.5");
         //登录查看信息的账号密码
-        servletRegistrationBean.addInitParameter("loginUsername","admin");
-        servletRegistrationBean.addInitParameter("loginPassword","1659868245");
+        servletRegistrationBean.addInitParameter("loginUsername", "admin");
+        servletRegistrationBean.addInitParameter("loginPassword", "1659868245");
         //是否能够重置数据
-        servletRegistrationBean.addInitParameter("resetEnable","false");
+        servletRegistrationBean.addInitParameter("resetEnable", "false");
         return servletRegistrationBean;
     }
 
     /**
      * 过滤不需要监控的后缀
+     *
      * @return
      */
     @Bean
-    public FilterRegistrationBean druidStatFilter(){
+    public FilterRegistrationBean druidStatFilter() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
         //添加过滤规则
         filterRegistrationBean.addUrlPatterns("/*");
         //添加不需要忽略的格式信息
-        filterRegistrationBean.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
+        filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;
     }
 }

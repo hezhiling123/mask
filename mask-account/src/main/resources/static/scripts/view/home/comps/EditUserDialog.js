@@ -1,8 +1,8 @@
-define(['@mixins/user'], function(user) {
-  return {
-    mixins: [user],
-    // 选项
-    template: `
+define(['@mixins/user'], function (user) {
+    return {
+        mixins: [user],
+        // 选项
+        template: `
     <div>
       <div class="modal fade modal-edit-user" :class="dialog.show?'in':false" v-show="backdrop.open">
         <div class="modal-header">
@@ -24,95 +24,95 @@ define(['@mixins/user'], function(user) {
       <div class="modal-backdrop fade" :class="backdrop.show?'in':false" v-if="backdrop.open"></div>
     </div>
     `,
-    model: {
-      prop: 'visible',
-      event: 'change'
-    },
-    props: {
-      visible: Boolean,
-      data: {
-        type: Object,
-        default () {
-          return {
-            userName: '',
-            realName: '',
-            mobile: '',
-            email: ''
-          }
-        }
-      }
-    },
-    data () {
-      return {
-        backdrop: {
-          open: false,
-          show: false
+        model: {
+            prop: 'visible',
+            event: 'change'
         },
-        dialog: {
-          show: false
+        props: {
+            visible: Boolean,
+            data: {
+                type: Object,
+                default() {
+                    return {
+                        userName: '',
+                        realName: '',
+                        mobile: '',
+                        email: ''
+                    }
+                }
+            }
         },
-        form: {
-          userName: '',
-          realName: '',
-          mobile: '',
-          email: ''
+        data() {
+            return {
+                backdrop: {
+                    open: false,
+                    show: false
+                },
+                dialog: {
+                    show: false
+                },
+                form: {
+                    userName: '',
+                    realName: '',
+                    mobile: '',
+                    email: ''
+                }
+            }
+        },
+        computed: {
+            showClass() {
+                return this.visible ? 'in' : ''
+            }
+        },
+        created() {
+            if (this.visible) {
+                this._open()
+            }
+        },
+        watch: {
+            visible(val, old) {
+                if (old !== val) {
+                    if (val) {
+                        this._open()
+                    } else {
+                        this._close()
+                    }
+                }
+            }
+        },
+        methods: {
+            _open() {
+                this.form = {
+                    userName: this.$_user_userInfo.userName,
+                    realName: this.$_user_userInfo.realName,
+                    mobile: this.$_user_userInfo.mobile,
+                    email: this.$_user_userInfo.email
+                }
+                this.backdrop.open = true
+                setTimeout(() => {
+                    this.backdrop.show = true
+                    this.dialog.show = true
+                }, 100)
+            },
+            _close() {
+                this.dialog.show = false
+                setTimeout(() => {
+                    this.backdrop.show = false
+                    this.backdrop.open = false
+                }, 400)
+            },
+            open() {
+                this.$emit('change', true)
+            },
+            close() {
+                this.$emit('change', false)
+            },
+            onSave() {
+                this.$service.account.updateUserInfo(this.form).then(() => {
+                    this.$service.account.refreshUserInfo()
+                    this.close()
+                })
+            }
         }
-      }
-    },
-    computed: {
-      showClass () {
-        return this.visible ? 'in' : ''
-      }
-    },
-    created () {
-      if (this.visible) {
-        this._open()
-      }
-    },
-    watch: {
-      visible (val, old) {
-        if (old !== val) {
-          if (val) {
-            this._open()
-          } else {
-            this._close()
-          }
-        }
-      }
-    },
-    methods: {
-      _open () {
-        this.form = {
-          userName: this.$_user_userInfo.userName,
-          realName: this.$_user_userInfo.realName,
-          mobile: this.$_user_userInfo.mobile,
-          email: this.$_user_userInfo.email
-        }
-        this.backdrop.open = true
-        setTimeout(() => {
-          this.backdrop.show = true
-          this.dialog.show = true
-        }, 100)
-      },
-      _close () {
-        this.dialog.show = false
-        setTimeout(() => {
-          this.backdrop.show = false
-          this.backdrop.open = false
-        }, 400)
-      },
-      open () {
-        this.$emit('change', true)
-      },
-      close () {
-        this.$emit('change', false)
-      },
-      onSave () {
-        this.$service.account.updateUserInfo(this.form).then(() => {
-          this.$service.account.refreshUserInfo()
-          this.close()
-        })
-      }
     }
-  }
 })

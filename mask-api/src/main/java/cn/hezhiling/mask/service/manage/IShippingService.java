@@ -14,6 +14,7 @@ public interface IShippingService {
 
     /**
      * 查询物流公司
+     *
      * @return
      */
     @RequestMapping(value = "/queryAll")

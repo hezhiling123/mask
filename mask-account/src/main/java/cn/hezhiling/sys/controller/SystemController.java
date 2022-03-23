@@ -2,7 +2,6 @@ package cn.hezhiling.sys.controller;
 
 import cn.hezhiling.config.Config;
 import cn.hezhiling.core.utils.response.HttpResponseBody;
-import cn.hezhiling.sys.controller.BaseController;
 import cn.hezhiling.util.ShiroCacheUtil;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 系统管理
+ *
  * @author Jack
  * @date 2017/10/16
  */
@@ -32,28 +32,28 @@ public class SystemController extends BaseController {
     /**
      * 获取工程配置信息
      *
-     * @return  {@link Config}
+     * @return {@link Config}
      */
     @GetMapping(value = "/config")
-    public HttpResponseBody<Config> getConfig(){
+    public HttpResponseBody<Config> getConfig() {
         return HttpResponseBody.successResponse("ok", config);
     }
 
     /**
      * 用户登出
      *
-     * @param request   request
-     * @param response  response
-     * @return  body
+     * @param request  request
+     * @param response response
+     * @return body
      */
     @RequestMapping(value = "logout", method = {RequestMethod.POST, RequestMethod.GET})
-    public HttpResponseBody logout(HttpServletRequest request, HttpServletResponse response){
-        if(this.getSessionUser() != null) {
+    public HttpResponseBody logout(HttpServletRequest request, HttpServletResponse response) {
+        if (this.getSessionUser() != null) {
             shiroCacheUtil.removeUser(this.getSessionUser().getId());
         }
         SecurityUtils.getSubject().logout();
 
-        Cookie cookie = new Cookie("JSESSIONID","");
+        Cookie cookie = new Cookie("JSESSIONID", "");
         response.addCookie(cookie);
         return HttpResponseBody.successResponse("登出成功");
     }

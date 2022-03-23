@@ -4,7 +4,7 @@ import cn.hezhiling.mask.model.spec.SpecGoodsPrice;
 
 import java.io.Serializable;
 
-public class GoodsSpecPriceDetailVo extends SpecGoodsPrice implements Serializable{
+public class GoodsSpecPriceDetailVo extends SpecGoodsPrice implements Serializable {
     private String goodsName;
     private String originalImg;
 

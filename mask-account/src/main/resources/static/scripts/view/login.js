@@ -1,7 +1,7 @@
 define(['css!@css/assets/css/login'], function () {
-  return {
-    // 选项
-    template: `
+    return {
+        // 选项
+        template: `
     <div style="height: 100%;width: 100%;">
         <div class="wrapper">
             <div class="wrap">
@@ -63,66 +63,66 @@ define(['css!@css/assets/css/login'], function () {
         <c-footer/>
     </div>
     `,
-    data () {
-      return {
-        err: {
-          msg: '',
-          userName: false,
-          password: false
+        data() {
+            return {
+                err: {
+                    msg: '',
+                    userName: false,
+                    password: false
+                },
+                form: {
+                    userName: '',
+                    password: ''
+                }
+            }
         },
-        form: {
-          userName: '',
-          password: ''
+        computed: {
+            errUserName() {
+                return this.err.userName ? 'error_bg' : ''
+            },
+            errPassword() {
+                return this.err.password ? 'error_bg' : ''
+            },
+            errShow() {
+                return this.err.userName || this.err.password
+            }
+        },
+        created() {
+            this.$service.account.refreshUserInfo().then(() => {
+                this.onNextPage()
+            })
+        },
+        methods: {
+            onKey() {
+                this.err.userName = false
+                this.err.password = false
+            },
+            onNextPage() {
+                const redirect = this.$route.query['redirect']
+                if (this.$lodash.isEmpty(redirect)) {
+                    this.$router.replace('/home')
+                } else {
+                    window.location.href = redirect
+                }
+            },
+            handleLogin() {
+                if (this.$lodash.isEmpty(this.form.userName)) {
+                    this.err.userName = true
+                    this.err.msg = '请输入帐号'
+                    return
+                }
+                if (this.$lodash.isEmpty(this.form.password)) {
+                    this.err.password = true
+                    this.err.msg = '请输入密码'
+                    return
+                }
+                this.$service.account.login(this.form).then(res => {
+                    this.onNextPage()
+                }).catch(res => {
+                    this.err.userName = true
+                    this.err.msg = res.msg
+                })
+            }
         }
-      }
-    },
-    computed: {
-      errUserName () {
-        return this.err.userName ? 'error_bg' : ''
-      },
-      errPassword () {
-        return this.err.password ? 'error_bg' : ''
-      },
-      errShow () {
-        return this.err.userName || this.err.password
-      }
-    },
-    created() {
-      this.$service.account.refreshUserInfo().then(() => {
-        this.onNextPage()
-      })
-    },
-    methods: {
-      onKey () {
-        this.err.userName = false
-        this.err.password = false
-      },
-      onNextPage() {
-        const redirect = this.$route.query['redirect']
-        if (this.$lodash.isEmpty(redirect)) {
-          this.$router.replace('/home')
-        } else {
-          window.location.href = redirect
-        }
-      },
-      handleLogin () {
-        if (this.$lodash.isEmpty(this.form.userName)) {
-          this.err.userName = true
-          this.err.msg = '请输入帐号'
-          return
-        }
-        if (this.$lodash.isEmpty(this.form.password)) {
-          this.err.password = true
-          this.err.msg = '请输入密码'
-          return
-        }
-        this.$service.account.login(this.form).then(res => {
-          this.onNextPage()
-        }).catch(res => {
-          this.err.userName = true
-          this.err.msg = res.msg
-        })
-      }
     }
-  }
 })

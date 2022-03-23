@@ -4,7 +4,7 @@ import cn.hezhiling.mask.model.goods.KillGoodsPrice;
 
 import java.io.Serializable;
 
-public class KillGoodsSpecPriceDetailVo extends KillGoodsPrice implements Serializable{
+public class KillGoodsSpecPriceDetailVo extends KillGoodsPrice implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String goodsName;

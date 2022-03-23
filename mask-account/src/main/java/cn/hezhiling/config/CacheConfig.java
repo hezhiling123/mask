@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class CacheConfig {
 
     @Bean
-    public ShiroCacheUtil shiroCacheUtil(){
+    public ShiroCacheUtil shiroCacheUtil() {
         return new ShiroCacheUtil();
     }
 

@@ -5,7 +5,7 @@ import java.util.List;
 public class UserShoppingGoodsVo {
     private String id;
     private String userId;
-    private List<ShoppingGoodsVo> shoppingGoodsList ;
+    private List<ShoppingGoodsVo> shoppingGoodsList;
 
     public String getId() {
         return id;

@@ -8,7 +8,7 @@ public class ByteUtils {
 
     /**
      * 十六进制 转换 byte[]
-     * 
+     *
      * @param hexStr
      * @return
      */
@@ -19,7 +19,7 @@ public class ByteUtils {
             return null;
         }
         byte[] data = new byte[hexStr.length() / 2];
-        for (int i = 0; i < hexStr.length() / 2; i++ ) {
+        for (int i = 0; i < hexStr.length() / 2; i++) {
             char hc = hexStr.charAt(2 * i);
             char lc = hexStr.charAt(2 * i + 1);
             byte hb = hexChar2Byte(hc);
@@ -28,15 +28,15 @@ public class ByteUtils {
                 return null;
             }
             int n = hb << 4;
-            data[i] = (byte)(n + lb);
+            data[i] = (byte) (n + lb);
         }
         return data;
     }
 
     public static byte hexChar2Byte(char c) {
-        if (c >= '0' && c <= '9') return (byte)(c - '0');
-        if (c >= 'a' && c <= 'f') return (byte)(c - 'a' + 10);
-        if (c >= 'A' && c <= 'F') return (byte)(c - 'A' + 10);
+        if (c >= '0' && c <= '9') return (byte) (c - '0');
+        if (c >= 'a' && c <= 'f') return (byte) (c - 'a' + 10);
+        if (c >= 'A' && c <= 'F') return (byte) (c - 'A' + 10);
         return -1;
     }
 
@@ -48,7 +48,7 @@ public class ByteUtils {
 
     /**
      * byte[] 转 16进制字符串
-     * 
+     *
      * @param arr
      * @return
      */
@@ -64,7 +64,7 @@ public class ByteUtils {
 
     /**
      * 空格分隔的hex string
-     * 
+     *
      * @param arr
      * @return
      */
@@ -81,7 +81,7 @@ public class ByteUtils {
 
     /**
      * 取start到end的byte array，包含end。
-     * 
+     *
      * @param data
      * @param start
      * @param end
@@ -95,7 +95,7 @@ public class ByteUtils {
 
     /**
      * 从data取start到end的数据，返回bcd string。end包含在取值范围。
-     * 
+     *
      * @param data
      * @param start
      * @param end
@@ -109,7 +109,7 @@ public class ByteUtils {
 
     /**
      * 从data取start到end的数据，返回hex string。end包含在取值范围。
-     * 
+     *
      * @param data
      * @param start
      * @param end
@@ -120,10 +120,10 @@ public class ByteUtils {
         System.arraycopy(data, start, t, 0, t.length);
         return ByteUtils.byteArray2HexStringWithSpace(t);
     }
-    
+
     /**
      * 根据issource，生成一个长度为4的byte数组 此数组记录isource
-     * 
+     *
      * @param isource
      * @return
      */
@@ -133,7 +133,7 @@ public class ByteUtils {
 
     /**
      * 根据issoirce，生成一个长度为len的字节数组
-     * 
+     *
      * @param isource
      * @param len
      * @return
@@ -148,7 +148,7 @@ public class ByteUtils {
 
     /**
      * 拼接两个字符数组
-     * 
+     *
      * @param a
      * @param b
      * @return
@@ -165,10 +165,10 @@ public class ByteUtils {
         System.arraycopy(b, 0, result, a.length, b.length);
         return result;
     }
-    
+
     /**
      * 将byte数组转换成打印格式字符串，方便输出调试信息
-     * 
+     *
      * @param data
      * @param dataLen
      * @return
@@ -187,7 +187,7 @@ public class ByteUtils {
         String printStr = "";
         int loopLen = 0;
         loopLen = (printLen / 16 + 1) * 16;
-        for (int i = 0; i < loopLen; i++ ) {
+        for (int i = 0; i < loopLen; i++) {
             if (i % 16 == 0) {
                 sb.append("0x").append(formatHexStr(width, int2HexString(i))).append(": ");
                 printStr = "";
@@ -198,7 +198,7 @@ public class ByteUtils {
             if (i < printLen) {
                 sb.append(" ").append(formatHexStr(2, int2HexString(data[i])));
                 if (data[i] > 31 && data[i] < 127)
-                    printStr += (char)data[i];
+                    printStr += (char) data[i];
                 else
                     printStr += '.';
             } else {
@@ -210,14 +210,14 @@ public class ByteUtils {
         }
         return sb.toString();
     }
+
     /**
-     * 
+     * @param n
+     * @return
      * @创建人 ZhouMin
      * @创建时间 2015年10月9日
      * @创建目的【int转HexString】
      * @修改目的【修改人：，修改时间：】
-     * @param n
-     * @return
      */
     private static String int2HexString(int n) {
         return Integer.toHexString(n).toUpperCase();
@@ -225,7 +225,7 @@ public class ByteUtils {
 
     /**
      * 格式化Hex字符串的宽度，不足左补'0'
-     * 
+     *
      * @param width
      * @param hexStr
      * @return
@@ -235,7 +235,7 @@ public class ByteUtils {
             return hexStr.substring(hexStr.length() - width);
         }
         StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < width - hexStr.length(); i++ ) {
+        for (int i = 0; i < width - hexStr.length(); i++) {
             sb.append("0");
         }
         sb.append(hexStr);

@@ -1,7 +1,7 @@
-define(['css!@css/assets/css/pwd'], function() {
-  return {
-    // 选项
-    template: `
+define(['css!@css/assets/css/pwd'], function () {
+    return {
+        // 选项
+        template: `
     <div class="n-frame">
       <c-form @keyup.native="onKey" @enter="onSave">
         <div class="regbox">
@@ -31,78 +31,78 @@ define(['css!@css/assets/css/pwd'], function() {
       </c-form>
     </div>
     `,
-    data () {
-      return {
-        form: {
-          password: '',
-          newPassword: '',
-          rePassword: ''
+        data() {
+            return {
+                form: {
+                    password: '',
+                    newPassword: '',
+                    rePassword: ''
+                },
+                err: {
+                    password: false,
+                    newPassword: false,
+                    rePassword: false,
+                    msg: ''
+                }
+            }
         },
-        err: {
-          password: false,
-          newPassword: false,
-          rePassword: false,
-          msg: ''
+        computed: {
+            errPassword() {
+                return this.err.password ? 'err_label' : ''
+            },
+            errNewPassword() {
+                return this.err.newPassword ? 'err_label' : ''
+            },
+            errShow() {
+                return this.err.password || this.err.newPassword || this.err.rePassword
+            }
+        },
+        created() {
+        },
+        methods: {
+            clearForm() {
+                this.form.password = ''
+                this.form.newPassword = ''
+                this.form.rePassword = ''
+            },
+            onKey() {
+                this.err.password = false
+                this.err.newPassword = false
+            },
+            validate() {
+                if (this.$lodash.isEmpty(this.form.password)) {
+                    this.err.password = true
+                    this.err.msg = '请输入密码'
+                    return false
+                }
+                if (this.$lodash.isEmpty(this.form.newPassword)) {
+                    this.err.newPassword = true
+                    this.err.msg = '请输入新密码'
+                    return false
+                }
+                if (this.form.newPassword !== this.form.rePassword) {
+                    this.err.newPassword = true
+                    this.err.msg = '您两次输入的密码不一致'
+                    return false
+                }
+                return true
+            },
+            onSave() {
+                if (this.validate()) {
+                    this.$service.account.setPassword({
+                        originalPwd: this.form.password,
+                        newPwd: this.form.newPassword,
+                        conPwd: this.form.rePassword
+                    }).then(() => {
+                        this.$emit('ok')
+                        this.clearForm()
+                        this.$alert('修改成功')
+                    }).catch(res => {
+                        this.err.password = true
+                        this.err.msg = res.msg
+                    })
+                }
+            }
         }
-      }
-    },
-    computed: {
-      errPassword () {
-        return this.err.password ? 'err_label' : ''
-      },
-      errNewPassword () {
-        return this.err.newPassword ? 'err_label' : ''
-      },
-      errShow () {
-        return this.err.password || this.err.newPassword || this.err.rePassword
-      }
-    },
-    created () {
-    },
-    methods: {
-      clearForm () {
-        this.form.password = ''
-        this.form.newPassword = ''
-        this.form.rePassword = ''
-      },
-      onKey () {
-        this.err.password = false
-        this.err.newPassword = false
-      },
-      validate () {
-        if (this.$lodash.isEmpty(this.form.password)) {
-          this.err.password = true
-          this.err.msg = '请输入密码'
-          return false
-        }
-        if (this.$lodash.isEmpty(this.form.newPassword)) {
-          this.err.newPassword = true
-          this.err.msg = '请输入新密码'
-          return false
-        }
-        if (this.form.newPassword !== this.form.rePassword) {
-          this.err.newPassword = true
-          this.err.msg = '您两次输入的密码不一致'
-          return false
-        }
-        return true
-      },
-      onSave () {
-        if (this.validate()) {
-          this.$service.account.setPassword({
-            originalPwd: this.form.password,
-            newPwd: this.form.newPassword,
-            conPwd: this.form.rePassword
-          }).then(() => {
-            this.$emit('ok')
-            this.clearForm()
-            this.$alert('修改成功')
-          }).catch(res => {
-            this.err.password = true
-            this.err.msg = res.msg
-          })
-        }
-      }
     }
-  }
 })

@@ -10,11 +10,9 @@ import cn.hezhiling.mask.model.spec.SpecGoodsImage;
 import cn.hezhiling.mask.model.spec.SpecGoodsPrice;
 import cn.hezhiling.mask.model.spec.SpecItem;
 import cn.hezhiling.mask.mongo.dao.GoodsDao;
-import cn.hezhiling.mask.productService.dao.GoodsCategoryMapper;
-import cn.hezhiling.mask.productService.dao.SpecGoodsPriceMapper;
+import cn.hezhiling.mask.productService.dao.*;
 import cn.hezhiling.mask.service.goods.GoodsCategoryService;
 import cn.hezhiling.mask.service.goods.GoodsService;
-import cn.hezhiling.mask.productService.dao.*;
 import cn.hezhiling.mask.vo.GoodsDetailVo;
 import cn.hezhiling.mask.vo.GoodsPageVo;
 import cn.hezhiling.mask.vo.GoodsSpecPriceAttrVo;
@@ -47,6 +45,7 @@ import java.util.stream.Collectors;
 
 /**
  * 商品管理
+ *
  * @author Jack
  * @date 2018/2/5.
  */
@@ -89,6 +88,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    private ExecutorService es = Executors.newCachedThreadPool();
 
     /**
      * 根据goodsId从mongodb中查询商品
@@ -637,7 +637,6 @@ public class GoodsServiceImpl implements GoodsService {
         System.out.println("public花费时间：" + (System.currentTimeMillis() - begin));
     }
 
-
     private void publishGoods2MongoDB2(List<Goods> list) {
         List<GoodsVo> voList = new ArrayList<>();
         ExecutorService executors = Executors.newFixedThreadPool(50);
@@ -845,7 +844,6 @@ public class GoodsServiceImpl implements GoodsService {
         return resultList;
     }
 
-    private ExecutorService es = Executors.newCachedThreadPool();
     @Override
     public DeferredResult<List<HotSellingGoods>> queryHotSellingGoodsDr(Integer showNum) {
         DeferredResult<List<HotSellingGoods>> deferredResult = new DeferredResult<>();

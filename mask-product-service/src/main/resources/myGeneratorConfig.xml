@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
     <!-- 驱动文件，请修改为自己机器的对应目录 -->
     <classPathEntry location="F:\apache-tomcat-8.0.36\lib\mysql-connector-java-5.1.40.jar"/>
-    <context id="context1" defaultModelType="flat" targetRuntime="MyBatis3" >
-        <property name="autoDelimitKeywords" value="true" />
-        <property name="beginningDelimiter" value="" />
-        <property name="endingDelimiter" value="" />
+    <context id="context1" defaultModelType="flat" targetRuntime="MyBatis3">
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="beginningDelimiter" value=""/>
+        <property name="endingDelimiter" value=""/>
         <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
             <property name="targetPackage" value="com"/>
             <property name="targetProject" value="mall-dao/src/main/java"/>
@@ -20,8 +21,9 @@
         </commentGenerator>
 
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.56:3306/mall?useUnicode=true&amp;characterEncoding=utf-8"
-                        userId="mall" password="123456" />
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.1.56:3306/mall?useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="mall" password="123456"/>
 
         <!-- 类型转换 -->
         <javaTypeResolver>
@@ -31,27 +33,27 @@
         <!-- 生成实体类地址 -->
         <javaModelGenerator targetPackage="com.pzh.mall.model" targetProject="mall-model/src/main/java">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="true"/>
             <!-- 是否针对string类型的字段在set的时候进行trim调用 -->
-            <property name="trimStrings" value="true" />
+            <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成mapxml文件 -->
         <sqlMapGenerator targetPackage="mapping.mall" targetProject="mall-dao/src/main/resources/">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 生成mapxml对应client，也就是接口dao -->
         <javaClientGenerator targetPackage="com.pzh.mall.dao" targetProject="mall-dao/src/main/java" type="XMLMAPPER">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--<table schema="${jdbc_user}" tableName="key_identity"    domainObjectName="KeyIdentity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
 
         <!-- <table schema="${jdbc_user}" tableName="leave_info"    domainObjectName="LeaveInfo"
@@ -103,36 +105,36 @@
                enableUpdateByExample="false">
         </table>
         <!--<table schema="${jdbc_user}" tableName="overtime_people_info"    domainObjectName="OvertimePeopleInfo"-->
-               <!--enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="${jdbc_user}" tableName="kq_user_info"    domainObjectName="KqUserInfo"-->
-               <!--enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="${jdbc_user}" tableName="user_hours_info"    domainObjectName="UserHoursInfo"-->
-               <!--enableCountByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false">-->
+        <!--enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
         <!--</table>-->
         <!--<table schema="${jdbc_user}" tableName="work_off_info"    domainObjectName="WorkOffInfo"-->
-                    <!--enableCountByExample="false"-->
-                    <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-                    <!--enableUpdateByExample="false">-->
-             <!--</table>-->
+        <!--enableCountByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false">-->
+        <!--</table>-->
 
-      <!--  <table schema="${jdbc_user}" tableName="information_info"    domainObjectName="InformationInfo"
-        enableCountByExample="false"
-        enableDeleteByExample="false" enableSelectByExample="false"
-        enableUpdateByExample="false">
-        </table>
-        <table schema="${jdbc_user}" tableName="information_attachment"    domainObjectName="InformationAttachment"
-               enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-        </table>-->
+        <!--  <table schema="${jdbc_user}" tableName="information_info"    domainObjectName="InformationInfo"
+          enableCountByExample="false"
+          enableDeleteByExample="false" enableSelectByExample="false"
+          enableUpdateByExample="false">
+          </table>
+          <table schema="${jdbc_user}" tableName="information_attachment"    domainObjectName="InformationAttachment"
+                 enableCountByExample="false"
+                 enableDeleteByExample="false" enableSelectByExample="false"
+                 enableUpdateByExample="false">
+          </table>-->
     </context>
 </generatorConfiguration>
 

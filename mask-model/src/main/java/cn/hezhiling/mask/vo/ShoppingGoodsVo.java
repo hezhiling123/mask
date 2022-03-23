@@ -3,7 +3,7 @@ package cn.hezhiling.mask.vo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class ShoppingGoodsVo implements Serializable{
+public class ShoppingGoodsVo implements Serializable {
     private Integer specGoodsId;
     private Integer goodsId;
     private String goodsName;

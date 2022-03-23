@@ -5,6 +5,7 @@ import cn.hezhiling.mask.model.goods.Goods;
 
 /**
  * 为返回给前台的数据而特定的
+ *
  * @author Ray
  * @date 2018/3/1.
  */

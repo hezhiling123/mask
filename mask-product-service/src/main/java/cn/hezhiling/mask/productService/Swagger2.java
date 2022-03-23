@@ -19,12 +19,13 @@ public class Swagger2 {
 //                .host(swaggerHost)
                 .apiInfo(apiInfo())
 //                .pathMapping("/")
-    //                .directModelSubstitute(Date.class,String.class)
+                //                .directModelSubstitute(Date.class,String.class)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("cn.enjoy"))
                 .paths(PathSelectors.any())
                 .build();
     }
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Jack的程序")

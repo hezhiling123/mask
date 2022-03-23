@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
  * @author chenlin
  * @date 2017/4/10
  */
@@ -19,11 +18,11 @@ public class ErrorControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public Object errorHandle(Exception e){
+    public Object errorHandle(Exception e) {
         String errMsg = e.getMessage();
-        if(e instanceof BusinessException || (e instanceof RuntimeException && errMsg.contains("MaskRuntimeException"))){
+        if (e instanceof BusinessException || (e instanceof RuntimeException && errMsg.contains("MaskRuntimeException"))) {
             logger.error(errMsg);
-        }else {
+        } else {
             logger.error("", e);
         }
         return HttpResponseBody.failResponse(errMsg);

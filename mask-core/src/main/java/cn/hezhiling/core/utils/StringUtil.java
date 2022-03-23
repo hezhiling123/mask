@@ -11,20 +11,22 @@ import java.util.regex.Pattern;
 
 
 /**
+ * @author ZhouMin
+ * @version 1.0
  * @Title
  * @Description 字符串处理类
  * @Copyright Copyright (c) 2015</p>
  * @Company 享学信息科技有限公司 Co., Ltd.</p>
- * @author ZhouMin
- * @version 1.0
  * @修改记录
  * @修改序号，修改日期，修改人，修改内容
  */
 public final class StringUtil {
 
+    private static Pattern p = Pattern.compile("\\s{2}|\t|\r|\n");
+
     /**
      * 字符串右侧填充指定字符
-     * 
+     *
      * @param value
      * @param totalLen 填充后长度
      * @param fillChar
@@ -35,7 +37,7 @@ public final class StringUtil {
         if (fillLen <= 0) return value;
         StringBuffer sb = new StringBuffer();
         sb.append(value);
-        for (int i = 0; i < fillLen; i++ ) {
+        for (int i = 0; i < fillLen; i++) {
             sb.append(fillChar);
         }
         return sb.toString();
@@ -43,7 +45,7 @@ public final class StringUtil {
 
     /**
      * 字符串左侧填充指定字符
-     * 
+     *
      * @param value
      * @param totalLen
      * @param fillChar
@@ -53,7 +55,7 @@ public final class StringUtil {
         int fillLen = totalLen - value.length();
         if (fillLen <= 0) return value;
         StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < fillLen; i++ ) {
+        for (int i = 0; i < fillLen; i++) {
             sb.append(fillChar);
         }
         sb.append(value);
@@ -62,22 +64,22 @@ public final class StringUtil {
 
     /**
      * 2012-5-29下午4:59:39
-     * 
-     * @Description: 判断字符串等于空
+     *
      * @param str
      * @return boolean 返回类型
+     * @Description: 判断字符串等于空
      */
     public static boolean isEmpty(String str) {
         return str == null || "".equals(str);
     }
 
     /**
+     * @param str
+     * @return
      * @创建人 ZhouMin
      * @创建时间 2015年10月9日
      * @创建目的【 判断字符串不等于空】
      * @修改目的【修改人：，修改时间：】
-     * @param str
-     * @return
      */
     public static boolean isNotEmpty(String str) {
         return str != null && !"".equals(str);
@@ -92,7 +94,7 @@ public final class StringUtil {
 
     /**
      * 驼峰命名转换
-     * 
+     *
      * @param name
      * @return
      */
@@ -125,16 +127,14 @@ public final class StringUtil {
         }
         return result.toString();
     }
-    
-
 
     /**
+     * @param str
+     * @return
      * @创建人 ZhouMin
      * @创建时间 2015年10月9日
      * @创建目的【html特殊字符转换】
      * @修改目的【修改人：，修改时间：】
-     * @param str
-     * @return
      */
     public static String htmlspecialchars(String str) {
         str = str.replaceAll("&", "&amp;");
@@ -144,44 +144,41 @@ public final class StringUtil {
         return str;
     }
 
-
-
-
-
-    
     /**
-     * 去掉小数点后多余0 
+     * 去掉小数点后多余0
+     *
+     * @param s
+     * @return
      * @创建人 lison
      * @创建时间 2015年10月27日
      * @创建目的【】
      * @修改目的【修改人：，修改时间：】
-     * @param s
-     * @return
      */
-    public static String subZeroAndDot(String s){    
-        if(s.indexOf(".") > 0){    
-            s = s.replaceAll("0+?$", "");//去掉多余的0    
-            s = s.replaceAll("[.]$", "");//如最后一位是.则去掉    
-        }    
-        return s;    
-    }    
+    public static String subZeroAndDot(String s) {
+        if (s.indexOf(".") > 0) {
+            s = s.replaceAll("0+?$", "");//去掉多余的0
+            s = s.replaceAll("[.]$", "");//如最后一位是.则去掉
+        }
+        return s;
+    }
 
     /**
      * 返回source中匹配正则表达式regex的所有子串
-     * 示例：source = "取${person}付款当日${paymentTime}的${section}"  ， 
+     * 示例：source = "取${person}付款当日${paymentTime}的${section}"  ，
      * 示例1：regex = "\\$\\{[^\\}]*\\}"， index = 0, 返回[${person}, ${paymentTime}, ${section}]
      * 示例2：regex = "\\$\\{([^\\}]*)\\}" ， index = 1, 返回[person, paymentTime, section]
-     * @创建人：何睿
-     * @创建时间：2015年12月11日
-     * @创建目的：【】
-     * @修改目的：【修改人：，修改时间：】
+     *
      * @param source
      * @param regex
      * @param index
      * @return
+     * @创建人：何睿
+     * @创建时间：2015年12月11日
+     * @创建目的：【】
+     * @修改目的：【修改人：，修改时间：】
      */
-    public static List<String> getSubStrAryByReg(String source,String regex, int index){
-        try{
+    public static List<String> getSubStrAryByReg(String source, String regex, int index) {
+        try {
             List<String> list = new ArrayList<String>();
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(source);
@@ -189,25 +186,27 @@ public final class StringUtil {
                 list.add(matcher.group(index));
             }
             return list;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             return null;
         }
     }
-    public static List<String> getSubStrAryByReg(String source,String regex){
-        return getSubStrAryByReg(source,regex,0);
+
+    public static List<String> getSubStrAryByReg(String source, String regex) {
+        return getSubStrAryByReg(source, regex, 0);
     }
 
     /**
      * 将source 中的变量替换为map中的值
-     * @创建人 何睿
-     * @创建时间 2016年4月21日
+     *
      * @param source 源字符串
-     * @param regex 正则
+     * @param regex  正则
      * @param params 参数
      * @return String
+     * @创建人 何睿
+     * @创建时间 2016年4月21日
      */
-    public static String replace(String source, String regex, Map<String, String> params){
-        if(params == null || params.isEmpty()){
+    public static String replace(String source, String regex, Map<String, String> params) {
+        if (params == null || params.isEmpty()) {
             return source;
         }
         Pattern p = Pattern.compile(regex);
@@ -215,17 +214,17 @@ public final class StringUtil {
         while (m.find()) {
             String key = m.group(1);
             Object value = params.get(key);
-            if(value != null){
+            if (value != null) {
                 source = source.replace(m.group(0), params.get(key));
             }
         }
         return source;
     }
 
-    public static int parseInt(Object o){
-        if(o == null){
+    public static int parseInt(Object o) {
+        if (o == null) {
             return 0;
-        }else{
+        } else {
             return Integer.parseInt(o.toString());
         }
     }
@@ -240,10 +239,9 @@ public final class StringUtil {
         System.out.println("out = " + out);
     }
 
-    private static Pattern p = Pattern.compile("\\s{2}|\t|\r|\n");
     public static String replaceBlank(String str) {
         String dest = "";
-        if (str!=null) {
+        if (str != null) {
             Matcher m = p.matcher(str);
             dest = m.replaceAll("");
         }
@@ -252,10 +250,11 @@ public final class StringUtil {
 
     /**
      * 得到一个字符串的长度,显示的长度,一个汉字或日韩文长度为2,英文字符长度为1
+     *
      * @param str 字符串
      * @return 长度
      */
-    public static int getLengthb(String str){
+    public static int getLengthb(String str) {
         if (str == null)
             return 0;
         char[] c = str.toCharArray();
@@ -276,7 +275,8 @@ public final class StringUtil {
 
     /**
      * 得到一个字符串的长度,显示的长度,一个汉字或日韩文长度为1,英文字符长度为0.5
-     * @param  s 需要得到长度的字符串
+     *
+     * @param s 需要得到长度的字符串
      * @return int 得到的字符串长度
      */
     public static double getLength(String s) {
@@ -296,7 +296,7 @@ public final class StringUtil {
             }
         }
         //进位取整
-        return  Math.ceil(valueLength);
+        return Math.ceil(valueLength);
     }
 
     public static boolean isMultiBytesChar(char c) throws UnsupportedEncodingException {
@@ -306,18 +306,18 @@ public final class StringUtil {
     }
 
 
-
     /**
      * 获取对象的值为空值的对象
+     *
      * @param source
      * @return
      */
-    public static String[] getNullPropertyNames (Object source) {
+    public static String[] getNullPropertyNames(Object source) {
         final BeanWrapper src = new BeanWrapperImpl(source);
         java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
 
         Set<String> emptyNames = new HashSet<String>();
-        for(java.beans.PropertyDescriptor pd : pds) {
+        for (java.beans.PropertyDescriptor pd : pds) {
             Object srcValue = src.getPropertyValue(pd.getName());
             if (srcValue == null || srcValue.toString() == "") emptyNames.add(pd.getName());
         }

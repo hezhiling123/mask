@@ -7,6 +7,7 @@ import cn.hezhiling.sys.service.user.UserService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,8 +28,8 @@ public class UserController extends BaseController {
     /**
      * 新增用户
      *
-     * @param user  {@link UserPO}
-     * @return  body
+     * @param user {@link UserPO}
+     * @return body
      */
     @PostMapping("addUser")
     public HttpResponseBody addUser(UserPO user) {
@@ -39,8 +40,8 @@ public class UserController extends BaseController {
     /**
      * 根据用户id获取用户信息
      *
-     * @param userId    用户id
-     * @return  body
+     * @param userId 用户id
+     * @return body
      */
     @RequestMapping(value = "getUserById", method = {RequestMethod.GET, RequestMethod.POST})
     public HttpResponseBody<UserInfo> getUserById(String userId) {

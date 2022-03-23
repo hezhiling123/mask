@@ -20,7 +20,7 @@ public class ShiroCacheUtil {
 
 
     @PostConstruct
-    public void init(){
+    public void init() {
         this.cache = cacheManager.getCache(RedisCacheNames.CODE_CACHE);
     }
 
@@ -41,22 +41,24 @@ public class ShiroCacheUtil {
 
     /**
      * 获取到用户名之后code就不用了，扔掉
+     *
      * @param authCode
      * @return
      */
     public String getUsernameByAuthCode(String authCode) {
-        String userName = (String)cache.get(authCode);
+        String userName = (String) cache.get(authCode);
         cache.remove(authCode);
         return userName;
     }
 
 
     public String getUsernameByAccessToken(String accessToken) {
-        return (String)cache.get(accessToken);
+        return (String) cache.get(accessToken);
     }
 
     /**
      * 检查code是否合法
+     *
      * @param authCode
      * @return
      */
@@ -70,23 +72,23 @@ public class ShiroCacheUtil {
     }
 
 
-    public void put(String key, String value){
+    public void put(String key, String value) {
         cache.put(key, value);
     }
 
-    public void removeKey(String key){
+    public void removeKey(String key) {
         cache.remove(key);
     }
 
-    public void putUser(Integer userId, String value){
+    public void putUser(Integer userId, String value) {
         cache.put(SsoConstants.SSO_USERS + ":" + userId, value);
     }
 
-    public String getUser(Integer userId){
-        return (String )cache.get(SsoConstants.SSO_USERS + ":" + userId);
+    public String getUser(Integer userId) {
+        return (String) cache.get(SsoConstants.SSO_USERS + ":" + userId);
     }
 
-    public void removeUser(Integer userId){
+    public void removeUser(Integer userId) {
         cache.remove(SsoConstants.SSO_USERS + ":" + userId);
     }
 

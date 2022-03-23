@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
  * @author zw
  * @date 2017/5/10
  */
@@ -23,16 +22,17 @@ public class SessionInterceptor implements HandlerInterceptor {
     private final Logger logger = LoggerFactory.getLogger(SessionInterceptor.class);
     @Autowired
     private LoginService loginService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         Subject currentUser = SecurityUtils.getSubject();
         //判断用户是通过记住我功能自动登录,此时session失效
-        if(!currentUser.isAuthenticated() && currentUser.isRemembered()){
+        if (!currentUser.isAuthenticated() && currentUser.isRemembered()) {
             logger.debug("-{}--isRemembered--", currentUser.getPrincipals());
             //如果之前是用的微信登录，那么这个principals将会是userId,见cn/toroot/controller/WechatController.java:171
             UserPO user = loginService.login(currentUser.getPrincipals().toString());
             //对密码进行加密后验证
-            UsernamePasswordToken token = new UsernamePasswordToken(user.getId().toString(), user.getPassword(),currentUser.isRemembered());
+            UsernamePasswordToken token = new UsernamePasswordToken(user.getId().toString(), user.getPassword(), currentUser.isRemembered());
             //把当前用户放入session
             currentUser.login(token);
 //            ShiroRealm.setResource(iLoginService, session,user);
@@ -41,8 +41,6 @@ public class SessionInterceptor implements HandlerInterceptor {
 
         return true;
     }
-
-
 
 
     @Override

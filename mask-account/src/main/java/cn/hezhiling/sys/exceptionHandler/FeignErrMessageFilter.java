@@ -28,6 +28,7 @@ public class FeignErrMessageFilter {
      * */
     class FeignErrorDecoder implements ErrorDecoder {
         private Logger logger = LoggerFactory.getLogger(FeignErrorDecoder.class);
+
         @Override
         public Exception decode(String s, Response response) {
             RuntimeException runtimeException = null;

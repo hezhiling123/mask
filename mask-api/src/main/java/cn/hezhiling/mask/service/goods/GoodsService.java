@@ -25,25 +25,28 @@ import java.util.List;
 public interface GoodsService {
     /**
      * 从mongodb中查找完整信息
+     *
      * @param goodsId
      * @return
      */
     @RequestMapping(value = "/findOneById", method = RequestMethod.POST)
-    GoodsVo findOneById(@RequestParam("goodsId") Integer goodsId) ;
+    GoodsVo findOneById(@RequestParam("goodsId") Integer goodsId);
 
     /**
      * 从mongodb中查找完整信息
+     *
      * @param specGoodsId
      * @return
      */
     @RequestMapping(value = "/findOneBySpecGoodsId", method = RequestMethod.POST)
-    GoodsVo findOneBySpecGoodsId(@RequestParam("specGoodsId") Integer specGoodsId) ;
+    GoodsVo findOneBySpecGoodsId(@RequestParam("specGoodsId") Integer specGoodsId);
 
     @RequestMapping(value = "/findOneByKillGoodsId", method = RequestMethod.POST)
     GoodsVo findOneByKillGoodsId(@RequestParam("killGoodsId") Integer killGoodsId);
 
     /**
      * 从mongodb中分页查找
+     *
      * @param catId
      * @param brandId
      * @param order
@@ -59,6 +62,7 @@ public interface GoodsService {
 
     /**
      * 保存到数据库
+     *
      * @param goods
      * @return
      */
@@ -67,6 +71,7 @@ public interface GoodsService {
 
     /**
      * 从数据库根据id删除
+     *
      * @param goodsId
      * @return
      */
@@ -75,6 +80,7 @@ public interface GoodsService {
 
     /**
      * 从数据库根据id批量删除
+     *
      * @param goodsIds
      * @return
      */
@@ -83,18 +89,20 @@ public interface GoodsService {
 
     /**
      * 从数据库分页查询列表
+     *
      * @param keyword
      * @param page
      * @param pageSize
      * @return
      */
     @RequestMapping(value = "/queryListPageFromDB", method = RequestMethod.POST)
-    GridModel<Goods> queryListPageFromDB(@RequestParam(value = "catId",required = false) Integer catId, @RequestParam(value = "keyword",required = false) String keyword,
-                                            @RequestParam(value = "page",required = false) int page, @RequestParam(value = "pageSize",required = false) int pageSize,
-                                            @RequestParam(value = "sidx",required = false) String sidx, @RequestParam(value = "sord",required = false) String sord);
+    GridModel<Goods> queryListPageFromDB(@RequestParam(value = "catId", required = false) Integer catId, @RequestParam(value = "keyword", required = false) String keyword,
+                                         @RequestParam(value = "page", required = false) int page, @RequestParam(value = "pageSize", required = false) int pageSize,
+                                         @RequestParam(value = "sidx", required = false) String sidx, @RequestParam(value = "sord", required = false) String sord);
 
     /**
      * 从数据库查询商品详细信息
+     *
      * @param goodsId
      * @return
      */
@@ -103,6 +111,7 @@ public interface GoodsService {
 
     /**
      * 从数据库查询商品信息
+     *
      * @param goodsId
      * @return
      */
@@ -111,6 +120,7 @@ public interface GoodsService {
 
     /**
      * 从数据库查询商品图片
+     *
      * @param goodsId
      * @return
      */
@@ -119,13 +129,16 @@ public interface GoodsService {
 
     /**
      * 从数据库查询商品属性信息
+     *
      * @param goodsId
      * @return
      */
     @RequestMapping(value = "/queryGoodsAttrListFromDB", method = RequestMethod.POST)
     List<GoodsAttr> queryGoodsAttrListFromDB(@RequestParam("goodsId") Integer goodsId);
+
     /**
      * 从数据库根据typeId查询属性信息
+     *
      * @param typeId
      * @return
      */
@@ -134,6 +147,7 @@ public interface GoodsService {
 
     /**
      * 根据type查询所有的属性，然后根据goodsId显示商品已选的属性值
+     *
      * @param goodsId
      * @param typeId
      * @return
@@ -143,6 +157,7 @@ public interface GoodsService {
 
     /**
      * 从数据库查询商品规格信息
+     *
      * @param goodsId
      * @return
      */
@@ -151,14 +166,16 @@ public interface GoodsService {
 
     /**
      * 从数据库根据typeId查询规格信息
+     *
      * @param typeId
      * @return
      */
     @RequestMapping(value = "/querySpecListByTypeFromDB", method = RequestMethod.POST)
-    List<Spec> querySpecListByTypeFromDB(@RequestParam("typeId") Short typeId) ;
+    List<Spec> querySpecListByTypeFromDB(@RequestParam("typeId") Short typeId);
 
     /**
-     *  从数据库根据typeId查询所有规格信息，然后根据goodsId标上哪些规格项已选中
+     * 从数据库根据typeId查询所有规格信息，然后根据goodsId标上哪些规格项已选中
+     *
      * @param goodsId
      * @param typeId
      * @return
@@ -168,6 +185,7 @@ public interface GoodsService {
 
     /**
      * 保存商品图片到数据库
+     *
      * @param imageUrls
      * @param goodsId
      * @return
@@ -177,6 +195,7 @@ public interface GoodsService {
 
     /**
      * 保存商品规格价格和属性到数据库
+     *
      * @param specPriceAttrVo
      */
     @RequestMapping(value = "/saveGoodsSpecAndAttr2DB", method = RequestMethod.POST)
@@ -190,6 +209,7 @@ public interface GoodsService {
 
     /**
      * 发布单个商品到mongodb
+     *
      * @param goodsId
      */
     @RequestMapping(value = "/publishGoods2MongoDB", method = RequestMethod.POST)
@@ -200,6 +220,7 @@ public interface GoodsService {
 
     /**
      * 查询热销商品
+     *
      * @param showNum
      * @return
      */
@@ -209,6 +230,6 @@ public interface GoodsService {
     @RequestMapping(value = "/queryHotSellingGoodsDr", method = RequestMethod.POST)
     DeferredResult<List<HotSellingGoods>> queryHotSellingGoodsDr(@RequestParam("showNum") Integer showNum);
 
-    @RequestMapping(value = "/updateBySpecGoodsId", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/updateBySpecGoodsId", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     int updateBySpecGoodsIds(@RequestBody List<SpecGoodsPrice> records);
 }
